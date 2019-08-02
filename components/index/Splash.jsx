@@ -142,8 +142,8 @@ export default () => (
     <Text>
       <h1>MAGMO</h1>
       <SubText>
-        scroll down
-        <Icon icon={faSmileWink} />
+        Web and Kotlin <br />
+        development
       </SubText>
     </Text>
     <Logo src="/static/logo.png" alt="background" width="100px" />

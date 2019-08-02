@@ -29,7 +29,7 @@ export const Blocks = styled.section`
 
   h3 {
     display: block;
-    margin: 0.4rem 0;
+    margin: 0.4rem 0 0;
   }
 
   p {

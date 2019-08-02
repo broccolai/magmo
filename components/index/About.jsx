@@ -41,10 +41,10 @@ const Content = styled.p`
 
 export default () => (
   <About>
-    <Name>ABOUT</Name>
+    <Name>SERVICES</Name>
     <Content>
-      This site is a place I can put all my web projects and just experiment
-      with React
+      I offer a variety of web development services. 
+      If you'd like to know more feel free to contact me on Discord or Twitter
     </Content>
   </About>
 );

@@ -60,7 +60,7 @@ export default class Intro extends Component {
   render() {
     return (
       <Container>
-        <Title>INFORMATION</Title>
+        <Title>PRIORITIES</Title>
         <Blocks>
           <Block color={blue}
           data-aos="fade-up"
@@ -68,8 +68,8 @@ export default class Intro extends Component {
           data-aos-duration="800"
           data-aos-easing="ease">
             <Icon icon={faLeaf} />
-            <h3>Light</h3>
-            <p>Built with CSS Grid</p>
+            <h3>Responsive</h3>
+            {/* <p>Built with CSS Grid</p> */}
           </Block>
           <Block
             middle
@@ -81,7 +81,7 @@ export default class Intro extends Component {
           >
             <Icon icon={faBook} />
             <h3>Modern</h3>
-            <p>Built using Styled Components</p>
+            {/* <p>Built using Styled Components</p> */}
           </Block>
           <Block color={orange}
           data-aos="fade-up"
@@ -89,8 +89,8 @@ export default class Intro extends Component {
           data-aos-duration="1000"
           data-aos-easing="ease">
             <Icon icon={faBolt} />
-            <h3>React</h3>
-            <p>Built with React</p>
+            <h3>Fast</h3>
+            {/* <p>Built with React</p> */}
           </Block>
         </Blocks>
         <Background />
