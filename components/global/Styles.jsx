@@ -6,8 +6,8 @@ export const GlobalStyles = createGlobalStyle`
         font-style: normal;
         font-weight: 400;
         src: local('Nunito Regular'), local('Nunito-Regular'),
-            url('/static/fonts/nunito.woff2') format('woff2'),
-            url('/static/fonts/nunito.woff') format('woff');
+            url('/fonts/nunito.woff2') format('woff2'),
+            url('/fonts/nunito.woff') format('woff');
         font-display: optional;
     }
 
@@ -16,8 +16,8 @@ export const GlobalStyles = createGlobalStyle`
         font-style: normal;
         font-weight: 400;
         src: local('Josefin Sans Regular'), local('JosefinSans-Regular'),
-            url('/static/fonts/josefin.woff2') format('woff2'),
-            url('/static/fonts/josefin.woff') format('woff');
+            url('/fonts/josefin.woff2') format('woff2'),
+            url('/fonts/josefin.woff') format('woff');
         font-display: optional;
     }
 
@@ -30,4 +30,4 @@ export const GlobalStyles = createGlobalStyle`
         text-decoration: none;
         color: inherit;
     }
-`
+`;

@@ -1,4 +1,4 @@
-import { keyframes } from "styled-components";
+import { keyframes } from 'styled-components';
 
 export const shake = keyframes`
   from {
@@ -10,7 +10,7 @@ export const shake = keyframes`
     opacity: 1;
     transform: translate3d(0, 0, 0);
   }
-`
+`;
 
 export const colors = keyframes` 
 	0% { background-position: 0% 50% }

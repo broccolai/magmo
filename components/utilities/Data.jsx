@@ -1,4 +1,4 @@
-const white = "rgba(255, 255, 255, 0.3)";
+const white = 'rgba(255, 255, 255, 0.3)';
 
 export const SmallStar = `85vw 68.8vh ${white}, 39.3vw 1.4vh ${white},
 70.1vw -1.3vh ${white}, -18.8vw 33vh ${white}, 12.2vw 13.9vh ${white},
