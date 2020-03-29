@@ -1,6 +1,7 @@
 export const orange = '#e64a19';
 export const white = '#f9f9f9';
-export const black = '#0d1a26';
+export const smoke = '#f5f5f5';
+export const black = '#1C1E20';
 export const gray = '#333';
 export const cyan = '#06d6a0';
 export const blue = '#1976d2';
