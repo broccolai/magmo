@@ -1,0 +1,6 @@
+{
+  "projects": {
+    "default": "magmo-6350d",
+    "staging": "magmo-6350d"
+  }
+}

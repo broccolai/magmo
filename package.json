@@ -9,9 +9,15 @@
     "start": "next start"
   },
   "dependencies": {
+    "cookie-session": "^1.4.0",
+    "firebase": "^7.13.1",
+    "firebase-admin": "^8.10.0",
+    "firebase-functions": "^3.6.0",
+    "isomorphic-unfetch": "^3.0.0",
     "next": "^9.3.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-firebaseui": "^4.1.0",
     "styled-components": "^5.0.1-revisedssr"
   },
   "devDependencies": {
@@ -22,9 +28,12 @@
     "@primer/css": "^14.3.0",
     "@types/node": "^13.9.5",
     "@types/react": "^16.9.26",
+    "@types/react-dom": "^16.9.6",
     "@types/styled-components": "^5.0.1",
     "@typescript-eslint/eslint-plugin": "^2.25.0",
     "@typescript-eslint/parser": "^2.25.0",
+    "@types/cookie-session": "^2.0.39",
+    "@types/express-session": "^1.17.0",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.10.1",
     "eslint-plugin-prettier": "^3.1.2",
