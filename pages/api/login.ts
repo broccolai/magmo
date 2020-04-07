@@ -1,8 +1,8 @@
-import { NextApiRequest, NextApiResponse } from 'next';
 import { verifyIdToken } from '../../lib/auth/firebaseAdmin';
 import commonMiddleware from '../../lib/middleware/commonMiddleware';
+import { MagmoApiRequest, MagmoApiResponse } from '../../typings/Api';
 
-const handler = async (req: NextApiRequest, res: NextApiResponse) => {
+const handler = async (req: MagmoApiRequest, res: MagmoApiResponse) => {
   if (!req.body) {
     return res.status(400);
   }

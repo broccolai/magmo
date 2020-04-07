@@ -1,7 +1,7 @@
 import commonMiddleware from '../../lib/middleware/commonMiddleware';
+import { MagmoApiRequest, MagmoApiResponse } from '../../typings/Api';
 
-const handler = (req, res) => {
-  //   console.log('LOGOUT API REQ ' + typeof req + ' AND RES ' + typeof res);
+const handler = (req: MagmoApiRequest, res: MagmoApiResponse) => {
   req.session = null;
   res.status(200).json({ status: true });
 };

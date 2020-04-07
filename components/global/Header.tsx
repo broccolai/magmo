@@ -74,7 +74,9 @@ const Header = () => {
         <Logo src="/nav-logo.png" />
       </Link>
       <Links>
-        <Text color={white}>broccolai</Text>
+        <Link href="/profile">
+          <Text color={white}>broccolai</Text>
+        </Link>
         <Image src="/WOMAN.jpg" />
       </Links>
     </Container>

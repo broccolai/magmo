@@ -17,7 +17,7 @@ export const Button = styled.button<ButtonProps>`
   background-color: ${smoke};
   border-radius: 0.2rem;
   box-shadow: inset 0 0 0 0 #31302b;
-  transition: all ease 0.8s;
+  transition: box-shadow ease 0.8s;
 
   &:active {
     transform: scale(0.95);
