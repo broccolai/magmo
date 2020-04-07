@@ -1,4 +1,3 @@
-import fetch from 'isomorphic-unfetch';
 import React from 'react';
 import styled from 'styled-components';
 import { Information } from '../components/elements/Information';
@@ -50,13 +49,9 @@ const Line = styled.hr`
   border: 0;
 `;
 
-initFirebase();
-
-const Profile = ({ AuthUser }: AuthUserPage) => {
+const Profile = () => {
   // const [avatar, setAvatar] = useState(props.avatar);
   // const [pickerOpen, setPickerOpen] = useState(false);
-
-  const { id = '', email = '' } = AuthUser;
 
   // const closePicker = (avatar: string) => {
   //   setAvatar(avatar);
@@ -84,8 +79,8 @@ const Profile = ({ AuthUser }: AuthUserPage) => {
           <Line />
           <div>
             <Information heading="USERNAME" value="username" />
-            <Information heading="EMAIL" value={email} />
-            <Information heading="USER ID" value={id} />
+            <Information heading="EMAIL" value={'email'} />
+            <Information heading="USER ID" value={'id'} />
           </div>
         </FlexContainer>
 
@@ -93,27 +88,6 @@ const Profile = ({ AuthUser }: AuthUserPage) => {
       </Base>
     </Layout>
   );
-};
-
-Profile.getInitialProps = async (ctx: MagmoContext) => {
-  const AuthUserInfo = ctx.customData?.AuthUserInfo || null;
-  const AuthUser = AuthUserInfo?.AuthUser || null;
-
-  await fetch(server + '/api/customToken', {
-    method: 'POST',
-    headers: [['Content-Type', 'application/json']],
-    credentials: 'same-origin',
-    body: JSON.stringify({ token: AuthUserInfo.token }),
-  })
-    .then((res) => res.json())
-    .then((json) => firebase.auth().signInWithCustomToken(json.token));
-
-  const document = await firebase.firestore().collection('users').doc(AuthUser.id).get();
-  console.log(document.data());
-
-  return {
-    AuthUser,
-  };
 };
 
 export default Profile;
