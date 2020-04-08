@@ -27,6 +27,7 @@ type TextProps = {
 };
 
 export const Text = styled.p<TextProps>`
+  min-height: 22px;
   margin: 0;
   font-family: ${REGULAR_FONTS};
   color: ${(props) => props.color || black};

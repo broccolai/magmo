@@ -1,6 +1,8 @@
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { useAuth } from 'use-auth0-hooks';
 import { Text } from '../global/Typography';
 import { white } from '../utilities/Colors';
 
@@ -55,6 +57,8 @@ const Links = styled.div`
 
 const Header = () => {
   const [reveal, toggleReveal] = useState(false);
+  const { pathname, query } = useRouter();
+  const { isAuthenticated, isLoading, login, user } = useAuth();
 
   const attemptToggle = () => {
     (window.scrollY / window.innerHeight) * 100 > 70
@@ -74,10 +78,21 @@ const Header = () => {
         <Logo src="/nav-logo.png" />
       </Link>
       <Links>
-        <Link href="/profile">
+        {!isLoading &&
+          (isAuthenticated ? (
+            <>
+              <Link href="/profile">
+                <Text color={white}>{user.nickname}</Text>
+              </Link>
+              <Image src={user.picture} />
+            </>
+          ) : (
+            <button onClick={() => login({ appState: { returnTo: { pathname, query } } })}>Log in</button>
+          ))}
+        {/* <Link href="/profile">
           <Text color={white}>broccolai</Text>
         </Link>
-        <Image src="/WOMAN.jpg" />
+        <Image src="/WOMAN.jpg" /> */}
       </Links>
     </Container>
   );

@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useAuth } from 'use-auth0-hooks';
 import { Information } from '../components/elements/Information';
 import { FlexContainer } from '../components/global/Containers';
 import Layout from '../components/hocs/Layout';
@@ -17,18 +18,20 @@ const Base = styled.div`
   justify-content: center;
 `;
 
-const ImageContainer = styled.button`
+type ImageContainerProps = {
+  image: string;
+};
+
+const ImageContainer = styled.button<ImageContainerProps>`
   display: flex;
+  width: 8rem;
+  height: 8rem;
   cursor: pointer;
-  background: none;
+  background-image: ${(props) => `url(${props.image}) ` || 'none'};
+  border: 0;
   outline: none;
   align-items: center;
 `;
-
-// const Image = styled.img`
-//   width: 8rem;
-//   border-radius: 8%;
-// `;
 
 const Header = styled.h3`
   margin-top: 0;
@@ -50,21 +53,7 @@ const Line = styled.hr`
 `;
 
 const Profile = () => {
-  // const [avatar, setAvatar] = useState(props.avatar);
-  // const [pickerOpen, setPickerOpen] = useState(false);
-
-  // const closePicker = (avatar: string) => {
-  //   setAvatar(avatar);
-  //   setPickerOpen(false);
-
-  //   fetch(process.env.URL + ":3001/users/update", {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json"
-  //     },
-  //     body: JSON.stringify({ token: props.token, avatar: avatar })
-  //   });
-  // };
+  const { user } = useAuth();
 
   return (
     <Layout title={'Profile'} backing={black}>
@@ -72,19 +61,14 @@ const Profile = () => {
         <Header>ACCOUNT DETAILS</Header>
 
         <FlexContainer>
-          <ImageContainer>
-            {/* <Image src={"/avatars/" + avatar + ".jpg"} alt="" /> */}
-            {/* <p>change</p> */}
-          </ImageContainer>
+          <ImageContainer image={user?.picture} />
           <Line />
           <div>
-            <Information heading="USERNAME" value="username" />
-            <Information heading="EMAIL" value={'email'} />
-            <Information heading="USER ID" value={'id'} />
+            <Information heading="USERNAME" value={user?.nickname || null} />
+            <Information heading="EMAIL" value={user?.email || null} />
+            <Information heading="USER ID" value={user?.userid || null} />
           </div>
         </FlexContainer>
-
-        {/* <ImagePicker show={pickerOpen} click={(avatar) => closePicker(avatar)} /> */}
       </Base>
     </Layout>
   );

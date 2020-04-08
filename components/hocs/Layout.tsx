@@ -9,11 +9,11 @@ type Props = {
   children: ReactNode;
 };
 
-const Layout = ({ title, backing, children }: Props) => (
+const Layout = ({ children }: Props) => (
   <>
     <NextHead>
       <meta charSet="UTF-8" />
-      <title>MAGMO | {title || ''}</title>
+      <title>MAGMO</title>
 
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <link rel="icon" href="/favicon.ico" />
@@ -25,7 +25,7 @@ const Layout = ({ title, backing, children }: Props) => (
     </NextHead>
     <Header />
     {children}
-    <Footer background={backing} />
+    <Footer />
   </>
 );
 
