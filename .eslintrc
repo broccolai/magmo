@@ -13,8 +13,17 @@
             "jsx": true
         }
     },
-    "plugins": ["@typescript-eslint/eslint-plugin", "react-hooks"],
+    "plugins": [
+        "@typescript-eslint/eslint-plugin",
+        "react-hooks"
+    ],
     "rules": {
-        "@typescript-eslint/explicit-function-return-type": "off"
+        "@typescript-eslint/explicit-function-return-type": "off",
+        "@typescript-eslint/explicit-module-boundary-types": "off"
+    },
+    "settings": {
+        "react": {
+            "version": "detect"
+        }
     }
 }

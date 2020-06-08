@@ -29,7 +29,6 @@ const SmallStars = styled(Stars)`
   width: 4px;
   height: 4px;
   box-shadow: ${SmallStar};
-
   animation: ${animStar0} 20s linear infinite;
   animation-direction: alternate;
 `;
@@ -38,7 +37,6 @@ const MediumStars = styled(Stars)`
   width: 8px;
   height: 8px;
   box-shadow: ${MediumStar};
-
   animation: ${animStar1} 30s linear infinite;
   animation-direction: alternate;
 `;
@@ -46,9 +44,7 @@ const MediumStars = styled(Stars)`
 const LargeStars = styled(Stars)`
   width: 12px;
   height: 12px;
-
   box-shadow: ${LargeStar};
-
   animation: ${animStar2} 40s linear infinite;
   animation-direction: alternate;
 `;
