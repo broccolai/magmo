@@ -20,8 +20,3 @@ export const ChildFlexSection = styled(FlexSection)`
   margin-top: -5rem;
   border-radius: 2rem 2rem 0 0;
 `;
-
-export const FlexContainer = styled.div`
-  display: flex;
-  align-items: center;
-`;

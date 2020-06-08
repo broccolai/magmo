@@ -7,14 +7,14 @@ import { Pound } from '../utilities/Animations';
 import { black, red, white } from '../utilities/Colors';
 import { Text } from './Typography';
 
-const Background = styled.aside`
+const Background = styled.aside<Props>`
   position: absolute;
   top: 0;
   left: 0;
   z-index: -100;
   width: 100%;
   height: 100%;
-  background-color: ${black};
+  background-color: ${(props) => props.background};
 `;
 
 const Base = styled.footer`
@@ -73,9 +73,13 @@ const Josh = styled.a`
   text-decoration: none;
 `;
 
-const Footer = () => (
+type Props = {
+  background: string;
+};
+
+const Footer = ({ background }: Props) => (
   <Base>
-    <Background />
+    <Background background={background} />
     <div>
       <a href="https://discordapp.com/">
         <Discord icon={faDiscord} />
@@ -95,6 +99,8 @@ const Footer = () => (
         <Coffee icon={faCoffee} />
         by
         <Josh href="https://magmo.co.uk">&nbsp; Josh</Josh>
+        <br />
+        <span>&copy; Copyright 2020 Josh Taylor</span>
       </Text>
     </Signature>
   </Base>
