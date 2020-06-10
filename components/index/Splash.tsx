@@ -14,8 +14,11 @@ const Container = styled(FlexSection)`
 
 const Text = styled.div`
   color: ${white};
-  font-size: 4rem;
   text-align: center;
+
+  @media (max-width: 425px) {
+    font-size: 3rem;
+  }
 `;
 
 const Stars = styled.div`
@@ -48,6 +51,10 @@ const LargeStars = styled(Stars)`
   box-shadow: ${LargeStar};
   height: 12px;
   width: 12px;
+
+  @media (max-width: 425px) {
+    display: none;
+  }
 `;
 
 const Splash = () => (

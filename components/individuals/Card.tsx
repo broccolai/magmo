@@ -11,6 +11,7 @@ export const Card = styled.article<BackingProps>`
   border-radius: 1rem;
   display: flex;
   flex-direction: column;
+  margin: 0.5rem;
   position: relative;
   transition: transform 1s ease;
   width: 20rem;

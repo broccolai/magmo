@@ -5,13 +5,13 @@ import { faDiscord, faGithub } from '@fortawesome/free-brands-svg-icons';
 import { faBook, faFaucet, faLink } from '@fortawesome/free-solid-svg-icons';
 
 import { ChildFlexSection } from '../global/Containers';
-import { Bold, FooterText, H1, H3, H4, Text } from '../global/Typography';
+import { Bold, FooterText, H2, H3, H4, Text } from '../global/Typography';
 import { Card, CardBody, CardBottomBody, CardHeader } from '../individuals/Card';
 import { Icon } from '../individuals/Icon';
 import { black, gray, smoke } from '../utilities/Colors';
 import { fadeGradient, hexToRGBA } from '../utilities/Functions';
 
-const Title = styled(H1)`
+const Title = styled(H2)`
   flex-basis: 100%;
   margin-bottom: 3rem;
 `;
@@ -36,7 +36,7 @@ const Logo = styled.img`
 `;
 
 const Intro = () => (
-  <ChildFlexSection index={1} backing={black} padding="4rem">
+  <ChildFlexSection index={1} backing={black} padding="4rem clamp(.6rem, 4vw, 4rem)">
     <Title>PROJECTS</Title>
     <Card>
       <CardHeader backing={fadeGradient(smoke, 15) + ", url('PTBG.png')"}>
