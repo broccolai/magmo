@@ -5,9 +5,8 @@
   "license": "MIT",
   "scripts": {
     "dev": "next",
-    "build": "$npm_execpath run jslint && $npm_execpath run csslint && next build && next export",
-    "jslint": "eslint \"components/**\" \"pages/**\"  --fix",
-    "csslint": "stylelint \"components/**\" \"pages/**\"  --fix"
+    "build": "$npm_execpath run jslint && next build && next export",
+    "jslint": "eslint \"components/**\" \"pages/**\"  --fix"
   },
   "dependencies": {
     "next": "^9.4.4",
