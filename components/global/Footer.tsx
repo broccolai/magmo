@@ -1,8 +1,10 @@
+import React from 'react';
+import styled from 'styled-components';
+
 import { faDiscord, faGithub, faTwitter } from '@fortawesome/free-brands-svg-icons';
 import { faCoffee, faHeart } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React from 'react';
-import styled from 'styled-components';
+
 import { Pound } from '../utilities/Animations';
 import { black, red, white } from '../utilities/Colors';
 import { Text } from './Typography';

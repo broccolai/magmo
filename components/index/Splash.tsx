@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+
 import { FlexSection } from '../global/Containers';
 import { H1, H4 } from '../global/Typography';
 import { animStar0, animStar1, animStar2 } from '../utilities/Animations';

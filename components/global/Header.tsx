@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+
 import { Text } from '../global/Typography';
 import { white } from '../utilities/Colors';
 

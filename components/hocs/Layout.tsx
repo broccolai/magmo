@@ -1,5 +1,6 @@
 import NextHead from 'next/head';
 import React, { ReactNode } from 'react';
+
 import Footer from '../global/Footer';
 import Header from '../global/Header';
 

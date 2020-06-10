@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { black, smoke, soft, white } from '../utilities/Colors';
+import { black, soft, white } from '../utilities/Colors';
 
 export const TITLE_FONTS =
   'Sen, -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif';
@@ -21,7 +21,6 @@ export const H3 = styled.h3`
   font-size: 2.4rem;
   margin: 0;
 
-  /* color: ${smoke}; */
   text-align: center;
 `;
 
@@ -31,7 +30,6 @@ export const H4 = styled.h4`
   font-weight: 600;
   margin: 0;
 
-  /* color: ${smoke}; */
   text-align: center;
 `;
 
