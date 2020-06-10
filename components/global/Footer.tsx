@@ -101,8 +101,6 @@ const Footer = ({ background }: Props) => (
         <Coffee icon={faCoffee} />
         by
         <Josh href="https://magmo.co.uk">&nbsp; Josh</Josh>
-        <br />
-        <span>&copy; Copyright 2020 Josh Taylor</span>
       </Text>
     </Signature>
   </Base>
