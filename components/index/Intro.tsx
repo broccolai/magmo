@@ -60,7 +60,7 @@ const Intro = () => (
       <FooterText>SERVING 10 DISCORD GUILDS</FooterText>
     </Card>
     <Card>
-      <CardHeader backing={fadeGradient(smoke, 15) + ", url('PTBG.png')"}>
+      <CardHeader backing={fadeGradient(smoke, 15) + ", url('MAGMOBG.png')"}>
         <Logo src="/logo.svg" />
         <Name>MAGMO</Name>
         <Slogan>NEXTJS SITE</Slogan>
