@@ -52,10 +52,25 @@ const Intro = () => (
         </Text>
       </CardBody>
       <CardBottomBody>
-        <Icon href="" icon={faFaucet} basis="1.4rem" backing={hexToRGBA(gray, 10)} />
-        <Icon href="" icon={faBook} basis="1.4rem" backing={hexToRGBA(gray, 10)} />
-        <Icon href="" icon={faGithub} basis="1.4rem" backing={hexToRGBA(gray, 10)} />
-        <Icon href="" icon={faDiscord} basis="1.4rem" backing={hexToRGBA(gray, 10)} />
+        <Icon
+          href="https://www.spigotmc.org/resources/pure-tickets-easy-to-use-ticket-system.71677/"
+          icon={faFaucet}
+          basis="1.4rem"
+          backing={hexToRGBA(gray, 10)}
+        />
+        <Icon
+          href="https://github.com/broccolai/PureTickets/wiki"
+          icon={faBook}
+          basis="1.4rem"
+          backing={hexToRGBA(gray, 10)}
+        />
+        <Icon
+          href="https://github.com/broccolai/PureTickets/"
+          icon={faGithub}
+          basis="1.4rem"
+          backing={hexToRGBA(gray, 10)}
+        />
+        <Icon href="https://discord.gg/huYp67G" icon={faDiscord} basis="1.4rem" backing={hexToRGBA(gray, 10)} />
       </CardBottomBody>
       <FooterText>SERVING 10 DISCORD GUILDS</FooterText>
     </Card>
@@ -73,8 +88,8 @@ const Intro = () => (
         </Text>
       </CardBody>
       <CardBottomBody>
-        <Icon href="" icon={faGithub} basis="1.4rem" backing={hexToRGBA(gray, 10)} />
-        <Icon href="" icon={faLink} basis="1.4rem" backing={hexToRGBA(gray, 10)} />
+        <Icon href="https://github.com/broccolai/magmo" icon={faGithub} basis="1.4rem" backing={hexToRGBA(gray, 10)} />
+        <Icon href="https://magmo.co.uk/" icon={faLink} basis="1.4rem" backing={hexToRGBA(gray, 10)} />
       </CardBottomBody>
     </Card>
   </ChildFlexSection>

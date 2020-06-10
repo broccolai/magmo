@@ -2,7 +2,6 @@ import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-import { Text } from '../global/Typography';
 import { white } from '../utilities/Colors';
 
 type ContainerProps = {
@@ -29,14 +28,6 @@ const Logo = styled.img`
   z-index: 1;
 `;
 
-const Image = styled.img`
-  border-radius: 100%;
-  height: 3rem;
-  padding: 1rem;
-  width: 3rem;
-  z-index: 1;
-`;
-
 const Backing = styled.div<ContainerProps>`
   backdrop-filter: blur(6px);
   background: rgba(28, 30, 32, 0.8);
@@ -46,12 +37,6 @@ const Backing = styled.div<ContainerProps>`
   transition: opacity ease 600ms;
   width: inherit;
   z-index: 0;
-`;
-
-const Links = styled.div`
-  align-items: center;
-  display: flex;
-  z-index: 1;
 `;
 
 const Header = () => {
@@ -74,10 +59,6 @@ const Header = () => {
       <Link href="/">
         <Logo src="/nav-logo.png" />
       </Link>
-      <Links>
-        <Text color={white}>broccolai</Text>
-        <Image src="/WOMAN.jpg" />
-      </Links>
     </Container>
   );
 };

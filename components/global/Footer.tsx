@@ -83,13 +83,13 @@ const Footer = ({ background }: Props) => (
   <Base>
     <Background background={background} />
     <div>
-      <a href="https://discordapp.com/">
+      <a href="https://discord.gg/huYp67G">
         <Discord icon={faDiscord} />
       </a>
-      <a href="https://twitter.com/BroccoIai">
+      <a href="https://twitter.com/broccoIai">
         <Twitter icon={faTwitter} />
       </a>
-      <a href="https://github.com/Broccolai/magmo">
+      <a href="https://github.com/broccolai/magmo">
         <Github icon={faGithub} />
       </a>
     </div>
