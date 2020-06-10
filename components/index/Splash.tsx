@@ -14,6 +14,7 @@ const Container = styled(FlexSection)`
 
 const Text = styled.div`
   color: ${white};
+  margin-top: -5rem;
   text-align: center;
 
   @media (max-width: 425px) {
