@@ -15,11 +15,13 @@
     },
     "plugins": [
         "@typescript-eslint/eslint-plugin",
+        "better-styled-components",
         "react-hooks"
     ],
     "rules": {
         "@typescript-eslint/explicit-function-return-type": "off",
-        "@typescript-eslint/explicit-module-boundary-types": "off"
+        "@typescript-eslint/explicit-module-boundary-types": "off",
+        "better-styled-components/sort-declarations-alphabetically": 1
     },
     "settings": {
         "react": {
