@@ -7,46 +7,46 @@ import { white } from '../utilities/Colors';
 import { LargeStar, MediumStar, SmallStar } from '../utilities/Data';
 
 const Container = styled(FlexSection)`
-  height: 95vh;
   background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  height: 95vh;
 `;
 
 const Text = styled.div`
-  font-size: 4rem;
   color: ${white};
+  font-size: 4rem;
   text-align: center;
 `;
 
 const Stars = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
   background: transparent;
   border-radius: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
 `;
 
 const SmallStars = styled(Stars)`
-  width: 4px;
-  height: 4px;
-  box-shadow: ${SmallStar};
   animation: ${animStar0} 20s linear infinite;
   animation-direction: alternate;
+  box-shadow: ${SmallStar};
+  height: 4px;
+  width: 4px;
 `;
 
 const MediumStars = styled(Stars)`
-  width: 8px;
-  height: 8px;
-  box-shadow: ${MediumStar};
   animation: ${animStar1} 30s linear infinite;
   animation-direction: alternate;
+  box-shadow: ${MediumStar};
+  height: 8px;
+  width: 8px;
 `;
 
 const LargeStars = styled(Stars)`
-  width: 12px;
-  height: 12px;
-  box-shadow: ${LargeStar};
   animation: ${animStar2} 40s linear infinite;
   animation-direction: alternate;
+  box-shadow: ${LargeStar};
+  height: 12px;
+  width: 12px;
 `;
 
 const Splash = () => (

@@ -8,35 +8,35 @@ import { black, red, white } from '../utilities/Colors';
 import { Text } from './Typography';
 
 const Background = styled.aside<Props>`
+  background-color: ${(props) => props.background};
+  height: 100%;
+  left: 0;
   position: absolute;
   top: 0;
-  left: 0;
-  z-index: -100;
   width: 100%;
-  height: 100%;
-  background-color: ${(props) => props.background};
+  z-index: -100;
 `;
 
 const Base = styled.footer`
-  position: relative;
-  display: grid;
-  width: 100%;
-  height: 150px;
-  box-sizing: border-box;
-  padding: 2rem;
-  color: ${black};
-  text-align: center;
   background-color: ${white};
   border-top-left-radius: 2rem;
   border-top-right-radius: 2rem;
+  box-sizing: border-box;
+  color: ${black};
+  display: grid;
+  height: 150px;
   justify-content: center;
+  padding: 2rem;
+  position: relative;
+  text-align: center;
+  width: 100%;
 `;
 
 const Icon = styled(FontAwesomeIcon)`
-  height: 1.6rem;
-  margin-right: 0.6rem;
-  margin-left: 0.6rem;
   font-size: 1.6rem;
+  height: 1.6rem;
+  margin-left: 0.6rem;
+  margin-right: 0.6rem;
 `;
 
 const Discord = styled(Icon)`
@@ -56,16 +56,16 @@ const Signature = styled.div`
 `;
 
 const Heart = styled(Icon)`
-  height: 1rem;
-  font-size: 1rem;
-  color: #e90606;
   animation: ${Pound} 0.35s infinite alternate;
+  color: #e90606;
+  font-size: 1rem;
+  height: 1rem;
 `;
 
 const Coffee = styled(Icon)`
-  height: 1rem;
-  font-size: 1rem;
   color: #6f4e37;
+  font-size: 1rem;
+  height: 1rem;
 `;
 
 const Josh = styled.a`

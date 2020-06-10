@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import { black, smoke, white } from '../utilities/Colors';
+
+import { black, smoke, soft, white } from '../utilities/Colors';
 
 export const TITLE_FONTS =
   'Sen, -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif';
@@ -8,18 +9,35 @@ export const REGULAR_FONTS =
   'Open Sans, -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif';
 
 export const H1 = styled.h1`
-  margin: 0;
-  font-family: ${TITLE_FONTS};
   color: ${white};
+  font-family: ${TITLE_FONTS};
   letter-spacing: 5px;
+  margin: 0;
+  text-align: center;
+`;
+
+export const H3 = styled.h3`
+  font-family: ${TITLE_FONTS};
+  font-size: 2.4rem;
+  margin: 0;
+
+  /* color: ${smoke}; */
+  text-align: center;
 `;
 
 export const H4 = styled.h4`
-  margin: 0;
   font-family: ${REGULAR_FONTS};
   font-size: 2rem;
   font-weight: 600;
-  color: ${smoke};
+  margin: 0;
+
+  /* color: ${smoke}; */
+  text-align: center;
+`;
+
+export const Bold = styled.b`
+  font-family: ${REGULAR_FONTS};
+  line-height: 3;
 `;
 
 type TextProps = {
@@ -27,7 +45,21 @@ type TextProps = {
 };
 
 export const Text = styled.p<TextProps>`
-  margin: 0;
-  font-family: ${REGULAR_FONTS};
   color: ${(props) => props.color || black};
+  font-family: ${REGULAR_FONTS};
+  line-height: 1.6;
+  margin: 0;
+`;
+
+export const FooterText = styled.p`
+  bottom: 0;
+  color: ${soft};
+  font-family: ${REGULAR_FONTS};
+  font-size: 0.8rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+  line-height: 1;
+  position: absolute;
+  text-align: center;
+  width: 100%;
 `;
