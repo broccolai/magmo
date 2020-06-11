@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import { faDiscord, faGithub } from '@fortawesome/free-brands-svg-icons';
@@ -35,64 +35,86 @@ const Logo = styled.img`
   width: 6rem;
 `;
 
-const Intro = () => (
-  <ChildFlexSection index={1} backing={black} padding="4rem clamp(.6rem, 4vw, 4rem)">
-    <Title>PROJECTS</Title>
-    <Card>
-      <CardHeader backing={fadeGradient(smoke, 15) + ", url('PTBG.png')"}>
-        <Logo src="/PureTicketsLogo.svg" />
-        <Name>PURE TICKETS</Name>
-        <Slogan>SPIGOT PLUGIN</Slogan>
-      </CardHeader>
-      <CardBody>
-        <Bold>ABOUT</Bold>
-        <Text color={gray}>
-          Pure Tickets is a ticket management plugin made for Spigot / Paper. Its features include; players being able
-          to submit multiple tickets and discord integeration
-        </Text>
-      </CardBody>
-      <CardBottomBody>
-        <Icon
-          href="https://www.spigotmc.org/resources/pure-tickets-easy-to-use-ticket-system.71677/"
-          icon={faFaucet}
-          basis="1.4rem"
-          backing={hexToRGBA(gray, 10)}
-        />
-        <Icon
-          href="https://github.com/broccolai/PureTickets/wiki"
-          icon={faBook}
-          basis="1.4rem"
-          backing={hexToRGBA(gray, 10)}
-        />
-        <Icon
-          href="https://github.com/broccolai/PureTickets/"
-          icon={faGithub}
-          basis="1.4rem"
-          backing={hexToRGBA(gray, 10)}
-        />
-        <Icon href="https://discord.gg/huYp67G" icon={faDiscord} basis="1.4rem" backing={hexToRGBA(gray, 10)} />
-      </CardBottomBody>
-      <FooterText>SERVING 10 DISCORD GUILDS</FooterText>
-    </Card>
-    <Card>
-      <CardHeader backing={fadeGradient(smoke, 15) + ", url('MAGMOBG.png')"}>
-        <Logo src="/logo.svg" />
-        <Name>MAGMO</Name>
-        <Slogan>NEXTJS SITE</Slogan>
-      </CardHeader>
-      <CardBody>
-        <Bold>ABOUT</Bold>
-        <Text color={gray}>
-          MAGMO is a nextjs site build with styled-components that I use to practice react and to store api endpoints
-          for my other projects
-        </Text>
-      </CardBody>
-      <CardBottomBody>
-        <Icon href="https://github.com/broccolai/magmo" icon={faGithub} basis="1.4rem" backing={hexToRGBA(gray, 10)} />
-        <Icon href="https://magmo.co.uk/" icon={faLink} basis="1.4rem" backing={hexToRGBA(gray, 10)} />
-      </CardBottomBody>
-    </Card>
-  </ChildFlexSection>
-);
+const Intro = () => {
+  const [amount, setAmount] = useState('0');
+
+  useEffect(() => {
+    const execute = async () => {
+      const status = await fetch('https://tickets.magmo.co.uk/status', {
+        method: 'GET',
+        mode: 'cors',
+      });
+
+      setAmount(await status.text());
+    };
+
+    execute();
+  });
+
+  return (
+    <ChildFlexSection index={1} backing={black} padding="4rem clamp(.6rem, 4vw, 4rem)">
+      <Title>PROJECTS</Title>
+      <Card>
+        <CardHeader backing={fadeGradient(smoke, 15) + ", url('PTBG.png')"}>
+          <Logo src="/PureTicketsLogo.svg" />
+          <Name>PURE TICKETS</Name>
+          <Slogan>SPIGOT PLUGIN</Slogan>
+        </CardHeader>
+        <CardBody>
+          <Bold>ABOUT</Bold>
+          <Text color={gray}>
+            Pure Tickets is a ticket management plugin made for Spigot / Paper. Its features include; players being able
+            to submit multiple tickets and discord integeration
+          </Text>
+        </CardBody>
+        <CardBottomBody>
+          <Icon
+            href="https://www.spigotmc.org/resources/pure-tickets-easy-to-use-ticket-system.71677/"
+            icon={faFaucet}
+            basis="1.4rem"
+            backing={hexToRGBA(gray, 10)}
+          />
+          <Icon
+            href="https://github.com/broccolai/PureTickets/wiki"
+            icon={faBook}
+            basis="1.4rem"
+            backing={hexToRGBA(gray, 10)}
+          />
+          <Icon
+            href="https://github.com/broccolai/PureTickets/"
+            icon={faGithub}
+            basis="1.4rem"
+            backing={hexToRGBA(gray, 10)}
+          />
+          <Icon href="https://discord.gg/huYp67G" icon={faDiscord} basis="1.4rem" backing={hexToRGBA(gray, 10)} />
+        </CardBottomBody>
+        <FooterText>SERVING {amount} DISCORD GUILDS</FooterText>
+      </Card>
+      <Card>
+        <CardHeader backing={fadeGradient(smoke, 15) + ", url('MAGMOBG.png')"}>
+          <Logo src="/logo.svg" />
+          <Name>MAGMO</Name>
+          <Slogan>NEXTJS SITE</Slogan>
+        </CardHeader>
+        <CardBody>
+          <Bold>ABOUT</Bold>
+          <Text color={gray}>
+            MAGMO is a nextjs site build with styled-components that I use to practice react and to store api endpoints
+            for my other projects
+          </Text>
+        </CardBody>
+        <CardBottomBody>
+          <Icon
+            href="https://github.com/broccolai/magmo"
+            icon={faGithub}
+            basis="1.4rem"
+            backing={hexToRGBA(gray, 10)}
+          />
+          <Icon href="https://magmo.co.uk/" icon={faLink} basis="1.4rem" backing={hexToRGBA(gray, 10)} />
+        </CardBottomBody>
+      </Card>
+    </ChildFlexSection>
+  );
+};
 
 export default Intro;
