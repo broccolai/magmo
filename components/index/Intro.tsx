@@ -11,6 +11,10 @@ import { Icon } from '../individuals/Icon';
 import { black, gray, smoke } from '../utilities/Colors';
 import { fadeGradient, hexToRGBA } from '../utilities/Functions';
 
+const Container = styled(ChildFlexSection)`
+  margin-top: 90vh;
+`;
+
 const Title = styled(H2)`
   flex-basis: 100%;
   margin-bottom: 3rem;
@@ -52,7 +56,7 @@ const Intro = () => {
   });
 
   return (
-    <ChildFlexSection index={1} backing={black} padding="4rem clamp(.6rem, 4vw, 4rem)">
+    <Container index={1} backing={black} padding="2.5rem clamp(.6rem, 4vw, 4rem)">
       <Title>PROJECTS</Title>
       <Card>
         <CardHeader backing={fadeGradient(smoke, 15) + ", url('PTBG.png')"}>
@@ -113,7 +117,7 @@ const Intro = () => {
           <Icon href="https://magmo.co.uk/" icon={faLink} basis="1.4rem" backing={hexToRGBA(gray, 10)} />
         </CardBottomBody>
       </Card>
-    </ChildFlexSection>
+    </Container>
   );
 };
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import Plx from 'react-plx';
 import styled from 'styled-components';
 
 import { FlexSection } from '../global/Containers';
@@ -10,11 +11,13 @@ import { LargeStar, MediumStar, SmallStar } from '../utilities/Data';
 const Container = styled(FlexSection)`
   background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   height: 95vh;
+  position: fixed;
+  width: 100%;
+  z-index: -999;
 `;
 
 const Text = styled.div`
   color: ${white};
-  margin-top: -5rem;
   text-align: center;
 
   @media (max-width: 425px) {
@@ -58,15 +61,31 @@ const LargeStars = styled(Stars)`
   }
 `;
 
+const parallaxData = [
+  {
+    start: 0,
+    end: '65vh',
+    properties: [
+      {
+        startValue: 0,
+        endValue: -35,
+        unit: 'vh',
+        property: 'translateY',
+      },
+    ],
+  },
+];
 const Splash = () => (
   <Container>
     <SmallStars />
     <MediumStars />
     <LargeStars />
-    <Text>
-      <H1>MAGMO</H1>
-      <H4>React and Kotlin development</H4>
-    </Text>
+    <Plx parallaxData={parallaxData}>
+      <Text>
+        <H1>MAGMO</H1>
+        <H4>React and Kotlin development</H4>
+      </Text>
+    </Plx>
   </Container>
 );
 

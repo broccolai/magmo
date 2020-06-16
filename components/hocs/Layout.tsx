@@ -2,6 +2,7 @@ import GoogleFonts from 'next-google-fonts';
 import NextHead from 'next/head';
 import React, { ReactNode } from 'react';
 
+import { AbsoluteContainer } from '../global/Containers';
 import Footer from '../global/Footer';
 import Header from '../global/Header';
 
@@ -21,9 +22,11 @@ const Layout = ({ title, backing, children }: Props) => (
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <link rel="icon" href="/favicon.ico" />
     </NextHead>
-    <Header />
-    {children}
-    <Footer background={backing} />
+    <AbsoluteContainer>
+      <Header />
+      {children}
+      <Footer background={backing} />
+    </AbsoluteContainer>
   </>
 );
 

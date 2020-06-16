@@ -6,6 +6,11 @@ type FlexSectionSettings = {
   padding?: string;
 };
 
+export const AbsoluteContainer = styled.div`
+  position: absolute;
+  width: 100%;
+`;
+
 export const FlexSection = styled.section<FlexSectionSettings>`
   align-items: center;
   background: ${(props) => props.backing || 'unset'};
