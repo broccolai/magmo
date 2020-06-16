@@ -18,6 +18,7 @@ const Container = styled(FlexSection)`
 
 const Text = styled.div`
   color: ${white};
+  margin-top: -5vh;
   text-align: center;
 
   @media (max-width: 425px) {
@@ -68,7 +69,7 @@ const parallaxData = [
     properties: [
       {
         startValue: 0,
-        endValue: -35,
+        endValue: -32.5,
         unit: 'vh',
         property: 'translateY',
       },

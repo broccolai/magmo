@@ -1,6 +1,7 @@
 .idea
 .next
 .DS_Store
+.vscode/
 node_modules/
 out/
 yarn.lock
