@@ -89,7 +89,7 @@ const Footer = ({ background }: Props) => (
       <a href="https://twitter.com/broccoIai">
         <Twitter icon={faTwitter} />
       </a>
-      <a href="https://github.com/broccolai/magmo">
+      <a href="https://github.com/broccolai/site">
         <Github icon={faGithub} />
       </a>
     </div>
@@ -100,7 +100,7 @@ const Footer = ({ background }: Props) => (
         &amp;
         <Coffee icon={faCoffee} />
         by
-        <Josh href="https://magmo.co.uk">&nbsp; Josh</Josh>
+        <Josh href="https://broccol.ai">&nbsp; Josh</Josh>
       </Text>
     </Signature>
   </Base>

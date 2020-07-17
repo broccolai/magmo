@@ -3,6 +3,8 @@ import styled from 'styled-components';
 
 import { faDiscord, faGithub } from '@fortawesome/free-brands-svg-icons';
 import { faBook, faFaucet, faLink } from '@fortawesome/free-solid-svg-icons';
+import { faCorn } from '@fortawesome/pro-duotone-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { ChildFlexSection } from '../global/Containers';
 import { Bold, FooterText, H2, H3, H4, Text } from '../global/Typography';
@@ -39,12 +41,21 @@ const Logo = styled.img`
   width: 6rem;
 `;
 
+const LogoIcon = styled(FontAwesomeIcon)`
+  color: #fdf5af;
+  filter: drop-shadow(0 8px 8px rgba(0, 0, 0, 0.6));
+  height: 5.6rem;
+  margin-bottom: 1rem;
+  padding: 0.2rem;
+  width: 5.6rem !important;
+`;
+
 const Intro = () => {
   const [amount, setAmount] = useState('0');
 
   useEffect(() => {
     const execute = async () => {
-      const status = await fetch('https://tickets.magmo.co.uk/status', {
+      const status = await fetch('https://tickets.broccol.ai/api/v2/stats', {
         method: 'GET',
         mode: 'cors',
       });
@@ -79,13 +90,13 @@ const Intro = () => {
             backing={hexToRGBA(gray, 10)}
           />
           <Icon
-            href="https://github.com/broccolai/PureTickets/wiki"
+            href="https://github.com/broccolai/tickets/wiki"
             icon={faBook}
             basis="1.4rem"
             backing={hexToRGBA(gray, 10)}
           />
           <Icon
-            href="https://github.com/broccolai/PureTickets/"
+            href="https://github.com/broccolai/tickets/"
             icon={faGithub}
             basis="1.4rem"
             backing={hexToRGBA(gray, 10)}
@@ -97,24 +108,36 @@ const Intro = () => {
       <Card>
         <CardHeader backing={fadeGradient(smoke, 15) + ", url('MAGMOBG.png')"}>
           <Logo src="/logo.svg" />
-          <Name>MAGMO</Name>
+          <Name>BROCCOL.AI</Name>
           <Slogan>NEXTJS SITE</Slogan>
         </CardHeader>
         <CardBody>
           <Bold>ABOUT</Bold>
           <Text color={gray}>
-            MAGMO is a nextjs site build with styled-components that I use to practice react and to store api endpoints
-            for my other projects
+            broccol.ai is a nextjs site build with styled-components that I use to practice react and to store api
+            endpoints for my other projects
           </Text>
         </CardBody>
         <CardBottomBody>
-          <Icon
-            href="https://github.com/broccolai/magmo"
-            icon={faGithub}
-            basis="1.4rem"
-            backing={hexToRGBA(gray, 10)}
-          />
-          <Icon href="https://magmo.co.uk/" icon={faLink} basis="1.4rem" backing={hexToRGBA(gray, 10)} />
+          <Icon href="https://github.com/broccolai/site" icon={faGithub} basis="1.4rem" backing={hexToRGBA(gray, 10)} />
+          <Icon href="https://broccol.ai/" icon={faLink} basis="1.4rem" backing={hexToRGBA(gray, 10)} />
+        </CardBottomBody>
+      </Card>
+      <Card>
+        <CardHeader backing={fadeGradient(smoke, 15) + ", url('CORNBG.png')"}>
+          <LogoIcon icon={faCorn} />
+          <Name>CORN</Name>
+          <Slogan>JAVA LIBRARY</Slogan>
+        </CardHeader>
+        <CardBody>
+          <Bold>ABOUT</Bold>
+          <Text color={gray}>
+            corn is a extremely opinionated Java library that is mostly for my personal use, it currently has a core and
+            a spigot module
+          </Text>
+        </CardBody>
+        <CardBottomBody>
+          <Icon href="https://github.com/broccolai/corn" icon={faGithub} basis="1.4rem" backing={hexToRGBA(gray, 10)} />
         </CardBottomBody>
       </Card>
     </Container>
