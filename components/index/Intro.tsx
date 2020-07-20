@@ -55,7 +55,7 @@ const Intro = () => {
 
   useEffect(() => {
     const execute = async () => {
-      const status = await fetch('https://tickets.broccol.ai/api/v2/stats', {
+      const status = await fetch('https://tickets.broccol.ai/api/v1/status/count', {
         method: 'GET',
         mode: 'cors',
       });
