@@ -1,7 +1,6 @@
 import React from 'react';
 import Plx from 'react-plx';
 import styled from 'styled-components';
-
 import { FlexSection } from '../global/Containers';
 import { H1, H3 } from '../global/Typography';
 import { animStar0, animStar1, animStar2 } from '../utilities/Animations';
@@ -10,7 +9,7 @@ import { LargeStar, MediumStar, SmallStar } from '../utilities/Data';
 
 const Container = styled(FlexSection)`
   background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  height: 95vh;
+  height: 100vh;
   position: fixed;
   width: 100%;
   z-index: -999;
