@@ -17,12 +17,8 @@ const Container = styled(FlexSection)`
 
 const Text = styled.div`
   color: ${white};
-  margin-top: -5vh;
+  margin-top: -15vh;
   text-align: center;
-
-  @media (max-width: 425px) {
-    font-size: 3rem;
-  }
 `;
 
 const Stars = styled.div`
@@ -64,11 +60,11 @@ const LargeStars = styled(Stars)`
 const parallaxData = [
   {
     start: 0,
-    end: '65vh',
+    end: '75vh',
     properties: [
       {
         startValue: 0,
-        endValue: -32.5,
+        endValue: -36,
         unit: 'vh',
         property: 'translateY',
       },
