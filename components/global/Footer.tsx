@@ -1,12 +1,10 @@
+import { faHeart } from '@fortawesome/free-solid-svg-icons';
+import { faCoffeeTogo } from '@fortawesome/pro-duotone-svg-icons';
+import { faHandsHelping } from '@fortawesome/pro-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import styled from 'styled-components';
-
-import { faDiscord, faGithub, faTwitter } from '@fortawesome/free-brands-svg-icons';
-import { faCoffee, faHeart } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
-import { Pound } from '../utilities/Animations';
-import { black, red, white } from '../utilities/Colors';
+import { black, gray, white } from '../utilities/Colors';
 import { Text } from './Typography';
 
 const Background = styled.aside<Props>`
@@ -26,7 +24,6 @@ const Base = styled.footer`
   box-sizing: border-box;
   color: ${black};
   display: grid;
-  height: 150px;
   justify-content: center;
   padding: 2rem;
   position: relative;
@@ -35,22 +32,10 @@ const Base = styled.footer`
 `;
 
 const Icon = styled(FontAwesomeIcon)`
-  font-size: 1.6rem;
-  height: 1.6rem;
+  font-size: 1.4rem;
+  height: 1.4rem;
   margin-left: 0.6rem;
   margin-right: 0.6rem;
-`;
-
-const Discord = styled(Icon)`
-  color: #7289da;
-`;
-
-const Twitter = styled(Icon)`
-  color: #1da1f2;
-`;
-
-const Github = styled(Icon)`
-  color: #333;
 `;
 
 const Signature = styled.div`
@@ -58,21 +43,16 @@ const Signature = styled.div`
 `;
 
 const Heart = styled(Icon)`
-  animation: ${Pound} 0.35s infinite alternate;
   color: #e90606;
-  font-size: 1rem;
-  height: 1rem;
 `;
 
 const Coffee = styled(Icon)`
   color: #6f4e37;
-  font-size: 1rem;
-  height: 1rem;
 `;
 
-const Josh = styled.a`
-  color: ${red};
-  text-decoration: none;
+const Hands = styled(Icon)`
+  /* color: '#0cebb3'; */
+  color: ${gray};
 `;
 
 type Props = {
@@ -82,25 +62,11 @@ type Props = {
 const Footer = ({ background }: Props) => (
   <Base>
     <Background background={background} />
-    <div>
-      <a href="https://discord.gg/huYp67G">
-        <Discord icon={faDiscord} />
-      </a>
-      <a href="https://twitter.com/broccoIai">
-        <Twitter icon={faTwitter} />
-      </a>
-      <a href="https://github.com/broccolai/site">
-        <Github icon={faGithub} />
-      </a>
-    </div>
     <Signature>
       <Text color={black}>
-        Made with
         <Heart icon={faHeart} />
-        &amp;
-        <Coffee icon={faCoffee} />
-        by
-        <Josh href="https://broccol.ai">&nbsp; Josh</Josh>
+        <Hands icon={faHandsHelping} />
+        <Coffee icon={faCoffeeTogo} />
       </Text>
     </Signature>
   </Base>
