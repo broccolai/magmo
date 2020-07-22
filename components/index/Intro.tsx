@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import { faDiscord, faGithub } from '@fortawesome/free-brands-svg-icons';
 import { faBook, faFaucet, faLink } from '@fortawesome/free-solid-svg-icons';
-import { faCorn } from '@fortawesome/pro-duotone-svg-icons';
+import { faCorn } from '@fortawesome/pro-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { ChildFlexSection } from '../global/Containers';
