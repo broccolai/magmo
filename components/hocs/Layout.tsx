@@ -15,6 +15,7 @@ const Layout = ({ title, backing, children }: Props) => (
     <GoogleFonts href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Sen&display=swap" />
     <NextHead>
       <meta charSet="UTF-8" />
+      <meta name="description" content="broccolai's personal page" />
       <title>{title || 'broccol.ai'}</title>
 
       <meta name="viewport" content="width=device-width, initial-scale=1" />

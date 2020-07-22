@@ -1,9 +1,7 @@
-import React from 'react';
-import styled from 'styled-components';
-
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
+import React from 'react';
+import styled from 'styled-components';
 import { black, soft } from '../utilities/Colors';
 
 type ContainerTypes = {
@@ -41,11 +39,12 @@ type IconProps = {
   icon: IconProp;
   basis: string;
   backing?: string;
+  aria: string;
 };
 
-export const Icon = ({ href, backing, icon, basis }: IconProps) => {
+export const Icon = ({ href, backing, icon, basis, aria }: IconProps) => {
   return (
-    <Link href={href} backing={backing} basis={basis}>
+    <Link href={href} backing={backing} basis={basis} aria-label={aria}>
       <Container icon={icon} basis={basis} fixedWidth />
     </Link>
   );

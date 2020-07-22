@@ -2,7 +2,7 @@ import React from 'react';
 import Plx from 'react-plx';
 import styled from 'styled-components';
 import { FlexSection } from '../global/Containers';
-import { H1, H3 } from '../global/Typography';
+import { H1, H2 } from '../global/Typography';
 import { animStar0, animStar1, animStar2 } from '../utilities/Animations';
 import { white } from '../utilities/Colors';
 import { LargeStar, MediumStar, SmallStar } from '../utilities/Data';
@@ -79,7 +79,7 @@ const Splash = () => (
     <Plx parallaxData={parallaxData}>
       <Text>
         <H1>broccolai</H1>
-        <H3>react and java development</H3>
+        <H2>react and java development</H2>
       </Text>
     </Plx>
   </Container>

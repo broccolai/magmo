@@ -1,13 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
-
 import { faDiscord, faGithub } from '@fortawesome/free-brands-svg-icons';
 import { faBook, faFaucet, faLink } from '@fortawesome/free-solid-svg-icons';
 import { faCorn } from '@fortawesome/pro-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
+import React, { useEffect, useState } from 'react';
+import styled from 'styled-components';
 import { ChildFlexSection } from '../global/Containers';
-import { Bold, FooterText, H2, H3, H4, Text } from '../global/Typography';
+import { Bold, FooterText, H3, H4, Text } from '../global/Typography';
 import { Card, CardBody, CardBottomBody, CardHeader } from '../individuals/Card';
 import { Icon } from '../individuals/Icon';
 import { black, gray, smoke } from '../utilities/Colors';
@@ -17,12 +15,13 @@ const Container = styled(ChildFlexSection)`
   margin-top: 90vh;
 `;
 
-const Title = styled(H2)`
+const Title = styled(H3)`
   flex-basis: 100%;
   margin-bottom: 3rem;
 `;
 
 const Name = styled(H3)`
+  color: ${black};
   font-size: 1.4rem;
   font-weight: normal;
   letter-spacing: 2px;
@@ -71,7 +70,7 @@ const Intro = () => {
       <Title>PROJECTS</Title>
       <Card>
         <CardHeader backing={fadeGradient(smoke, 15) + ", url('PTBG.png')"}>
-          <Logo src="/PureTicketsLogo.svg" />
+          <Logo src="/PureTicketsLogo.svg" alt="Pure Tickets Logo" />
           <Name>PURE TICKETS</Name>
           <Slogan>SPIGOT PLUGIN</Slogan>
         </CardHeader>
@@ -88,26 +87,35 @@ const Intro = () => {
             icon={faFaucet}
             basis="1.4rem"
             backing={hexToRGBA(gray, 10)}
+            aria="Spigot"
           />
           <Icon
             href="https://github.com/broccolai/tickets/wiki"
             icon={faBook}
             basis="1.4rem"
             backing={hexToRGBA(gray, 10)}
+            aria="Github Wiki"
           />
           <Icon
             href="https://github.com/broccolai/tickets/"
             icon={faGithub}
             basis="1.4rem"
             backing={hexToRGBA(gray, 10)}
+            aria="Github"
           />
-          <Icon href="https://discord.gg/huYp67G" icon={faDiscord} basis="1.4rem" backing={hexToRGBA(gray, 10)} />
+          <Icon
+            href="https://discord.gg/huYp67G"
+            icon={faDiscord}
+            basis="1.4rem"
+            backing={hexToRGBA(gray, 10)}
+            aria="Discord"
+          />
         </CardBottomBody>
         <FooterText>SERVING {amount} DISCORD GUILDS</FooterText>
       </Card>
       <Card>
         <CardHeader backing={fadeGradient(smoke, 15) + ", url('MAGMOBG.png')"}>
-          <Logo src="/logo.svg" />
+          <Logo src="/logo.svg" alt="Magmo Logo" />
           <Name>BROCCOL.AI</Name>
           <Slogan>NEXTJS SITE</Slogan>
         </CardHeader>
@@ -119,8 +127,20 @@ const Intro = () => {
           </Text>
         </CardBody>
         <CardBottomBody>
-          <Icon href="https://github.com/broccolai/site" icon={faGithub} basis="1.4rem" backing={hexToRGBA(gray, 10)} />
-          <Icon href="https://broccol.ai/" icon={faLink} basis="1.4rem" backing={hexToRGBA(gray, 10)} />
+          <Icon
+            href="https://github.com/broccolai/site"
+            icon={faGithub}
+            basis="1.4rem"
+            backing={hexToRGBA(gray, 10)}
+            aria="Github"
+          />
+          <Icon
+            href="https://broccol.ai/"
+            icon={faLink}
+            basis="1.4rem"
+            backing={hexToRGBA(gray, 10)}
+            aria="Website URL"
+          />
         </CardBottomBody>
       </Card>
       <Card>
@@ -137,7 +157,13 @@ const Intro = () => {
           </Text>
         </CardBody>
         <CardBottomBody>
-          <Icon href="https://github.com/broccolai/corn" icon={faGithub} basis="1.4rem" backing={hexToRGBA(gray, 10)} />
+          <Icon
+            href="https://github.com/broccolai/corn"
+            icon={faGithub}
+            basis="1.4rem"
+            backing={hexToRGBA(gray, 10)}
+            aria="Github"
+          />
         </CardBottomBody>
       </Card>
     </Container>

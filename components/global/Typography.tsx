@@ -17,19 +17,19 @@ export const H1 = styled.h1`
 `;
 
 export const H2 = styled.h1`
+  font-family: ${TITLE_FONTS};
+  font-size: clamp(1.4rem, 4vw, 2.4rem);
+  margin: 0;
+
+  text-align: center;
+`;
+
+export const H3 = styled.h3`
   color: ${white};
   font-family: ${TITLE_FONTS};
   font-size: clamp(1rem, 8vw, 1.8rem);
   letter-spacing: 4px;
   margin: 0;
-  text-align: center;
-`;
-
-export const H3 = styled.h3`
-  font-family: ${TITLE_FONTS};
-  font-size: clamp(1.4rem, 4vw, 2.4rem);
-  margin: 0;
-
   text-align: center;
 `;
 
