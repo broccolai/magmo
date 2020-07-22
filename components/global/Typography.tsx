@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-
 import { black, soft, white } from '../utilities/Colors';
 
 export const TITLE_FONTS =
@@ -28,7 +27,7 @@ export const H2 = styled.h1`
 
 export const H3 = styled.h3`
   font-family: ${TITLE_FONTS};
-  font-size: 2.4rem;
+  font-size: clamp(1.4rem, 4vw, 2.4rem);
   margin: 0;
 
   text-align: center;
