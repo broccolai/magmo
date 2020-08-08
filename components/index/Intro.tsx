@@ -1,9 +1,10 @@
-import { faDiscord, faGithub } from '@fortawesome/free-brands-svg-icons';
-import { faBook, faFaucet, faLink } from '@fortawesome/free-solid-svg-icons';
-import { faCorn } from '@fortawesome/pro-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+
+import { faDiscord, faGithub } from '@fortawesome/free-brands-svg-icons';
+import { faBook, faFaucet, faLink, faPepperHot } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 import { ChildFlexSection } from '../global/Containers';
 import { Bold, FooterText, H3, H4, Text } from '../global/Typography';
 import { Card, CardBody, CardBottomBody, CardHeader } from '../individuals/Card';
@@ -145,7 +146,7 @@ const Intro = () => {
       </Card>
       <Card>
         <CardHeader backing={fadeGradient(smoke, 15) + ", url('CORNBG.png')"}>
-          <LogoIcon icon={faCorn} />
+          <LogoIcon icon={faPepperHot} />
           <Name>CORN</Name>
           <Slogan>JAVA LIBRARY</Slogan>
         </CardHeader>

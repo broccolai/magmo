@@ -1,9 +1,9 @@
-import { faHeart } from '@fortawesome/free-solid-svg-icons';
-import { faCoffeeTogo } from '@fortawesome/pro-duotone-svg-icons';
-import { faHandsHelping } from '@fortawesome/pro-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import styled from 'styled-components';
+
+import { faHandsHelping, faHeart, faMugHot } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 import { black, gray, white } from '../utilities/Colors';
 import { Text } from './Typography';
 
@@ -66,7 +66,7 @@ const Footer = ({ background }: Props) => (
       <Text color={black}>
         <Heart icon={faHeart} />
         <Hands icon={faHandsHelping} />
-        <Coffee icon={faCoffeeTogo} />
+        <Coffee icon={faMugHot} />
       </Text>
     </Signature>
   </Base>
