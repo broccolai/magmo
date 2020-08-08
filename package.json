@@ -9,7 +9,7 @@
     "jslint": "eslint \"components/**\" \"pages/**\"  --fix"
   },
   "dependencies": {
-    "next": "^9.5.2",
+    "next": "^9.5.2-canary",
     "preact": "^10.4.7",
     "react": "npm:@preact/compat",
     "react-dom": "npm:@preact/compat",
