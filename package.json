@@ -9,37 +9,34 @@
     "jslint": "eslint \"components/**\" \"pages/**\"  --fix"
   },
   "dependencies": {
-    "next": "^9.5.2",
-    "preact": "^10.4.7",
-    "react": "npm:@preact/compat",
-    "react-dom": "npm:@preact/compat",
-    "react-plx": "^1.3.15",
-    "react-ssr-prepass": "npm:preact-ssr-prepass@^1.0.1",
-    "styled-components": "^5.1.1"
+    "next": "^10.0.1",
+    "next-plugin-preact": "^3.0.3",
+    "preact": "^10.5.5",
+    "preact-render-to-string": "^5.1.11",
+    "react": "npm:@preact/compat@0.0.3",
+    "react-dom": "npm:@preact/compat@0.0.3",
+    "react-plx": "^1.3.16",
+    "react-ssr-prepass": "npm:preact-ssr-prepass@^1.1.2",
+    "styled-components": "^5.2.1",
+    "next-google-fonts": "1.2.1",
+    "typescript": "4.0.5"
   },
   "devDependencies": {
     "@fortawesome/fontawesome-svg-core": "1.2.30",
     "@fortawesome/free-brands-svg-icons": "5.14.0",
     "@fortawesome/free-solid-svg-icons": "5.14.0",
     "@fortawesome/react-fontawesome": "0.1.11",
-    "@prefresh/next": "0.4.0",
     "@types/node": "14.0.27",
     "@types/react": "16.9.45",
     "@types/styled-components": "5.1.2",
-    "@typescript-eslint/eslint-plugin": "3.8.0",
-    "@typescript-eslint/parser": "3.8.0",
-    "eslint": "7.6.0",
-    "eslint-config-prettier": "6.11.0",
+    "@typescript-eslint/eslint-plugin": "4.6.1",
+    "@typescript-eslint/parser": "4.6.1",
+    "eslint": "7.13.0",
+    "eslint-config-prettier": "6.15.0",
     "eslint-plugin-better-styled-components": "1.1.2",
     "eslint-plugin-prettier": "3.1.4",
-    "eslint-plugin-react": "7.20.5",
-    "eslint-plugin-react-hooks": "4.0.8",
-    "next-google-fonts": "1.2.1",
-    "prettier": "2.0.5",
-    "react-refresh": "0.8.3",
-    "typescript": "3.9.7"
-  },
-  "resolutions": {
-    "webpack": "^5.0.0-beta.22"
+    "eslint-plugin-react": "7.21.5",
+    "eslint-plugin-react-hooks": "4.2.0",
+    "prettier": "2.1.2"
   }
 }
