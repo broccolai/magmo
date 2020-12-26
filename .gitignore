@@ -6,3 +6,4 @@ node_modules/
 out/
 yarn.lock
 config.json
+.yarn
