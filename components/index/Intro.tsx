@@ -64,7 +64,7 @@ const Intro = () => {
     };
 
     execute();
-  });
+  }, []);
 
   return (
     <Container index={1} backing={black} padding="2.5rem clamp(.6rem, 4vw, 4rem)">
