@@ -1,4 +1,4 @@
-import GoogleFonts from 'next-google-fonts';
+import { GoogleFonts } from 'next-google-fonts';
 import NextHead from 'next/head';
 import React, { ReactNode } from 'react';
 import { AbsoluteContainer } from '../global/Containers';
