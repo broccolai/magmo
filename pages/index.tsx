@@ -11,4 +11,6 @@ const Index = () => (
     </Layout>
 );
 
+//const IndexBlock = block(Index);
+
 export default Index;

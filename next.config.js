@@ -7,8 +7,7 @@ const nextConfig = {
         styledComponents: true,
     },
     experimental: {
-        legacyBrowsers: false,
-        browsersListForSwc: true
+        legacyBrowsers: false
     }
 }
 
