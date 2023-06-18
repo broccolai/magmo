@@ -1,41 +1,33 @@
 {
-  "name": "broccol.ai",
-  "version": "1.0.0",
-  "main": "index.js",
-  "license": "MIT",
+  "name": "site",
   "scripts": {
-    "dev": "next",
-    "build": "$npm_execpath run jslint && next build && next export",
-    "jslint": "eslint \"components/**\" \"pages/**\"  --fix",
-    "postinstall": "patch-package"
+    "dev": "solid-start dev",
+    "build": "solid-start build",
+    "start": "solid-start start"
+  },
+  "type": "module",
+  "devDependencies": {
+    "@types/node": "^18.11.18",
+    "postcss": "^8.4.21",
+    "solid-start-node": "^0.2.19",
+    "typescript": "^4.9.4",
+    "vite": "^4.3.9"
   },
   "dependencies": {
-    "next": "^13.4.6",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-plx": "2.1.2",
-    "styled-components": "v5.3.11",
-    "typescript": "5.1.3"
+    "@fontsource/open-sans": "^5.0.3",
+    "@fontsource/sen": "^5.0.3",
+    "@macaron-css/core": "^1.2.0",
+    "@macaron-css/solid": "^1.4.1",
+    "@macaron-css/vite": "^1.4.2",
+    "@solidjs/meta": "^0.28.2",
+    "@solidjs/router": "^0.8.2",
+    "babel-preset-solid": "^1.7.4",
+    "cssesc": "^3.0.0",
+    "solid-js": "^1.7.2",
+    "solid-start": "^0.2.26",
+    "undici": "^5.15.1"
   },
-  "browserslist": [
-    ">5%"
-  ],
-  "devDependencies": {
-    "@fortawesome/fontawesome-svg-core": "6.4.0",
-    "@fortawesome/free-brands-svg-icons": "6.4.0",
-    "@fortawesome/free-solid-svg-icons": "6.4.0",
-    "@fortawesome/react-fontawesome": "0.2.0",
-    "@types/node": "20.3.1",
-    "@types/react": "18.2.12",
-    "@types/styled-components": "5.1.26",
-    "@typescript-eslint/eslint-plugin": "5.59.11",
-    "@typescript-eslint/parser": "5.59.11",
-    "eslint": "8.42.0",
-    "eslint-config-prettier": "8.8.0",
-    "eslint-plugin-better-styled-components": "1.1.2",
-    "eslint-plugin-prettier": "4.2.1",
-    "eslint-plugin-react": "7.32.2",
-    "eslint-plugin-react-hooks": "4.6.0",
-    "prettier": "2.8.8"
+  "engines": {
+    "node": ">=16.8"
   }
 }

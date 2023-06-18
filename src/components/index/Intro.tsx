@@ -1,59 +1,76 @@
-import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
-
-import { faDiscord, faGithub } from '@fortawesome/free-brands-svg-icons';
-import { faBook, faFaucet, faLink, faPepperHot } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {styled} from '@macaron-css/solid';
 
 import { ChildFlexSection } from '../global/Containers';
 import { Bold, FooterText, H3, H4, Text } from '../global/Typography';
-import { Card, CardBody, CardBottomBody, CardHeader } from '../individuals/Card';
-import { Icon } from '../individuals/Icon';
+import { Card, CardBody, CardBottomBody, CardHeader } from '../individuals/card';
 import { black, gray, smoke } from '../utilities/Colors';
-import { fadeGradient, hexToRGBA } from '../utilities/Functions';
+import { createVariable, fadeGradient } from '../utilities/Functions';
+import { createEffect, createSignal } from 'solid-js';
 
-const Container = styled(ChildFlexSection)`
-  margin-top: 90vh;
-`;
+const Container = styled(ChildFlexSection, {
+  base: {
+    marginTop: '90vh !important',
+    padding: '2.5rem clamp(.6rem, 4vw, 4rem)',
+    backgroundColor: black
+  }
+})
 
-const Title = styled(H3)`
-  flex-basis: 100%;
-  margin-bottom: 3rem;
-`;
+const Title = styled(H3, {
+  base: {
+    flexBasis: '100%',
+    marginBottom: '3rem'
+  }
+})
 
-const Name = styled(H3)`
-  color: ${black};
-  font-size: 1.4rem;
-  font-weight: normal;
-  letter-spacing: 2px;
-`;
+const Name = styled(H3, {
+  base: {
+    color: black,
+    fontSize: '1.4rem',
+    fontWeight: 'normal',
+    letterSpacing: "2px"
+  }
+})
 
-const Slogan = styled(H4)`
-  color: ${gray};
-  font-size: 1rem;
-  letter-spacing: 1px;
-`;
+const Slogan = styled(H4, {
+  base: {
+    color: gray,
+    fontSize: '1rem',
+    letterSpacing: '1px'
+  }
+})
 
-const Logo = styled.img`
-  filter: drop-shadow(0 8px 8px rgba(0, 0, 0, 0.6));
-  height: 6rem;
-  margin-bottom: 1rem;
-  width: 6rem;
-`;
+const Logo = styled('img', {
+  base: {
+    filter: 'drop-shadow(0 8px 8px rgba(0, 0, 0, 0.6))',
+    height: '6rem',
+    marginBottom: '1rem',
+    width: "6rem"
+  }
+})
 
-const LogoIcon = styled(FontAwesomeIcon)`
-  color: #fdf5af;
-  filter: drop-shadow(0 8px 8px rgba(0, 0, 0, 0.6));
-  height: 5.6rem;
-  margin-bottom: 1rem;
-  padding: 0.2rem;
-  width: 5.6rem !important;
-`;
+const backgroundVariable = createVariable('image')
+
+const StyledCardHeader = styled(CardHeader, {
+  base: {
+    backgroundImage: fadeGradient(smoke, 15) + `, ${backgroundVariable.wrapped}`
+  }
+})
+
+// const LogoIcon = styled(FontAwesomeIcon, {
+//   base: {
+//     color: '#fdf5af',
+//     filter: 'drop-shadow(0 8px 8px rgba(0, 0, 0, 0.6))',
+//     height: '5.6rem',
+//     marginBottom: '1rem',
+//     padding: '0.2rem',
+//     width: '5.6rem !important'
+//   }
+// })
 
 const Intro = () => {
-  const [amount, setAmount] = useState('0');
+  const [amount, setAmount] = createSignal('0');
 
-  useEffect(() => {
+  createEffect(() => {
     const execute = async () => {
       const status = await fetch('https://tickets.broccol.ai/api/v1/status/count', {
         method: 'GET',
@@ -67,14 +84,14 @@ const Intro = () => {
   }, []);
 
   return (
-    <Container index={1} backing={black} padding="2.5rem clamp(.6rem, 4vw, 4rem)">
+    <Container>
       <Title>PROJECTS</Title>
       <Card>
-        <CardHeader backing={fadeGradient(smoke, 15) + ", url('PTBG.png')"}>
+        <StyledCardHeader style={{[backgroundVariable.identifier]: 'url(\'PTBG.png\')'}}>
           <Logo src="/PureTicketsLogo.svg" alt="Pure Tickets Logo" />
           <Name>PURE TICKETS</Name>
           <Slogan>SPIGOT PLUGIN</Slogan>
-        </CardHeader>
+        </StyledCardHeader>
         <CardBody>
           <Bold>ABOUT</Bold>
           <Text color={gray}>
@@ -83,7 +100,7 @@ const Intro = () => {
           </Text>
         </CardBody>
         <CardBottomBody>
-          <Icon
+          {/* <Icon
             href="https://www.spigotmc.org/resources/pure-tickets-easy-to-use-ticket-system.71677/"
             icon={faFaucet}
             basis="1.4rem"
@@ -110,16 +127,16 @@ const Intro = () => {
             basis="1.4rem"
             backing={hexToRGBA(gray, 10)}
             aria="Discord"
-          />
+          /> */}
         </CardBottomBody>
-        <FooterText>SERVING {amount} DISCORD GUILDS</FooterText>
+        <FooterText>SERVING {amount()} DISCORD GUILDS</FooterText>
       </Card>
       <Card>
-        <CardHeader backing={fadeGradient(smoke, 15) + ", url('MAGMOBG.png')"}>
+        <StyledCardHeader style={{[backgroundVariable.identifier]: 'url(\'MAGMOBG.png\')'}}>
           <Logo src="/logo.svg" alt="Magmo Logo" />
           <Name>BROCCOL.AI</Name>
           <Slogan>NEXTJS SITE</Slogan>
-        </CardHeader>
+        </StyledCardHeader>
         <CardBody>
           <Bold>ABOUT</Bold>
           <Text color={gray}>
@@ -128,7 +145,7 @@ const Intro = () => {
           </Text>
         </CardBody>
         <CardBottomBody>
-          <Icon
+          {/* <Icon
             href="https://github.com/broccolai/site"
             icon={faGithub}
             basis="1.4rem"
@@ -141,15 +158,16 @@ const Intro = () => {
             basis="1.4rem"
             backing={hexToRGBA(gray, 10)}
             aria="Website URL"
-          />
+          /> */}
         </CardBottomBody>
       </Card>
       <Card>
-        <CardHeader backing={fadeGradient(smoke, 15) + ", url('CORNBG.png')"}>
-          <LogoIcon icon={faPepperHot} />
+        {/* backing={fadeGradient(smoke, 15) + ", url('CORNBG.png')"} */}
+        <StyledCardHeader style={{[backgroundVariable.identifier]: 'url(\'CORNBG.png\')'}}>
+          {/* <LogoIcon icon={faPepperHot} /> */}
           <Name>CORN</Name>
           <Slogan>JAVA LIBRARY</Slogan>
-        </CardHeader>
+        </StyledCardHeader>
         <CardBody>
           <Bold>ABOUT</Bold>
           <Text color={gray}>
@@ -158,13 +176,13 @@ const Intro = () => {
           </Text>
         </CardBody>
         <CardBottomBody>
-          <Icon
+          {/* <Icon
             href="https://github.com/broccolai/corn"
             icon={faGithub}
             basis="1.4rem"
             backing={hexToRGBA(gray, 10)}
             aria="Github"
-          />
+          /> */}
         </CardBottomBody>
       </Card>
     </Container>

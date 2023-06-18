@@ -1,16 +1,13 @@
-import React from 'react';
+import Intro from '~/components/index/Intro';
 import Layout from '../components/hocs/Layout';
-import Intro from '../components/index/Intro';
 import Splash from '../components/index/Splash';
 import { black } from '../components/utilities/Colors';
 
 const Index = () => (
-    <Layout title="Home" backing={black}>
+    <Layout title="Home">
       <Splash />
       <Intro />
     </Layout>
 );
-
-//const IndexBlock = block(Index);
 
 export default Index;
