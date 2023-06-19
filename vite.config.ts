@@ -1,16 +1,19 @@
 import solid from "solid-start/vite";
-import { macaronVitePlugin } from '@macaron-css/vite';
-import { defineConfig } from 'vite';
+import {macaronVitePlugin} from '@macaron-css/vite';
+import {defineConfig} from 'vite';
 
 export default defineConfig({
-  plugins: [
-    macaronVitePlugin(),
-    solid()
-  ],
-  build: {
-    ssr: true
-  },
-  experimental: {
-    hmrPartialAccept: true
-  }
+    plugins: [
+        macaronVitePlugin(),
+        solid()
+    ],
+    build: {
+        ssr: true
+    },
+    server: {
+        port: 3003
+    },
+    experimental: {
+        hmrPartialAccept: true
+    }
 });
