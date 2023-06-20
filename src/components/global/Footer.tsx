@@ -1,19 +1,21 @@
 import { styled } from '@macaron-css/solid';
 
+import { FaSolidHandshakeSimple, FaSolidHeart, FaSolidMugHot } from '@aminya/solid-icons/fa';
+import { style } from '@macaron-css/core';
 import { black, gray, white } from '../utilities/Colors';
-import { Text } from './Typography';
+import { createVariable } from '../utilities/Functions';
 
 const Background = styled('aside', {
   base: {
     backgroundColor: black,
-    height: "100%",
-    left: "0",
-    position: "absolute",
-    top: "0",
-    width: "100%",
-    zIndex: "-100"
-  }
-})
+    height: '100%',
+    left: '0',
+    position: 'absolute',
+    top: '0',
+    width: '100%',
+    zIndex: '-100',
+  },
+});
 
 const Base = styled('footer', {
   base: {
@@ -27,23 +29,33 @@ const Base = styled('footer', {
     padding: '2rem',
     position: 'relative',
     textAlign: 'center',
-    width: '100%'
-  }
-})
+    width: '100%',
+  },
+});
 
 const Signature = styled('div', {
   base: {
-    paddingTop: '0.5rem'
-  }
-})
+    paddingTop: '0.5rem',
+  },
+});
+
+const iconColor = createVariable('footerIconColor');
+
+const iconStyle = style({
+  fontSize: '1.4rem',
+  height: '1.4rem',
+  marginLeft: '0.6rem',
+  marginRight: '0.6rem',
+  color: iconColor.wrapped,
+});
 
 const Footer = () => (
   <Base>
     <Background />
     <Signature>
-      <Text color={black}>
-        Hi
-      </Text>
+      <FaSolidHeart class={iconStyle} style={{ [iconColor.identifier]: '#e90606' }} />
+      <FaSolidHandshakeSimple class={iconStyle} style={{ [iconColor.identifier]: gray }} />
+      <FaSolidMugHot class={iconStyle} style={{ [iconColor.identifier]: '#6f4e37' }} />
     </Signature>
   </Base>
 );

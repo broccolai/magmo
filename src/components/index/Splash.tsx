@@ -11,17 +11,17 @@ const Container = styled(FlexSection, {
     height: '100vh',
     position: 'fixed',
     width: '100%',
-    zIndex: '-999'
-  }
-})
+    zIndex: '-999',
+  },
+});
 
 const Text = styled('div', {
   base: {
     color: white,
     marginTop: '-15vh',
-    textAlign: 'center'
-  }
-})
+    textAlign: 'center',
+  },
+});
 
 const Stars = styled('div', {
   base: {
@@ -29,9 +29,9 @@ const Stars = styled('div', {
     borderRadius: '100%',
     left: '0',
     position: 'absolute',
-    top: '0'
-  }
-})
+    top: '0',
+  },
+});
 
 const SmallStars = styled(Stars, {
   base: {
@@ -39,9 +39,9 @@ const SmallStars = styled(Stars, {
     animationDirection: 'alternate',
     boxShadow: SmallStar,
     height: '4px',
-    width: '4px'
-  }
-})
+    width: '4px',
+  },
+});
 
 const MediumStars = styled(Stars, {
   base: {
@@ -49,9 +49,9 @@ const MediumStars = styled(Stars, {
     animationDirection: 'alternate',
     boxShadow: MediumStar,
     height: '8px',
-    width: '8px'
-  }
-})
+    width: '8px',
+  },
+});
 
 const LargeStars = styled(Stars, {
   base: {
@@ -59,38 +59,38 @@ const LargeStars = styled(Stars, {
     animationDirection: 'alternate',
     boxShadow: LargeStar,
     height: '12px',
-    width: '12px'
-  }
-})
+    width: '12px',
+  },
+});
 
 // @media (max-width: 425px) {
 //   display: none;
 // }
 
-const parallaxData = [
-  {
-    start: 0,
-    end: '75vh',
-    properties: [
-      {
-        startValue: 0,
-        endValue: -36,
-        unit: 'vh',
-        property: 'translateY',
-      },
-    ],
-  },
-];
+//  const parallaxData = [
+//    {
+//      start: 0,
+//      end: '75vh',
+//      properties: [
+//        {
+//          startValue: 0,
+//          endValue: -36,
+//          unit: 'vh',
+//          property: 'translateY',
+//        },
+//      ],
+//    },
+//  ];
 const Splash = () => (
   <Container>
     <SmallStars />
     <MediumStars />
     <LargeStars />
     {/* <Plx parallaxData={parallaxData}> */}
-      <Text>
-        <H1>broccolai</H1>
-        <H2>react and java development</H2>
-      </Text>
+    <Text>
+      <H1>broccolai</H1>
+      <H2>react and java development</H2>
+    </Text>
     {/* </Plx> */}
   </Container>
 );

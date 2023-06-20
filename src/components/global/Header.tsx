@@ -1,4 +1,4 @@
-import {styled} from '@macaron-css/solid';
+import { styled } from '@macaron-css/solid';
 
 import { white } from '../utilities/Colors';
 
@@ -12,19 +12,19 @@ const Container = styled('header', {
     position: 'fixed',
     textAlign: 'center',
     width: '100%',
-    zIndex: '1000'
-  }
-})
+    zIndex: '1000',
+  },
+});
 
 const Logo = styled('img', {
   base: {
-  cursor: 'pointer',
-  height: '3rem',
-  padding: '1rem',
-  width: '3rem',
-  zIndex: '1'
-  }
-})
+    cursor: 'pointer',
+    height: '3rem',
+    padding: '1rem',
+    width: '3rem',
+    zIndex: '1',
+  },
+});
 
 const Header = () => (
   <Container>

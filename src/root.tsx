@@ -1,23 +1,10 @@
 // @refresh reload
 import { Suspense } from 'solid-js';
-import {
-  A,
-  Body,
-  ErrorBoundary,
-  FileRoutes,
-  Head,
-  Html,
-  Meta,
-  Routes,
-  Scripts,
-  Title,
-} from 'solid-start';
+import { Body, ErrorBoundary, FileRoutes, Head, Html, Meta, Routes, Scripts, Title } from 'solid-start';
 import { globalStyle } from '@macaron-css/core';
 
-globalStyle('*', {
-  padding: 0,
+globalStyle('body', {
   margin: 0,
-  boxSizing: 'border-box',
 });
 
 export default function Root() {

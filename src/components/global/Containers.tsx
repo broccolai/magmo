@@ -3,18 +3,18 @@ import { styled } from '@macaron-css/solid';
 export const AbsoluteContainer = styled('div', {
   base: {
     position: 'absolute',
-    width: '100%'
-  }
-})
+    width: '100%',
+  },
+});
 
 export const FlexSection = styled('section', {
   base: {
     alignItems: 'center',
     display: 'flex',
     flexWrap: 'wrap',
-    justifyContent: 'center'
-  }
-})
+    justifyContent: 'center',
+  },
+});
 
 export const ChildFlexSection = styled(FlexSection, {
   base: {
@@ -22,6 +22,6 @@ export const ChildFlexSection = styled(FlexSection, {
     borderRadius: '2rem 2rem 0 0',
     justifyContent: 'space-evenly',
     marginTop: '-5rem',
-    position: 'relative'
-  }
-})
+    position: 'relative',
+  },
+});
