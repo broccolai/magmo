@@ -36,7 +36,8 @@
         "solid-js": "^1.7.6",
         "solid-start": "^0.2.26",
         "solid-start-static": "^0.2.26",
-        "vite": "^4.3.9"
+        "vite": "^4.3.9",
+        "vite-plugin-singlefile": "^0.13.5"
     },
     "overrides": {
         "@vanilla-extract/css": "^1.11.1",

@@ -16,6 +16,7 @@ import { Card, CardBody, CardBottomBody, CardHeader } from '../individuals/card'
 import { black, gray, smoke } from '../utilities/Colors';
 import { createVariable, fadeGradient, hexToRGBA } from '../utilities/Functions';
 import Icon from '../individuals/icon';
+import ticketsBackground from './PTBG.png'
 
 const Container = styled(ChildFlexSection, {
   base: {
@@ -92,7 +93,7 @@ const Intro = () => {
     <Container>
       <Title>PROJECTS</Title>
       <Card>
-        <StyledCardHeader style={{ [backgroundVariable.identifier]: "url('PTBG.png')" }}>
+        <StyledCardHeader style={{ [backgroundVariable.identifier]: `url('${ticketsBackground}')` }}>
           <Logo src="/PureTicketsLogo.svg" alt="Pure Tickets Logo" />
           <Name>PURE TICKETS</Name>
           <Slogan>SPIGOT PLUGIN</Slogan>
