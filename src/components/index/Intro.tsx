@@ -16,7 +16,7 @@ import { Card, CardBody, CardBottomBody, CardHeader } from '../individuals/card'
 import { black, gray, smoke } from '../utilities/Colors';
 import { createVariable, fadeGradient, hexToRGBA } from '../utilities/Functions';
 import Icon from '../individuals/icon';
-import ticketsBackground from './PTBG.png'
+import ticketsBackground from './PTBG.png';
 
 const Container = styled(ChildFlexSection, {
   base: {

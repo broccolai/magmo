@@ -1,7 +1,6 @@
 import '@fontsource/open-sans';
 import '@fontsource/sen';
-import { JSX } from 'solid-js';
-import { Head, Html, Link, Meta, Title } from 'solid-start';
+import type { JSX } from 'solid-js';
 import { AbsoluteContainer } from '../global/Containers';
 import Footer from '../global/Footer';
 
@@ -11,21 +10,21 @@ interface Props {
 }
 
 const Layout = (props: Props) => (
-  <Html>
-    <Head>
+  <html>
+    <head>
       {/* <Meta charSet="UTF-8" /> */}
-      <Meta name="description" content="broccolai's personal page" />
-      <Title>{props.title || 'broccol.ai'}</Title>
+      <meta name="description" content="broccolai's personal page" />
+      <title>{props.title || 'broccol.ai'}</title>
 
-      <Meta name="viewport" content="width=device-width, initial-scale=1" />
-      <Link rel="icon" href="/favicon.ico" />
-      <Link rel="preconnect" href="https://tickets.broccol.ai" />
-    </Head>
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <link rel="icon" href="/favicon.ico" />
+      <link rel="preconnect" href="https://tickets.broccol.ai" />
+    </head>
     <AbsoluteContainer>
       {props.children}
       <Footer />
     </AbsoluteContainer>
-  </Html>
+  </html>
 );
 
 export default Layout;
