@@ -1,7 +1,7 @@
-import { styled } from '@macaron-css/solid';
+import { styled } from '@styled/jsx';
+import { css } from '@styled/css'
 
 import { createEffect, createSignal } from 'solid-js';
-import { style } from '@macaron-css/core';
 import {
   FaBrandsDiscord,
   FaBrandsGithub,
@@ -13,16 +13,16 @@ import {
 import { ChildFlexSection } from '../global/Containers';
 import { Bold, FooterText, H3, H4, Text } from '../global/Typography';
 import { Card, CardBody, CardBottomBody, CardHeader } from '../individuals/card';
-import { black, gray, smoke } from '../utilities/Colors';
 import { createVariable, fadeGradient, hexToRGBA } from '../utilities/Functions';
 import Icon from '../individuals/icon';
 import ticketsBackground from './PTBG.png';
+import { token } from '@styled/tokens';
 
 const Container = styled(ChildFlexSection, {
   base: {
     marginTop: '90vh !important',
     padding: '2.5rem clamp(.6rem, 4vw, 4rem)',
-    backgroundColor: black,
+    backgroundColor: 'black',
   },
 });
 
@@ -35,7 +35,7 @@ const Title = styled(H3, {
 
 const Name = styled(H3, {
   base: {
-    color: `${black} !important`,
+    color: `black`,
     fontSize: '1.4rem !important',
     fontWeight: 'normal !important',
     letterSpacing: '2px !important',
@@ -61,13 +61,13 @@ const Logo = styled('img', {
 
 const backgroundVariable = createVariable('image');
 
-const StyledCardHeader = styled(CardHeader, {
+const StyledCardHeader = styled('a', {
   base: {
     backgroundImage: `${fadeGradient(smoke, 15)}, ${backgroundVariable.wrapped}`,
   },
 });
 
-const iconStyle = style({
+const iconStyle = css({
   color: '#fdf5af !important',
   filter: 'drop-shadow(0 8px 8px rgba(0, 0, 0, 0.6))',
   height: '5.6rem',
@@ -117,7 +117,7 @@ const Intro = () => {
             href="https://github.com/broccolai/tickets/wiki"
             Glyph={FaSolidBook}
             basis="1.4rem"
-            backing={hexToRGBA(gray, 10)}
+            backing={hexToRGBA(token('colors.gray'), 10)}
             aria="Github Wiki"
           />
           <Icon

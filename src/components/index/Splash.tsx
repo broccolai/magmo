@@ -1,7 +1,6 @@
-import { styled } from '@macaron-css/solid';
+import { styled } from '@styled/jsx';
 import { FlexSection } from '../global/Containers';
 import { H1, H2 } from '../global/Typography';
-import { animStar0, animStar1, animStar2 } from '../utilities/Animations';
 import { white } from '../utilities/Colors';
 import { LargeStar, MediumStar, SmallStar } from '../utilities/Data';
 
@@ -35,7 +34,7 @@ const Stars = styled('div', {
 
 const SmallStars = styled(Stars, {
   base: {
-    animation: `${animStar0} 20s linear infinite`,
+    animation: `starZero 20s linear infinite`,
     animationDirection: 'alternate',
     boxShadow: SmallStar,
     height: '4px',
@@ -45,7 +44,7 @@ const SmallStars = styled(Stars, {
 
 const MediumStars = styled(Stars, {
   base: {
-    animation: `${animStar1} 30s linear infinite`,
+    animation: `starOne 30s linear infinite`,
     animationDirection: 'alternate',
     boxShadow: MediumStar,
     height: '8px',
@@ -55,7 +54,7 @@ const MediumStars = styled(Stars, {
 
 const LargeStars = styled(Stars, {
   base: {
-    animation: `${animStar2} 40s linear infinite`,
+    animation: `starTwo 40s linear infinite`,
     animationDirection: 'alternate',
     boxShadow: LargeStar,
     height: '12px',

@@ -1,13 +1,13 @@
-import { style } from '@macaron-css/core';
-import { styled } from '@macaron-css/solid';
-import { IconTypes } from '@aminya/solid-icons';
+import { css } from '@styled/css';
+import { styled } from '@styled/jsx';
+import type { IconTypes } from '@aminya/solid-icons';
 import { createVariable } from '../utilities/Functions';
 import { black, soft } from '../utilities/Colors';
 
 const iconSize = createVariable('icon-size');
 const iconBackgroundColor = createVariable('icon-background-color');
 
-const iconStyle = style({
+const iconStyle = css({
   height: iconSize.wrapped,
   width: iconSize.wrapped,
 });

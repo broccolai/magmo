@@ -12,7 +12,6 @@ interface Props {
 const Layout = (props: Props) => (
   <html>
     <head>
-      {/* <Meta charSet="UTF-8" /> */}
       <meta name="description" content="broccolai's personal page" />
       <title>{props.title || 'broccol.ai'}</title>
 

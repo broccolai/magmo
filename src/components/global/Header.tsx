@@ -1,4 +1,4 @@
-import { styled } from '@macaron-css/solid';
+import { styled } from '@styled/jsx';
 
 import { white } from '../utilities/Colors';
 

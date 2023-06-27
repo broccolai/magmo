@@ -1,5 +1,4 @@
-import { styled } from '@macaron-css/solid';
-
+import { styled } from '@styled/jsx';
 import { smoke } from '../utilities/Colors';
 
 export const Card = styled('article', {

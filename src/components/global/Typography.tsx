@@ -1,4 +1,4 @@
-import { styled } from '@macaron-css/solid';
+import { styled } from '@styled/jsx';
 import { soft, white } from '../utilities/Colors';
 
 export const TITLE_FONTS =

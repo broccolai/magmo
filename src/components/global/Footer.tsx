@@ -1,7 +1,7 @@
-import { styled } from '@macaron-css/solid';
+import { styled } from '@styled/jsx';
+import { css } from '@styled/css';
 
 import { FaSolidHandshakeSimple, FaSolidHeart, FaSolidMugHot } from '@aminya/solid-icons/fa';
-import { style } from '@macaron-css/core';
 import { black, gray, white } from '../utilities/Colors';
 import { createVariable } from '../utilities/Functions';
 
@@ -41,7 +41,7 @@ const Signature = styled('div', {
 
 const iconColor = createVariable('footerIconColor');
 
-const iconStyle = style({
+const iconStyle = css({
   fontSize: '1.4rem',
   height: '1.4rem',
   marginLeft: '0.6rem',
