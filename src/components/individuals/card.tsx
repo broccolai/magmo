@@ -1,11 +1,10 @@
-import { styled } from '@styled/jsx';
-import { smoke } from '../utilities/Colors';
+import { styled } from '@panda/jsx';
 
 export const Card = styled('article', {
   base: {
     borderRadius: '1rem',
     display: 'flex',
-    backgroundColor: smoke,
+    backgroundColor: 'smoke',
     flexDirection: 'column',
     margin: '0.5rem',
     position: 'relative',

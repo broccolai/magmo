@@ -1,13 +1,12 @@
-import { styled } from '@styled/jsx';
-import { css } from '@styled/css';
+import { styled } from '@panda/jsx';
+import { css } from '@panda/css';
 
 import { FaSolidHandshakeSimple, FaSolidHeart, FaSolidMugHot } from '@aminya/solid-icons/fa';
-import { black, gray, white } from '../utilities/Colors';
 import { createVariable } from '../utilities/Functions';
 
 const Background = styled('aside', {
   base: {
-    backgroundColor: black,
+    backgroundColor: 'black',
     height: '100%',
     left: '0',
     position: 'absolute',
@@ -19,11 +18,11 @@ const Background = styled('aside', {
 
 const Base = styled('footer', {
   base: {
-    backgroundColor: white,
+    backgroundColor: 'white',
     borderTopLeftRadius: '2rem',
     borderTopRightRadius: '2rem',
     boxSizing: 'border-box',
-    color: black,
+    color: 'black',
     display: 'grid',
     justifyContent: 'center',
     padding: '2rem',
@@ -54,7 +53,7 @@ const Footer = () => (
     <Background />
     <Signature>
       <FaSolidHeart class={iconStyle} style={{ [iconColor.identifier]: '#e90606' }} />
-      <FaSolidHandshakeSimple class={iconStyle} style={{ [iconColor.identifier]: gray }} />
+      <FaSolidHandshakeSimple class={iconStyle} style={{ [iconColor.identifier]: 'gray' }} />
       <FaSolidMugHot class={iconStyle} style={{ [iconColor.identifier]: '#6f4e37' }} />
     </Signature>
   </Base>

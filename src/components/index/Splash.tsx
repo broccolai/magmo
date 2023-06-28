@@ -1,8 +1,6 @@
-import { styled } from '@styled/jsx';
+import { styled } from '@panda/jsx';
 import { FlexSection } from '../global/Containers';
 import { H1, H2 } from '../global/Typography';
-import { white } from '../utilities/Colors';
-import { LargeStar, MediumStar, SmallStar } from '../utilities/Data';
 
 const Container = styled(FlexSection, {
   base: {
@@ -16,49 +14,9 @@ const Container = styled(FlexSection, {
 
 const Text = styled('div', {
   base: {
-    color: white,
+    color: 'white',
     marginTop: '-15vh',
     textAlign: 'center',
-  },
-});
-
-const Stars = styled('div', {
-  base: {
-    background: 'transparent',
-    borderRadius: '100%',
-    left: '0',
-    position: 'absolute',
-    top: '0',
-  },
-});
-
-const SmallStars = styled(Stars, {
-  base: {
-    animation: `starZero 20s linear infinite`,
-    animationDirection: 'alternate',
-    boxShadow: SmallStar,
-    height: '4px',
-    width: '4px',
-  },
-});
-
-const MediumStars = styled(Stars, {
-  base: {
-    animation: `starOne 30s linear infinite`,
-    animationDirection: 'alternate',
-    boxShadow: MediumStar,
-    height: '8px',
-    width: '8px',
-  },
-});
-
-const LargeStars = styled(Stars, {
-  base: {
-    animation: `starTwo 40s linear infinite`,
-    animationDirection: 'alternate',
-    boxShadow: LargeStar,
-    height: '12px',
-    width: '12px',
   },
 });
 
@@ -82,9 +40,6 @@ const LargeStars = styled(Stars, {
 //  ];
 const Splash = () => (
   <Container>
-    <SmallStars />
-    <MediumStars />
-    <LargeStars />
     {/* <Plx parallaxData={parallaxData}> */}
     <Text>
       <H1>broccolai</H1>

@@ -1,7 +1,7 @@
-import { styled } from '@styled/jsx';
-import { css } from '@styled/css'
+import { styled } from '@panda/jsx';
+import { css } from '@panda/css';
 
-import { createEffect, createSignal } from 'solid-js';
+import { createEffect, createSignal, For, lazy, Suspense } from 'solid-js';
 import {
   FaBrandsDiscord,
   FaBrandsGithub,
@@ -15,8 +15,10 @@ import { Bold, FooterText, H3, H4, Text } from '../global/Typography';
 import { Card, CardBody, CardBottomBody, CardHeader } from '../individuals/card';
 import { createVariable, fadeGradient, hexToRGBA } from '../utilities/Functions';
 import Icon from '../individuals/icon';
-import ticketsBackground from './PTBG.png';
-import { token } from '@styled/tokens';
+import ticketsBackground from '@assets/projects/tickets/background.png';
+import { token } from '@panda/tokens';
+import ProjectCard from './ProjectCard';
+import projects from '@data/projects';
 
 const Container = styled(ChildFlexSection, {
   base: {
@@ -44,7 +46,7 @@ const Name = styled(H3, {
 
 const Slogan = styled(H4, {
   base: {
-    color: gray,
+    color: 'gray',
     fontSize: '1rem  !important',
     letterSpacing: '1px',
   },
@@ -61,9 +63,9 @@ const Logo = styled('img', {
 
 const backgroundVariable = createVariable('image');
 
-const StyledCardHeader = styled('a', {
+const StyledCardHeader = styled('div', {
   base: {
-    backgroundImage: `${fadeGradient(smoke, 15)}, ${backgroundVariable.wrapped}`,
+    backgroundImage: backgroundVariable.wrapped,
   },
 });
 
@@ -91,16 +93,17 @@ const Intro = () => {
 
   return (
     <Container>
+      <For each={projects}>{(project) => <ProjectCard project={project} />}</For>
       <Title>PROJECTS</Title>
       <Card>
-        <StyledCardHeader style={{ [backgroundVariable.identifier]: `url('${ticketsBackground}')` }}>
+        <StyledCardHeader style={{ [backgroundVariable.identifier]: `url('${ticketsBackground.src}')` }}>
           <Logo src="/PureTicketsLogo.svg" alt="Pure Tickets Logo" />
           <Name>PURE TICKETS</Name>
           <Slogan>SPIGOT PLUGIN</Slogan>
         </StyledCardHeader>
         <CardBody>
           <Bold>ABOUT</Bold>
-          <Text color={gray}>
+          <Text color="gray">
             Pure Tickets is a ticket management plugin made for Spigot / Paper. Its features include; players being able
             to submit multiple tickets and discord integeration
           </Text>
@@ -110,33 +113,34 @@ const Intro = () => {
             href="https://www.spigotmc.org/resources/pure-tickets-easy-to-use-ticket-system.71677/"
             Glyph={FaSolidFaucet}
             basis="1.4rem"
-            backing={hexToRGBA(gray, 10)}
+            backing="grey"
             aria="Spigot"
           />
           <Icon
             href="https://github.com/broccolai/tickets/wiki"
             Glyph={FaSolidBook}
             basis="1.4rem"
-            backing={hexToRGBA(token('colors.gray'), 10)}
+            backing="grey"
             aria="Github Wiki"
           />
           <Icon
             href="https://github.com/broccolai/tickets/"
             Glyph={FaBrandsGithub}
             basis="1.4rem"
-            backing={hexToRGBA(gray, 10)}
+            backing="grey"
             aria="Github"
           />
           <Icon
             href="https://discord.gg/huYp67G"
             Glyph={FaBrandsDiscord}
             basis="1.4rem"
-            backing={hexToRGBA(gray, 10)}
+            backing="gray"
             aria="Discord"
           />
         </CardBottomBody>
         <FooterText>SERVING {amount()} DISCORD GUILDS</FooterText>
       </Card>
+      ;
       <Card>
         <StyledCardHeader style={{ [backgroundVariable.identifier]: "url('MAGMOBG.png')" }}>
           <Logo src="/logo.svg" alt="Magmo Logo" />
@@ -145,7 +149,7 @@ const Intro = () => {
         </StyledCardHeader>
         <CardBody>
           <Bold>ABOUT</Bold>
-          <Text color={gray}>
+          <Text color="gray">
             broccol.ai is a nextjs site build with styled-components that I use to practice react and to store api
             endpoints for my other projects
           </Text>
@@ -155,18 +159,13 @@ const Intro = () => {
             href="https://github.com/broccolai/site"
             Glyph={FaBrandsGithub}
             basis="1.4rem"
-            backing={hexToRGBA(gray, 10)}
+            backing="gray"
             aria="Github"
           />
-          <Icon
-            href="https://broccol.ai/"
-            Glyph={FaSolidLink}
-            basis="1.4rem"
-            backing={hexToRGBA(gray, 10)}
-            aria="Website URL"
-          />
+          <Icon href="https://broccol.ai/" Glyph={FaSolidLink} basis="1.4rem" backing="gray" aria="Website URL" />
         </CardBottomBody>
       </Card>
+      ;
       <Card>
         <StyledCardHeader style={{ [backgroundVariable.identifier]: "url('CORNBG.png')" }}>
           <FaSolidPepperHot class={iconStyle} />
@@ -175,7 +174,7 @@ const Intro = () => {
         </StyledCardHeader>
         <CardBody>
           <Bold>ABOUT</Bold>
-          <Text color={gray}>
+          <Text color="gray">
             corn is a extremely opinionated Java library that is mostly for my personal use, it currently has a core and
             a spigot module
           </Text>
@@ -185,11 +184,12 @@ const Intro = () => {
             href="https://github.com/broccolai/corn"
             Glyph={FaBrandsGithub}
             basis="1.4rem"
-            backing={hexToRGBA(gray, 10)}
+            backing="gray"
             aria="Github"
           />
         </CardBottomBody>
       </Card>
+      ;
     </Container>
   );
 };

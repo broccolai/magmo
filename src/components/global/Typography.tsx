@@ -1,5 +1,4 @@
-import { styled } from '@styled/jsx';
-import { soft, white } from '../utilities/Colors';
+import { styled } from '@panda/jsx';
 
 export const TITLE_FONTS =
   'Sen, -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif';
@@ -9,7 +8,7 @@ export const REGULAR_FONTS =
 
 export const H1 = styled('h1', {
   base: {
-    color: white,
+    color: 'white',
     fontFamily: TITLE_FONTS,
     fontSize: 'clamp(4rem, 10vw, 6rem)',
     letterSpacing: '5px',
@@ -30,7 +29,7 @@ export const H2 = styled('h1', {
 
 export const H3 = styled('h3', {
   base: {
-    color: white,
+    color: 'white',
     fontFamily: TITLE_FONTS,
     fontSize: 'clamp(1rem, 8vw, 1.8rem)',
     letterSpacing: '4px',
@@ -68,7 +67,7 @@ export const Text = styled('p', {
 export const FooterText = styled('p', {
   base: {
     bottom: '0',
-    color: soft,
+    color: 'soft',
     fontFamily: REGULAR_FONTS,
     fontSize: '0.8rem',
     fontWeight: 'bold',

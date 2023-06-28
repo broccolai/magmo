@@ -1,11 +1,9 @@
-import { styled } from '@styled/jsx';
-
-import { white } from '../utilities/Colors';
+import { styled } from '@panda/jsx';
 
 const Container = styled('header', {
   base: {
     alignItems: 'center',
-    color: white,
+    color: 'white',
     display: 'flex',
     height: '5rem',
     justifyContent: 'space-between',

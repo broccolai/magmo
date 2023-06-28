@@ -1,8 +1,7 @@
-import { css } from '@styled/css';
-import { styled } from '@styled/jsx';
+import { css } from '@panda/css';
+import { styled } from '@panda/jsx';
 import type { IconTypes } from '@aminya/solid-icons';
 import { createVariable } from '../utilities/Functions';
-import { black, soft } from '../utilities/Colors';
 
 const iconSize = createVariable('icon-size');
 const iconBackgroundColor = createVariable('icon-background-color');
@@ -16,7 +15,7 @@ const Link = styled('a', {
   base: {
     backgroundColor: iconBackgroundColor.wrapped,
     borderRadius: '50%',
-    color: soft,
+    color: 'soft',
     display: 'inline-block',
     height: iconSize.wrapped,
     marginRight: '0.6rem',
@@ -25,7 +24,7 @@ const Link = styled('a', {
     width: iconSize.wrapped,
 
     ':hover': {
-      color: black,
+      color: 'black',
     },
   },
 });

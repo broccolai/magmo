@@ -1,20 +1,14 @@
 import { defineConfig } from '@pandacss/dev';
 
 export default defineConfig({
-  // Whether to use css reset
-  preflight: true,
-
-  // Where to look for your css declarations
+  eject: false,
+  preflight: false,
+//  minify: true,
+  hash: true,
   include: ['./src/**/*.{js,jsx,ts,tsx}'],
-
-  // Files to exclude
   exclude: [],
-
-  // Useful for theme customization
   jsxFramework: 'solid',
-
-  // The output directory for your css system
-  outdir: 'styled-system',
+  outdir: './src/@panda',
 
   theme: {
     tokens: {

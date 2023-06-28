@@ -1,4 +1,4 @@
-import { styled } from '@styled/jsx';
+import { styled } from '@panda/jsx';
 
 export const AbsoluteContainer = styled('div', {
   base: {

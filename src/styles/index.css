@@ -1,5 +1,10 @@
 @layer reset, base, tokens, recipes, utilities;
 
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
 @keyframes Pound {
     from {
         transform: scale(1);

@@ -47,6 +47,8 @@
         "node": ">=16.8"
     },
     "imports": {
-        "@styled/*": "./styled-system/*"
+        "@panda/*": "./src/@panda/*",
+        "@assets/*": "./src/@assets/*",
+        "@data/*": "./src/@data/*"
     }
 }
