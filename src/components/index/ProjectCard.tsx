@@ -1,25 +1,24 @@
 import { styled } from '@panda/jsx';
 import type { Project } from '@data/projects';
+import { For } from 'solid-js';
 import { Card, CardBody, CardBottomBody, CardHeader } from '../individuals/card';
 import Icon from '../individuals/icon';
-import { FaBrandsDiscord, FaBrandsGithub, FaSolidBook, FaSolidFaucet } from '@aminya/solid-icons/fa';
 import { Bold, H3, H4, Text } from '../global/Typography';
-import { createVariable } from '../utilities/Functions';
-
-const projectCardBackground = createVariable('project-card-background');
 
 const StyledCardHeader = styled(CardHeader, {
   base: {
-    backgroundImage: `var(--project-card-background)`,
+    backgroundImage:
+      'linear-gradient(to bottom,rgba(245,245,245,0) 85%,rgba(245,245,245,1) 100%),var(--project-card-bg)',
   },
 });
 
 const Name = styled(H3, {
   base: {
-    color: `black`,
+    color: `black !important`,
     fontSize: '1.4rem !important',
     fontWeight: 'normal !important',
     letterSpacing: '2px !important',
+    textTransform: 'uppercase',
   },
 });
 
@@ -44,47 +43,23 @@ interface Props {
   project: Project;
 }
 
-const ProjectCard = ({ project }: Props) => {
-  const { title, slogan, images } = project;
+const ProjectCard = (props: Props) => {
+  const { title, slogan, description, images, icons } = props.project;
   const { background, logo } = images;
 
   return (
-    <Card style={{ [projectCardBackground.identifier]: `url(${background.src})` }}>
+    <Card style={{ '--project-card-bg': background.src.url() }}>
       <StyledCardHeader>
-        <Logo style={{ [projectCardBackground.identifier]: `url(${background.src})` }} />
+        <Logo src={logo.src} />
         <Name>{title}</Name>
         <Slogan>{slogan}</Slogan>
       </StyledCardHeader>
       <CardBody>
         <Bold>ABOUT</Bold>
-        <Text color="gray">
-          Pure Tickets is a ticket management plugin made for Spigot / Paper. Its features include; players being able
-          to submit multiple tickets and discord integeration
-        </Text>
+        <Text color="gray">{description}</Text>
       </CardBody>
       <CardBottomBody>
-        <Icon
-          href="https://www.spigotmc.org/resources/pure-tickets-easy-to-use-ticket-system.71677/"
-          Glyph={FaSolidFaucet}
-          basis="1.4rem"
-          backing="grey"
-          aria="Spigot"
-        />
-        <Icon
-          href="https://github.com/broccolai/tickets/wiki"
-          Glyph={FaSolidBook}
-          basis="1.4rem"
-          backing="grey"
-          aria="Github Wiki"
-        />
-        <Icon
-          href="https://github.com/broccolai/tickets/"
-          Glyph={FaBrandsGithub}
-          basis="1.4rem"
-          backing="grey"
-          aria="Github"
-        />
-        <Icon href="https://discord.gg/huYp67G" Glyph={FaBrandsDiscord} basis="1.4rem" backing="gray" aria="Discord" />
+        <For each={icons}>{(icon) => <Icon href={icon.link} Glyph={icon.glyph} basis="1.4rem" aria="meh" />}</For>
       </CardBottomBody>
     </Card>
   );

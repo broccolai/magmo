@@ -3,7 +3,7 @@ import { defineConfig } from '@pandacss/dev';
 export default defineConfig({
   eject: false,
   preflight: false,
-//  minify: true,
+  //  minify: true,
   hash: true,
   include: ['./src/**/*.{js,jsx,ts,tsx}'],
   exclude: [],

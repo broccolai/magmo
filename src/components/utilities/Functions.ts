@@ -19,3 +19,11 @@ export const createVariable = (overrideId: string): { identifier: string; wrappe
 
   return { identifier, wrapped: backingVariable };
 };
+
+declare global {
+  interface String {
+    url(): string;
+  }
+}
+
+String.prototype.url = () => 'hello';

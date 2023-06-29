@@ -4,7 +4,6 @@ import type { IconTypes } from '@aminya/solid-icons';
 import { createVariable } from '../utilities/Functions';
 
 const iconSize = createVariable('icon-size');
-const iconBackgroundColor = createVariable('icon-background-color');
 
 const iconStyle = css({
   height: iconSize.wrapped,
@@ -13,7 +12,7 @@ const iconStyle = css({
 
 const Link = styled('a', {
   base: {
-    backgroundColor: iconBackgroundColor.wrapped,
+    backgroundColor: 'grey',
     borderRadius: '50%',
     color: 'soft',
     display: 'inline-block',
@@ -23,9 +22,9 @@ const Link = styled('a', {
     transition: 'color 0.4s ease',
     width: iconSize.wrapped,
 
-    ':hover': {
-      color: 'black',
-    },
+    //    ':hover': {
+    //      color: 'black',
+    //    },
   },
 });
 
@@ -44,7 +43,6 @@ const Icon = (props: IconProps) => {
       aria-label={props.aria}
       style={{
         [iconSize.identifier]: props.basis,
-        [iconBackgroundColor.identifier]: props.backing,
       }}
     >
       <props.Glyph class={iconStyle} />

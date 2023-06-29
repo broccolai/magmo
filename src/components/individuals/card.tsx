@@ -31,13 +31,13 @@ export const CardHeader = styled('div', {
 
 export const CardBody = styled('div', {
   base: {
-    padding: '0.4rem 1rem 1.4rem',
+    padding: '0.4rem 1rem',
   },
 });
 
 export const CardBottomBody = styled('div', {
   base: {
     marginTop: 'auto',
-    padding: '0.4rem 1rem 3.4rem',
+    padding: '1rem 1rem',
   },
 });

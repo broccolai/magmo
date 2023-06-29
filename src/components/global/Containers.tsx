@@ -18,9 +18,9 @@ export const FlexSection = styled('section', {
 
 export const ChildFlexSection = styled(FlexSection, {
   base: {
-    alignItems: 'stretch',
+    alignItems: 'stretch !important',
     borderRadius: '2rem 2rem 0 0',
-    justifyContent: 'space-evenly',
+    justifyContent: 'space-evenly !important',
     marginTop: '-5rem',
     position: 'relative',
   },
