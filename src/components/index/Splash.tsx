@@ -1,51 +1,58 @@
 import { styled } from '@panda/jsx';
 import { FlexSection } from '../global/Containers';
-import { H1, H2 } from '../global/Typography';
+import { REGULAR_FONTS, Text, TITLE_FONTS } from '../global/Typography';
+import { FaSolidHeart } from '@aminya/solid-icons/fa';
 
 const Container = styled(FlexSection, {
   base: {
-    backgroundImage: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+    display: 'flex',
+    flexDirection: 'column',
     height: '100vh',
-    position: 'fixed',
     width: '100%',
-    zIndex: '-999',
   },
 });
 
-const Text = styled('div', {
+const Heart = styled(FaSolidHeart, {
   base: {
-    color: 'white',
-    marginTop: '-15vh',
-    textAlign: 'center',
+    color: 'red !important',
+    fontSize: '3rem',
+    borderRight: '2px 2px 0 0 black',
+    padding: '1rem'
   },
 });
 
-// @media (max-width: 425px) {
-//   display: none;
-// }
+const Name = styled('h1', {
+  base: {
+    fontFamily: TITLE_FONTS,
+    fontSize: 'clamp(2rem, 6vw, 4rem)',
+    fontWeight: 200,
+    margin: 0,
+    textShadow: '2px 2px 0 token(colors.purple), 4px 4px 0 token(colors.accent)',
+    //    borderBottom: '4px ridge cyan',
+  },
+});
 
-//  const parallaxData = [
-//    {
-//      start: 0,
-//      end: '75vh',
-//      properties: [
-//        {
-//          startValue: 0,
-//          endValue: -36,
-//          unit: 'vh',
-//          property: 'translateY',
-//        },
-//      ],
-//    },
-//  ];
+const Tag = styled('h4', {
+  base: {
+    fontFamily: REGULAR_FONTS,
+  },
+});
+
+const TextContainer = styled('div', {
+  base: {
+    color: 'black',
+    display: 'flex',
+    fontSize: '1rem',
+  },
+});
+
 const Splash = () => (
   <Container>
-    {/* <Plx parallaxData={parallaxData}> */}
-    <Text>
-      <H1>broccolai</H1>
-      <H2>react and java development</H2>
-    </Text>
-    {/* </Plx> */}
+    <Name>josh taylor</Name>
+    {/*<TextContainer>*/}
+    {/*  <Heart />*/}
+    {/*  <Text>welcome to my personal page,</Text>*/}
+    {/*</TextContainer>*/}
   </Container>
 );
 

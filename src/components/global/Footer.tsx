@@ -1,62 +1,48 @@
 import { styled } from '@panda/jsx';
-import { css } from '@panda/css';
+import { Text, TITLE_FONTS } from './Typography';
+import { createEffect, createSignal } from 'solid-js';
 
-import { FaSolidHandshakeSimple, FaSolidHeart, FaSolidMugHot } from '@aminya/solid-icons/fa';
-import { createVariable } from '../utilities/Functions';
-
-const Background = styled('aside', {
-  base: {
-    backgroundColor: 'black',
-    height: '100%',
-    left: '0',
-    position: 'absolute',
-    top: '0',
-    width: '100%',
-    zIndex: '-100',
-  },
+const timeFormatter = new Intl.DateTimeFormat('en', {
+  timeZone: 'Europe/London',
+  timeStyle: 'short',
+  hour12: false,
 });
 
 const Base = styled('footer', {
   base: {
-    backgroundColor: 'white',
-    borderTopLeftRadius: '2rem',
-    borderTopRightRadius: '2rem',
-    boxSizing: 'border-box',
-    color: 'black',
+    fontFamily: TITLE_FONTS,
+    backgroundColor: 'smoke',
     display: 'grid',
-    justifyContent: 'center',
-    padding: '2rem',
-    position: 'relative',
-    textAlign: 'center',
-    width: '100%',
+    gridTemplateColumns: 'repeat(2, 1fr)',
+    padding: '4px',
   },
 });
 
-const Signature = styled('div', {
+const Left = styled('p', {});
+
+const Right = styled('p', {
   base: {
-    paddingTop: '0.5rem',
+    textAlign: 'right',
   },
 });
 
-const iconColor = createVariable('footerIconColor');
+const Footer = () => {
+  const [time, setTime] = createSignal('');
 
-const iconStyle = css({
-  fontSize: '1.4rem',
-  height: '1.4rem',
-  marginLeft: '0.6rem',
-  marginRight: '0.6rem',
-  color: iconColor.wrapped,
-});
+  const updateTime = () => {
+    const current = Date.now();
+    setTime(timeFormatter.format(current));
+  };
 
-const Footer = () => (
-  <Base>
-    <Background />
-    <Signature>
-      <FaSolidHeart class={iconStyle} style={{ [iconColor.identifier]: '#e90606' }} />
-      <FaSolidHandshakeSimple class={iconStyle} style={{ [iconColor.identifier]: 'gray' }} />
-      <FaSolidMugHot class={iconStyle} style={{ [iconColor.identifier]: '#6f4e37' }} />
-    </Signature>
-  </Base>
-);
+  updateTime();
+  setInterval(() => updateTime(), 1000);
+
+  return (
+    <Base>
+      <Left>England | {time()}</Left>
+      <Right>Github</Right>
+    </Base>
+  );
+};
 
 export default Footer;

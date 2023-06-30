@@ -1,21 +1,10 @@
 import { styled } from '@panda/jsx';
 
 export const TITLE_FONTS =
-  'Sen, -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif';
+  'PT Mono, -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif';
 
 export const REGULAR_FONTS =
   'Open Sans, -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif';
-
-export const H1 = styled('h1', {
-  base: {
-    color: 'white',
-    fontFamily: TITLE_FONTS,
-    fontSize: 'clamp(4rem, 10vw, 6rem)',
-    letterSpacing: '5px',
-    margin: '0',
-    textAlign: 'center',
-  },
-});
 
 export const H2 = styled('h1', {
   base: {

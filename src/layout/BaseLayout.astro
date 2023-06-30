@@ -1,6 +1,10 @@
 ---
+import '@fontsource/open-sans';
+import '@fontsource/pt-mono';
+import '@fontsource/sen';
+
 import Footer from '../components/global/Footer';
-import { AbsoluteContainer } from '../components/global/Containers';
+import { FlexSection, FullPageContainer } from '../components/global/Containers';
 const { title } = Astro.props
 ---
 
@@ -14,9 +18,11 @@ const { title } = Astro.props
       <link rel="preconnect" href="https://tickets.broccol.ai" />
   </head>
   <body>
-    <AbsoluteContainer>
-      <slot />
-      <Footer />
-    </AbsoluteContainer>
+    <FlexSection>
+      <FullPageContainer>
+        <slot />
+        <Footer client:visible />
+      </FullPageContainer>
+    </FlexSection>
   </body>
 </html>

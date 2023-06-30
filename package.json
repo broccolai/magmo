@@ -17,6 +17,7 @@
         "@aminya/solid-icons": "^2.0.12",
         "@astrojs/solid-js": "^2.2.0",
         "@fontsource/open-sans": "^5.0.3",
+        "@fontsource/pt-mono": "^5.0.3",
         "@fontsource/sen": "^5.0.3",
         "@fortawesome/free-solid-svg-icons": "^6.4.0",
         "@pandacss/dev": "^0.5.0",

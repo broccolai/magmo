@@ -14,6 +14,9 @@ dependencies:
   '@fontsource/open-sans':
     specifier: ^5.0.3
     version: 5.0.3
+  '@fontsource/pt-mono':
+    specifier: ^5.0.3
+    version: 5.0.3
   '@fontsource/sen':
     specifier: ^5.0.3
     version: 5.0.3
@@ -1078,6 +1081,10 @@ packages:
 
   /@fontsource/open-sans@5.0.3:
     resolution: {integrity: sha512-L86qrEfW7IWSGojCtiPpw2/M6qKjxDG+EV4k1xMVFCkhh6Z6gyZwevqCt0yOvd1BmjrtUAIAfSzFTjBn3DeZJw==}
+    dev: false
+
+  /@fontsource/pt-mono@5.0.3:
+    resolution: {integrity: sha512-NkkUZsQgD5C+COq49Ooh4/zZTSvs9CgXuTGg01XgFklFZ2AD4P2J3DZEwfOFHH2mLRJPLHCwJxuWAs6SFASdtA==}
     dev: false
 
   /@fontsource/sen@5.0.3:

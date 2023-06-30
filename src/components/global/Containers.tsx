@@ -1,9 +1,12 @@
 import { styled } from '@panda/jsx';
 
-export const AbsoluteContainer = styled('div', {
+export const FullPageContainer = styled('div', {
   base: {
-    position: 'absolute',
-    width: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    width: '100vw',
+    height: '100vh',
+    maxWidth: '800px',
   },
 });
 
