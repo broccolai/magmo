@@ -7,12 +7,15 @@ export const createVariable = (overrideId: string): { identifier: string; wrappe
   return { identifier, wrapped: backingVariable };
 };
 
+export const log = () => {};
+
 declare global {
   interface String {
     url(): string;
   }
 }
 
-String.prototype.url = function (): string {
-  return `url(${this})`;
+String.prototype.url = function url(): string {
+  const value = this as string;
+  return `url(${value})`;
 };

@@ -1,23 +1,15 @@
 import { styled } from '@panda/jsx';
 import { FlexSection } from '../global/Containers';
-import { REGULAR_FONTS, Text, TITLE_FONTS } from '../global/Typography';
-import { FaSolidHeart } from '@aminya/solid-icons/fa';
+import { TITLE_FONTS } from '../global/Typography';
 
 const Container = styled(FlexSection, {
   base: {
     display: 'flex',
     flexDirection: 'column',
-    height: '100vh',
     width: '100%',
-  },
-});
-
-const Heart = styled(FaSolidHeart, {
-  base: {
-    color: 'red !important',
-    fontSize: '3rem',
-    borderRight: '2px 2px 0 0 black',
-    padding: '1rem'
+    height: '100vh',
+    scrollSnapAlign: 'center',
+    overflowY: 'scroll',
   },
 });
 
@@ -32,27 +24,27 @@ const Name = styled('h1', {
   },
 });
 
-const Tag = styled('h4', {
+const Tag = styled('p', {
   base: {
-    fontFamily: REGULAR_FONTS,
+    fontFamily: TITLE_FONTS,
   },
 });
 
-const TextContainer = styled('div', {
+const Seperator = styled('span', {
   base: {
-    color: 'black',
-    display: 'flex',
-    fontSize: '1rem',
+    letterSpacing: '2px',
   },
 });
 
 const Splash = () => (
   <Container>
     <Name>josh taylor</Name>
-    {/*<TextContainer>*/}
-    {/*  <Heart />*/}
-    {/*  <Text>welcome to my personal page,</Text>*/}
-    {/*</TextContainer>*/}
+    <Seperator>...</Seperator>
+    <Tag>java & web development</Tag>
+    {/* <TextContainer> */}
+    {/*  <Heart /> */}
+    {/*  <Text>welcome to my personal page,</Text> */}
+    {/* </TextContainer> */}
   </Container>
 );
 

@@ -3,6 +3,7 @@ import '@fontsource/open-sans';
 import '@fontsource/pt-mono';
 import '@fontsource/sen';
 
+import Header from '../components/global/Header';
 import Footer from '../components/global/Footer';
 import { FlexSection, FullPageContainer } from '../components/global/Containers';
 const { title } = Astro.props
@@ -20,6 +21,7 @@ const { title } = Astro.props
   <body>
     <FlexSection>
       <FullPageContainer>
+        <Header client:visible />
         <slot />
         <Footer client:visible />
       </FullPageContainer>

@@ -5,8 +5,7 @@ export const FullPageContainer = styled('div', {
     display: 'flex',
     flexDirection: 'column',
     width: '100vw',
-    height: '100vh',
-    maxWidth: '800px',
+    scrollSnapType: 'y mandatory',
   },
 });
 

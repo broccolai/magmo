@@ -1,35 +1,33 @@
 import { styled } from '@panda/jsx';
+import { WiDaySunny } from '@aminya/solid-icons/wi';
+import { TITLE_FONTS } from './Typography';
 
-const Container = styled('header', {
+const Base = styled('footer', {
   base: {
-    alignItems: 'center',
-    color: 'white',
-    display: 'flex',
-    height: '5rem',
-    justifyContent: 'space-between',
-    position: 'fixed',
-    textAlign: 'center',
-    width: '100%',
-    zIndex: '1000',
+    fontFamily: TITLE_FONTS,
+    backgroundColor: 'smoke',
+    display: 'grid',
+    gridTemplateColumns: 'repeat(2, 1fr)',
+    padding: '4px',
+    fontSize: '1.4rem',
+    height: '5vh',
+    alignContent: 'center',
   },
 });
 
-const Logo = styled('img', {
+const Right = styled('p', {
   base: {
-    cursor: 'pointer',
-    height: '3rem',
-    padding: '1rem',
-    width: '3rem',
-    zIndex: '1',
+    textAlign: 'right',
   },
 });
 
 const Header = () => (
-  <Container>
-    <div>
-      <Logo src="/nav-logo.png" />
-    </div>
-  </Container>
+  <Base>
+    <div />
+    <Right>
+      <WiDaySunny />
+    </Right>
+  </Base>
 );
 
 export default Header;
