@@ -1,6 +1,8 @@
 import { styled } from '@panda/jsx';
 import { FlexSection } from '../global/Containers';
 import { TITLE_FONTS } from '../global/Typography';
+import { FaSolidAnglesDown, FaSolidChevronDown } from '@aminya/solid-icons/fa';
+import {FiChevronsDown} from "@aminya/solid-icons/fi";
 
 const Container = styled(FlexSection, {
   base: {
@@ -10,6 +12,14 @@ const Container = styled(FlexSection, {
     height: '100vh',
     scrollSnapAlign: 'center',
     overflowY: 'scroll',
+    position: 'relative',
+  },
+});
+
+const TextContainer = styled(FlexSection, {
+  base: {
+    flexDirection: 'column',
+    marginTop: '-10vh',
   },
 });
 
@@ -36,11 +46,24 @@ const Seperator = styled('span', {
   },
 });
 
+const ScrollIndicator = styled(FiChevronsDown, {
+  base: {
+    position: 'absolute',
+    fontSize: '1.6rem',
+    color: 'soft !important',
+    bottom: '15vh',
+    animation: 'bounce 1s ease-in 0s infinite'
+  },
+});
+
 const Splash = () => (
   <Container>
-    <Name>josh taylor</Name>
-    <Seperator>...</Seperator>
-    <Tag>java & web development</Tag>
+    <TextContainer>
+      <Name>josh taylor</Name>
+      <Seperator>...</Seperator>
+      <Tag>java & web development</Tag>
+    </TextContainer>
+    <ScrollIndicator />
     {/* <TextContainer> */}
     {/*  <Heart /> */}
     {/*  <Text>welcome to my personal page,</Text> */}

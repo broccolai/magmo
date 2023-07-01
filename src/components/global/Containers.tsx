@@ -1,4 +1,5 @@
 import { styled } from '@panda/jsx';
+import {TITLE_FONTS} from "./Typography";
 
 export const FullPageContainer = styled('div', {
   base: {
@@ -6,6 +7,29 @@ export const FullPageContainer = styled('div', {
     flexDirection: 'column',
     width: '100vw',
     scrollSnapType: 'y mandatory',
+  },
+});
+
+export const PageBanner = styled('section', {
+  base: {
+    width: '100vw',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'fixed'
+  },
+});
+
+export const PageBannerContent = styled('section', {
+  base: {
+    fontFamily: TITLE_FONTS,
+    alignContent: 'center',
+    display: 'grid',
+    gridTemplateColumns: 'repeat(2, 1fr)',
+    padding: '4px',
+    height: '5vh',
+    width: '100%',
+    maxWidth: '800px',
   },
 });
 
