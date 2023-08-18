@@ -1,13 +1,13 @@
 // this is adapter from Github/FaisalST32's project 'fullpage-react-fs'
 // source: https://github.com/FaisalST32/fullpage-react-fs/blob/master/src/index.js
 import type { JSXElement } from 'solid-js';
-import { createSignal, onCleanup } from 'solid-js';
-import { useRef, useEffect } from 'solid-js/web';
-import styles from './styles.module.css';
+import { styled } from '@panda/jsx';
+import { createEffect, createSignal, onCleanup } from 'solid-js';
+import { WindowEventListener } from '@solid-primitives/event-listener';
 
-const FullPageContainer = (props) => {
+const FullPageContainer = (props: { children: JSXElement, showIndicators: boolean }) => {
   const panelsCount = props.children.length;
-  const windowHeight = useRef(window.innerHeight);
+  const windowHeight = window.innerHeight;
 
   // State for view and interaction
   const [viewState, setViewState] = createSignal({
@@ -19,19 +19,25 @@ const FullPageContainer = (props) => {
   // Go to the previous section
   const prevSection = () => {
     setViewState((prev) => {
-      if (prev.transitioning) return prev;
-      if (prev.currentPanel <= 1)
+      if (prev.transitioning) {
+        return prev;
+      }
+
+      if (prev.currentPanel <= 1) {
         return {
           ...prev,
           currentTop: 0,
         };
+      }
+
       setTimeout(() => {
-        setViewState((prev) => ({ ...prev, transitioning: false }));
+        setViewState((prevNext) => ({ ...prevNext, transitioning: false }));
       }, 1000);
+
       return {
         transitioning: true,
         currentPanel: prev.currentPanel - 1,
-        currentTop: -windowHeight.current * (prev.currentPanel - 2),
+        currentTop: -windowHeight * (prev.currentPanel - 2),
       };
     });
   };
@@ -44,15 +50,15 @@ const FullPageContainer = (props) => {
       if (prev.currentPanel >= panelsCount)
         return {
           ...prev,
-          currentTop: -windowHeight.current * (panelsCount - 1),
+          currentTop: -windowHeight * (panelsCount - 1),
         };
       setTimeout(() => {
-        setViewState((prev) => ({ ...prev, transitioning: false }));
+        setViewState((prevNext) => ({ ...prevNext, transitioning: false }));
       }, 1000);
       return {
         transitioning: true,
         currentPanel: prev.currentPanel + 1,
-        currentTop: -windowHeight.current * prev.currentPanel,
+        currentTop: -windowHeight * prev.currentPanel,
       };
     });
   };
@@ -62,13 +68,13 @@ const FullPageContainer = (props) => {
     setViewState((prev) => {
       return {
         ...prev,
-        currentTop: -windowHeight.current * (prev.currentPanel - 1),
+        currentTop: -windowHeight * (prev.currentPanel - 1),
       };
     });
   };
 
   // Handle scroll events for section navigation
-  const handleScroll = (e) => {
+  const handleScroll = (e: WheelEvent) => {
     if (e.deltaY > 40 && viewState().currentPanel < panelsCount) {
       nextSection();
     } else if (e.deltaY < -40 && viewState().currentPanel > 1) {
@@ -77,53 +83,31 @@ const FullPageContainer = (props) => {
   };
 
   // Set the active section based on user input
-  const onSetSection = (sectionNumber) => {
-    setViewState((prev) => {
+  const onSetSection = (section: number) => {
+    setViewState(() => {
       setTimeout(() => {
         setViewState((prev) => ({ ...prev, transitioning: false }));
       }, 1000);
       return {
         transitioning: true,
-        currentPanel: sectionNumber,
-        currentTop: -windowHeight.current * (sectionNumber - 1),
+        currentPanel: section,
+        currentTop: -windowHeight * (section - 1),
       };
     });
   };
 
-  // Remove event listeners when the component unmounts
-  const removeEventListeners = () => {
-    window.removeEventListener('wheel', handleScroll);
-    window.removeEventListener('touchstart', handleSwipe);
-    window.removeEventListener('touchend', handleSwipe);
-    window.removeEventListener('pointerdown', handleSwipe);
-    window.removeEventListener('pointerup', handleSwipe);
-    window.removeEventListener('pointermove', handleDrag);
-    window.removeEventListener('resize', updateWindowHeight);
-  };
-
-  // Set up event listeners on component mount
-  useEffect(() => {
-    window.addEventListener('wheel', handleScroll);
-    window.addEventListener('touchstart', handleSwipe);
-    window.addEventListener('touchend', handleSwipe);
-    window.addEventListener('pointerdown', handleSwipe);
-    window.addEventListener('pointerup', handleSwipe);
-    window.addEventListener('pointermove', handleDrag);
-    window.addEventListener('resize', updateWindowHeight);
-    onCleanup(() => {
-      removeEventListeners();
-    });
-  }, []);
+    // window.addEventListener('pointermove', handleDrag);
+    // window.addEventListener('resize', updateWindowHeight);
 
   // Track touch start position for swipe gestures
-  const touchStartY = useRef(0);
+  var touchStartY = 0;
 
   // Track current pointer position for drag gestures
   const [currentPointer, setCurrentPointer] = createSignal(0);
 
   // Handle dragging interaction
   const handleDrag = (e) => {
-    if (touchStartY.current === 0) {
+    if (touchStartY === 0) {
       return;
     }
 
@@ -156,13 +140,13 @@ const FullPageContainer = (props) => {
   // Handle swipe gestures
   const handleSwipe = (e) => {
     if (e.type === 'touchstart') {
-      touchStartY.current = e.changedTouches[0].screenY;
+      touchStartY = e.changedTouches[0].screenY;
       return;
     }
 
     const touchEndY = e.changedTouches[0].screenY;
 
-    const touchDifference = touchStartY.current - touchEndY;
+    const touchDifference = touchStartY - touchEndY;
 
     if (touchDifference < -100) {
       prevSection();
@@ -172,48 +156,55 @@ const FullPageContainer = (props) => {
       restoreSection();
     }
 
-    touchStartY.current = 0;
+    touchStartY = 0;
     setCurrentPointer(0);
   };
 
   // Style classes for panels container
-  const panelsstyles = [styles.panelsContainer, viewState().transitioning && styles.panelTransitioning];
+  const panelsstyles = ['panelsContainer', viewState().transitioning && 'panelTransitioning'];
 
   return (
-    <div class={styles.screenPane}>
-      {currentPointer() !== 0 && <div class={styles.clickMask} />}
+    <>
+    <WindowEventListener onWheel={handleScroll} />
+
+    <div class='screenPane'>
+      {currentPointer() !== 0 && <div class='clickMask' />}
       <div class={panelsstyles.join(' ')} style={{ top: `${viewState().currentTop}px` }}>
         {props.children}
-        {showIndicators && (
+        {props.showIndicators && (
           <NavIndicators count={panelsCount} activeIndex={viewState().currentPanel} setIndicator={onSetSection} />
         )}
       </div>
     </div>
+    </>
   );
 };
 
 // Indicator component for section navigation
-const NavIndicators = (props) => {
+const NavIndicators = (props: { count: number, activeIndex: number, setIndicator: (section: number) => void }) => {
   const indicatorHtml = Array.from({ length: props.count }, (_, i) => {
-    const indicatorstyles = [styles.indicator, i === props.activeIndex - 1 && styles.active];
+    // const indicatorstyles = [styles.indicator, i === props.activeIndex - 1 && styles.active];
     return (
-      <div class={indicatorstyles.join(' ')} onClick={() => props.setIndicator(i + 1)}>
+      //class={indicatorstyles.join(' ')} onClick={() => props.setIndicator(i + 1)}
+      <div >
         &#11044;
       </div>
     );
   });
 
-  return <div class={styles.navIndicators}>{indicatorHtml}</div>;
+  return <div>{indicatorHtml}</div>;
 };
 
-// Component for individual full-page panels
-const FullPagePanel = (_props) => {
-  const [props, props] = splitProps(_props, ['bgColor']);
-  return (
-    <div class={styles.fullPanel} style={{ 'background-color': props.bgColor }}>
-      <div class={styles.panelContent}>{props.children}</div>
-    </div>
-  );
-};
+const Panel = styled("section", {
+  base: {
+    position: 'relative',
+    height: '100vh',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '100%'
+  }
 
-export { FullPageContainer, FullPagePanel };
+})
+
+export { FullPageContainer, Panel };
