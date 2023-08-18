@@ -1,8 +1,8 @@
 import { styled } from '@panda/jsx';
+import { FaSolidAnglesDown, FaSolidChevronDown } from '@aminya/solid-icons/fa';
+import { FiChevronsDown } from '@aminya/solid-icons/fi';
 import { FlexSection } from '../global/Containers';
 import { TITLE_FONTS } from '../global/Typography';
-import { FaSolidAnglesDown, FaSolidChevronDown } from '@aminya/solid-icons/fa';
-import {FiChevronsDown} from "@aminya/solid-icons/fi";
 
 const Container = styled(FlexSection, {
   base: {
@@ -52,7 +52,7 @@ const ScrollIndicator = styled(FiChevronsDown, {
     fontSize: '1.6rem',
     color: 'soft !important',
     bottom: '15vh',
-    animation: 'bounce 1s ease-in 0s infinite'
+    animation: 'bounce 1s ease-in 0s infinite',
   },
 });
 

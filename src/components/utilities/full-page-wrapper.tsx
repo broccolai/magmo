@@ -1,17 +1,22 @@
 // this is adapter from Github/FaisalST32's project 'fullpage-react-fs'
 // source: https://github.com/FaisalST32/fullpage-react-fs/blob/master/src/index.js
+import type { JSXElement } from 'solid-js';
+import { createSignal, onCleanup } from 'solid-js';
+import { useRef, useEffect } from 'solid-js/web';
 import styles from './styles.module.css';
 
-export const FullPageContainer = ({ showIndicators = true, ...props }) => {
-  const panelsCount = React.Children.count(props.children);
-
+const FullPageContainer = (props) => {
+  const panelsCount = props.children.length;
   const windowHeight = useRef(window.innerHeight);
 
-  const [viewState, setViewState] = useState({
+  // State for view and interaction
+  const [viewState, setViewState] = createSignal({
     currentPanel: 1,
     transitioning: false,
     currentTop: 0,
   });
+
+  // Go to the previous section
   const prevSection = () => {
     setViewState((prev) => {
       if (prev.transitioning) return prev;
@@ -31,6 +36,7 @@ export const FullPageContainer = ({ showIndicators = true, ...props }) => {
     });
   };
 
+  // Go to the next section
   const nextSection = () => {
     setViewState((prev) => {
       if (prev.transitioning) return prev;
@@ -51,6 +57,7 @@ export const FullPageContainer = ({ showIndicators = true, ...props }) => {
     });
   };
 
+  // Restore the section when interaction ends
   const restoreSection = () => {
     setViewState((prev) => {
       return {
@@ -60,14 +67,16 @@ export const FullPageContainer = ({ showIndicators = true, ...props }) => {
     });
   };
 
+  // Handle scroll events for section navigation
   const handleScroll = (e) => {
-    if (e.deltaY > 40 && viewState.currentPanel < panelsCount) {
+    if (e.deltaY > 40 && viewState().currentPanel < panelsCount) {
       nextSection();
-    } else if (e.deltaY < -40 && viewState.currentPanel > 0) {
+    } else if (e.deltaY < -40 && viewState().currentPanel > 1) {
       prevSection();
     }
   };
 
+  // Set the active section based on user input
   const onSetSection = (sectionNumber) => {
     setViewState((prev) => {
       setTimeout(() => {
@@ -81,69 +90,39 @@ export const FullPageContainer = ({ showIndicators = true, ...props }) => {
     });
   };
 
+  // Remove event listeners when the component unmounts
   const removeEventListeners = () => {
-    window.removeEventListener('wheel', (e) => {
-      handleScroll(e);
-    });
-    window.removeEventListener('touchstart', (e) => {
-      handleSwipe(e, true);
-    });
-    window.removeEventListener('touchend', (e) => {
-      handleSwipe(e, false);
-    });
-    window.removeEventListener('pointerdown', (e) => {
-      handleSwipe(e.changedTouches[0].screenY, true);
-    });
-    window.removeEventListener('pointerup', (e) => {
-      handleSwipe(e.changedTouches[0].screenY, false);
-    });
-    window.removeEventListener('pointermove', (e) => {
-      handleDrag(e.screenY);
-    });
-
-    window.removeEventListener('resize', () => {
-      windowHeight.current = window.innerHeight;
-    });
+    window.removeEventListener('wheel', handleScroll);
+    window.removeEventListener('touchstart', handleSwipe);
+    window.removeEventListener('touchend', handleSwipe);
+    window.removeEventListener('pointerdown', handleSwipe);
+    window.removeEventListener('pointerup', handleSwipe);
+    window.removeEventListener('pointermove', handleDrag);
+    window.removeEventListener('resize', updateWindowHeight);
   };
 
+  // Set up event listeners on component mount
   useEffect(() => {
-    removeEventListeners();
-    window.addEventListener('wheel', (e) => {
-      handleScroll(e);
-    });
-    window.addEventListener('touchstart', (e) => {
-      handleSwipe(e.changedTouches[0].screenY, true, e);
-    });
-    window.addEventListener('touchend', (e) => {
-      handleSwipe(e.changedTouches[0].screenY, false, e);
-    });
-    window.addEventListener('pointerdown', (e) => {
-      handleSwipe(e.screenY, true, e);
-    });
-    window.addEventListener('pointerup', (e) => {
-      handleSwipe(e.screenY, false, e);
-    });
-
-    window.addEventListener('pointermove', (e) => {
-      handleDrag(e.screenY);
-    });
-    window.addEventListener('touchmove', (e) => {
-      handleDrag(e.changedTouches[0].screenY);
-    });
-
-    window.addEventListener('resize', () => {
-      windowHeight.current = window.innerHeight;
-    });
-    return () => {
+    window.addEventListener('wheel', handleScroll);
+    window.addEventListener('touchstart', handleSwipe);
+    window.addEventListener('touchend', handleSwipe);
+    window.addEventListener('pointerdown', handleSwipe);
+    window.addEventListener('pointerup', handleSwipe);
+    window.addEventListener('pointermove', handleDrag);
+    window.addEventListener('resize', updateWindowHeight);
+    onCleanup(() => {
       removeEventListeners();
-    };
+    });
   }, []);
 
+  // Track touch start position for swipe gestures
   const touchStartY = useRef(0);
 
-  const [currentPointer, setCurrentPointer] = useState(0);
+  // Track current pointer position for drag gestures
+  const [currentPointer, setCurrentPointer] = createSignal(0);
 
-  const handleDrag = (screenY) => {
+  // Handle dragging interaction
+  const handleDrag = (e) => {
     if (touchStartY.current === 0) {
       return;
     }
@@ -153,16 +132,16 @@ export const FullPageContainer = ({ showIndicators = true, ...props }) => {
     setCurrentPointer((prev) => {
       if (prev === 0) {
         initialSet = true;
-        return screenY;
+        return e.clientY;
       }
 
-      difference = prev - screenY;
+      difference = prev - e.clientY;
 
       if ((difference < 0 && difference > -2) || (difference > 0 && difference < 2)) {
         initialSet = true;
         return prev;
       }
-      return screenY;
+      return e.clientY;
     });
     if (initialSet) return;
 
@@ -174,13 +153,14 @@ export const FullPageContainer = ({ showIndicators = true, ...props }) => {
     });
   };
 
-  const handleSwipe = (screenY, isStart, event) => {
-    if (isStart) {
-      touchStartY.current = screenY;
+  // Handle swipe gestures
+  const handleSwipe = (e) => {
+    if (e.type === 'touchstart') {
+      touchStartY.current = e.changedTouches[0].screenY;
       return;
     }
 
-    const touchEndY = screenY;
+    const touchEndY = e.changedTouches[0].screenY;
 
     const touchDifference = touchStartY.current - touchEndY;
 
@@ -196,54 +176,44 @@ export const FullPageContainer = ({ showIndicators = true, ...props }) => {
     setCurrentPointer(0);
   };
 
-  const panelsstyles = [styles.panelsContainer];
-  if (viewState.transitioning) {
-    panelsstyles.push(styles.panelTransitioning);
-  }
+  // Style classes for panels container
+  const panelsstyles = [styles.panelsContainer, viewState().transitioning && styles.panelTransitioning];
 
   return (
-    <div className={styles.screenPane}>
-      {currentPointer !== 0 && <div className={styles.clickMask} />}
-      <div className={panelsstyles.join(' ')} style={{ top: `${viewState.currentTop}px` }}>
+    <div class={styles.screenPane}>
+      {currentPointer() !== 0 && <div class={styles.clickMask} />}
+      <div class={panelsstyles.join(' ')} style={{ top: `${viewState().currentTop}px` }}>
         {props.children}
         {showIndicators && (
-          <NavIndicators count={panelsCount} activeIndex={viewState.currentPanel} setIndicator={onSetSection} />
+          <NavIndicators count={panelsCount} activeIndex={viewState().currentPanel} setIndicator={onSetSection} />
         )}
       </div>
     </div>
   );
 };
 
-const NavIndicators = ({ count, activeIndex, setIndicator }) => {
-  let indicatorHtml = null;
-  if (count) {
-    indicatorHtml = Array(count)
-      .fill(0)
-      .map((item, i) => {
-        const indicatorstyles = [styles.indicator];
-        if (i === activeIndex - 1) {
-          indicatorstyles.push(styles.active);
-        }
-        return (
-          <div
-            key={i}
-            className={indicatorstyles.join(' ')}
-            onClick={() => {
-              setIndicator(i + 1);
-            }}
-          >
-            &#11044;
-          </div>
-        );
-      });
-  }
-  return <div className={styles.navIndicators}>{indicatorHtml}</div>;
+// Indicator component for section navigation
+const NavIndicators = (props) => {
+  const indicatorHtml = Array.from({ length: props.count }, (_, i) => {
+    const indicatorstyles = [styles.indicator, i === props.activeIndex - 1 && styles.active];
+    return (
+      <div class={indicatorstyles.join(' ')} onClick={() => props.setIndicator(i + 1)}>
+        &#11044;
+      </div>
+    );
+  });
+
+  return <div class={styles.navIndicators}>{indicatorHtml}</div>;
 };
 
-export const FullPagePanel = ({ bgColor, ...props }) => {
+// Component for individual full-page panels
+const FullPagePanel = (_props) => {
+  const [props, props] = splitProps(_props, ['bgColor']);
   return (
-    <div className={styles.fullPanel} style={{ backgroundColor: bgColor }}>
-      <div className={styles.panelContent}>{props.children}</div>
+    <div class={styles.fullPanel} style={{ 'background-color': props.bgColor }}>
+      <div class={styles.panelContent}>{props.children}</div>
     </div>
   );
 };
+
+export { FullPageContainer, FullPagePanel };
