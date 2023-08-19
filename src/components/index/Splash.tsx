@@ -10,7 +10,6 @@ const Container = styled(FlexSection, {
     flexDirection: 'column',
     width: '100%',
     height: '100vh',
-    scrollSnapAlign: 'center',
     overflowY: 'scroll',
     position: 'relative',
   },

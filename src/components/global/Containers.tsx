@@ -1,12 +1,11 @@
 import { styled } from '@panda/jsx';
-import {TITLE_FONTS} from "./Typography";
+import { TITLE_FONTS } from './Typography';
 
 export const FullPageContainer = styled('div', {
   base: {
     display: 'flex',
     flexDirection: 'column',
-    width: '100vw',
-    scrollSnapType: 'y mandatory',
+    width: '100vw'
   },
 });
 
@@ -16,7 +15,7 @@ export const PageBanner = styled('section', {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    position: 'fixed'
+    position: 'fixed',
   },
 });
 

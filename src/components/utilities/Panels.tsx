@@ -5,8 +5,8 @@ import { styled } from '@panda/jsx';
 import { createEffect, createSignal, onCleanup } from 'solid-js';
 import { WindowEventListener } from '@solid-primitives/event-listener';
 
-const FullPageContainer = (props: { children: JSXElement, showIndicators: boolean }) => {
-  const panelsCount = props.children.length;
+const FullPageContainer = (props: { children: JSXElement; count: number; showIndicators: boolean }) => {
+  const panelsCount = props.count;
   const windowHeight = window.innerHeight;
 
   // State for view and interaction
@@ -75,9 +75,14 @@ const FullPageContainer = (props: { children: JSXElement, showIndicators: boolea
 
   // Handle scroll events for section navigation
   const handleScroll = (e: WheelEvent) => {
+    console.log('doing something', {
+      panels: panelsCount,
+    })
     if (e.deltaY > 40 && viewState().currentPanel < panelsCount) {
+      console.log('going next')
       nextSection();
     } else if (e.deltaY < -40 && viewState().currentPanel > 1) {
+      console.log('going previous')
       prevSection();
     }
   };
@@ -96,11 +101,11 @@ const FullPageContainer = (props: { children: JSXElement, showIndicators: boolea
     });
   };
 
-    // window.addEventListener('pointermove', handleDrag);
-    // window.addEventListener('resize', updateWindowHeight);
+  // window.addEventListener('pointermove', handleDrag);
+  // window.addEventListener('resize', updateWindowHeight);
 
   // Track touch start position for swipe gestures
-  var touchStartY = 0;
+  let touchStartY = 0;
 
   // Track current pointer position for drag gestures
   const [currentPointer, setCurrentPointer] = createSignal(0);
@@ -165,46 +170,43 @@ const FullPageContainer = (props: { children: JSXElement, showIndicators: boolea
 
   return (
     <>
-    <WindowEventListener onWheel={handleScroll} />
+      <WindowEventListener onWheel={handleScroll} />
 
-    <div class='screenPane'>
-      {currentPointer() !== 0 && <div class='clickMask' />}
-      <div class={panelsstyles.join(' ')} style={{ top: `${viewState().currentTop}px` }}>
-        {props.children}
-        {props.showIndicators && (
-          <NavIndicators count={panelsCount} activeIndex={viewState().currentPanel} setIndicator={onSetSection} />
-        )}
+      <div class="screenPane">
+        {currentPointer() !== 0 && <div class="clickMask" />}
+        <div class={panelsstyles.join(' ')} style={{ top: `${viewState().currentTop}px` }}>
+          {props.children}
+          {props.showIndicators && (
+            <NavIndicators count={panelsCount} activeIndex={viewState().currentPanel} setIndicator={onSetSection} />
+          )}
+        </div>
       </div>
-    </div>
     </>
   );
 };
 
 // Indicator component for section navigation
-const NavIndicators = (props: { count: number, activeIndex: number, setIndicator: (section: number) => void }) => {
+const NavIndicators = (props: { count: number; activeIndex: number; setIndicator: (section: number) => void }) => {
   const indicatorHtml = Array.from({ length: props.count }, (_, i) => {
     // const indicatorstyles = [styles.indicator, i === props.activeIndex - 1 && styles.active];
     return (
-      //class={indicatorstyles.join(' ')} onClick={() => props.setIndicator(i + 1)}
-      <div >
-        &#11044;
-      </div>
+      // class={indicatorstyles.join(' ')} onClick={() => props.setIndicator(i + 1)}
+      <div>&#11044;</div>
     );
   });
 
   return <div>{indicatorHtml}</div>;
 };
 
-const Panel = styled("section", {
+const Panel = styled('section', {
   base: {
     position: 'relative',
     height: '100vh',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    width: '100%'
-  }
-
-})
+    width: '100%',
+  },
+});
 
 export { FullPageContainer, Panel };
