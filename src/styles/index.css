@@ -7,20 +7,12 @@ html, body {
     scroll-behavior: smooth;
 }
 
-html {
-    scroll-snap-type: y mandatory;
-}
-
 ::-webkit-scrollbar {
     background-color: transparent;
 }
 
 ::-webkit-scrollbar-track {
     background-color: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-    background-color: #1C1E20;
 }
 
 @keyframes Pound {
