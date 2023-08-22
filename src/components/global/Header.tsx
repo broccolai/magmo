@@ -3,12 +3,14 @@ import { WiDaySunny } from '@aminya/solid-icons/wi';
 import { createEffect, createSignal } from 'solid-js';
 import { PageBanner, PageBannerContent } from './Containers';
 import { createVariable } from '../utilities/Functions';
+import { panelIndex, panelState, panelStore } from '../panels/container.tsx';
 
 const showIcon = createVariable('header-show-icon');
 
 const Icon = styled('div', {
   base: {
-    display: 'var(--header-show-icon)',
+    opacity: 'var(--header-show-icon)',
+    transition: 'display 0s ease-out 800ms',
   },
 });
 
@@ -19,23 +21,32 @@ const Right = styled('p', {
   },
 });
 
+const FIRST_PANEL = 1
+
 const Header = () => {
+  let previousState = panelState();
   const [show, setShow] = createSignal(false);
 
   createEffect(() => {
-    document.addEventListener('scroll', () => {
-      const shouldShowNow = window.scrollY >= window.innerHeight;
+    const currentState = panelState();
+    const storedPanel = previousState.currentPanel;
 
-      if (show() !== shouldShowNow) {
-        setShow(shouldShowNow);
-      }
-    });
+    previousState = currentState;
+
+    if (storedPanel > FIRST_PANEL && currentState.currentPanel === FIRST_PANEL && currentState.transitioning) {
+      setShow(false);
+      return;
+    }
+
+    if (currentState.currentPanel > FIRST_PANEL && !currentState.transitioning) {
+      setShow(true);
+    }
   });
 
   return (
-    <PageBanner>
+    <PageBanner top={0}>
       <PageBannerContent>
-        <Icon style={{ [showIcon.identifier]: show() ? 'block' : 'none' }}>josh</Icon>
+        <Icon style={{ [showIcon.identifier]: show() ? '1' : '0' }}>josh</Icon>
         <Right>
           <WiDaySunny />
         </Right>
