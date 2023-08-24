@@ -1,8 +1,8 @@
 import { styled } from '@panda/jsx';
 import { FaSolidAnglesDown, FaSolidChevronDown } from '@aminya/solid-icons/fa';
 import { FiChevronsDown } from '@aminya/solid-icons/fi';
-import { FlexSection } from '../global/Containers';
-import { TITLE_FONTS } from '../global/Typography';
+import { FlexSection } from '../global/containers.tsx';
+import { TITLE_FONTS } from '../global/typography.tsx';
 
 const Container = styled(FlexSection, {
   base: {

@@ -1,7 +1,7 @@
 import { css } from '@panda/css';
 import { styled } from '@panda/jsx';
 import type { IconTypes } from '@aminya/solid-icons';
-import { createVariable } from '../utilities/Functions';
+import { createVariable } from '../utilities/functions.ts';
 
 const iconSize = createVariable('icon-size');
 

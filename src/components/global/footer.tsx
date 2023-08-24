@@ -1,6 +1,6 @@
 import { styled } from '@panda/jsx';
 import { createSignal } from 'solid-js';
-import { PageBanner, PageBannerContent } from './Containers';
+import { PageBanner, PageBannerContent } from './containers.tsx';
 
 const timeFormatter = new Intl.DateTimeFormat('en', {
   timeZone: 'Europe/London',

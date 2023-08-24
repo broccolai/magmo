@@ -7,8 +7,6 @@ export const createVariable = (overrideId: string): { identifier: string; wrappe
   return { identifier, wrapped: backingVariable };
 };
 
-export const log = () => {};
-
 declare global {
   interface String {
     url(): string;

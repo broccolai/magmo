@@ -1,5 +1,5 @@
 import { styled } from '@panda/jsx';
-import { TITLE_FONTS } from './Typography';
+import { TITLE_FONTS } from './typography.tsx';
 
 export const PageBanner = styled('section', {
   base: {

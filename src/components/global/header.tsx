@@ -1,16 +1,16 @@
 import { styled } from '@panda/jsx';
 import { WiDaySunny } from '@aminya/solid-icons/wi';
 import { createEffect, createSignal } from 'solid-js';
-import { PageBanner, PageBannerContent } from './Containers';
-import { createVariable } from '../utilities/Functions';
-import { panelIndex, panelState, panelStore } from '../panels/container.tsx';
+import { PageBanner, PageBannerContent } from './containers.tsx';
+import { createVariable } from '../utilities/functions.ts';
+import { panelState } from '../panels/container.tsx';
 
 const showIcon = createVariable('header-show-icon');
 
 const Icon = styled('div', {
   base: {
     opacity: 'var(--header-show-icon)',
-    transition: 'display 0s ease-out 800ms',
+    transition: 'opacity 0s ease-out 100ms',
   },
 });
 
@@ -21,7 +21,7 @@ const Right = styled('p', {
   },
 });
 
-const FIRST_PANEL = 1
+const FIRST_PANEL = 1;
 
 const Header = () => {
   let previousState = panelState();

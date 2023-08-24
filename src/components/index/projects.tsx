@@ -1,5 +1,7 @@
 import { styled } from '@panda/jsx';
-import { FlexSection } from '../global/Containers';
+import { FlexSection } from '../global/containers.tsx';
+import projects from 'src/data/projects.ts';
+import ProjectCard from './project-card';
 
 const Container = styled(FlexSection, {
   base: {
@@ -12,6 +14,12 @@ const Container = styled(FlexSection, {
   },
 });
 
-const Intro = () => <Container />;
+const Intro = () => (
+  <Container>
+    {projects.map((project) => (
+      <ProjectCard project={project} />
+    ))}
+  </Container>
+);
 
 export default Intro;

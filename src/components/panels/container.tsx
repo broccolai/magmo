@@ -16,7 +16,7 @@ const Container = styled('div', {
   base: {
     position: 'relative',
     userSelect: 'none',
-    transition: 'all 1s ease',
+    transition: 'all 800ms ease',
   },
 });
 
