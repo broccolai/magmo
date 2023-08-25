@@ -15,11 +15,7 @@ const Container = styled(FlexSection, {
 });
 
 const Intro = () => (
-  <Container>
-    {projects.map((project) => (
-      <ProjectCard project={project} />
-    ))}
-  </Container>
+  <Container />
 );
 
 export default Intro;
