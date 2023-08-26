@@ -48,7 +48,7 @@ const ProjectCard = (props: Props) => {
   const { background, logo } = images;
 
   return (
-    <Card style={{ '--project-card-bg': background.src.url() }}>
+    <Card>
       <StyledCardHeader>
         <Logo src={logo.src} />
         <Name>{title}</Name>
