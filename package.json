@@ -1,54 +1,55 @@
 {
-    "name": "site",
-    "scripts": {
-        "prepare": "panda codegen",
-        "dev": "astro dev",
-        "build": "astro build",
-        "start": "astro start",
-        "lint": "eslint . --ext .ts,.tsx --fix"
-    },
-    "type": "module",
-    "devDependencies": {
-        "@types/node": "^20.5.3",
-        "postcss": "^8.4.28"
-    },
-    "dependencies": {
-        "@aminya/solid-icons": "^2.0.12",
-        "@astrojs/solid-js": "^3.0.0-rc.3",
-        "@fontsource/open-sans": "^5.0.9",
-        "@fontsource/pt-mono": "^5.0.8",
-        "@fortawesome/free-solid-svg-icons": "^6.4.2",
-        "@pandacss/astro": "^0.11.1",
-        "@pandacss/dev": "^0.11.1",
-        "@prisma/client": "5.2.0",
-        "@solid-primitives/event-listener": "^2.2.14",
-        "@solid-primitives/resize-observer": "^2.0.20",
-        "@solidjs/meta": "^0.28.6",
-        "@solidjs/router": "^0.8.3",
-        "@typescript-eslint/eslint-plugin": "^7.0.0-alpha.0",
-        "@typescript-eslint/parser": "^7.0.0-alpha.0",
-        "@vanilla-extract/integration": "^6.2.2",
-        "astro": "^3.0.0-rc.5",
-        "babel-preset-solid": "^1.7.7",
-        "batch-request-js": "^2.0.2",
-        "bungie-api-ts": "^5.0.0",
-        "eslint": "^8.47.0",
-        "eslint-config-airbnb-base": "^15.0.0",
-        "eslint-config-airbnb-typescript": "^17.1.0",
-        "eslint-config-prettier": "^9.0.0",
-        "eslint-plugin-prettier": "^5.0.0",
-        "eslint-plugin-solid": "^0.13.0",
-        "prettier": "^3.0.2",
-        "prisma": "^5.2.0",
-        "solid-js": "^1.7.11",
-        "typescript": "^5.2.2"
-    },
-    "engines": {
-        "node": ">=16.8"
-    },
-    "imports": {
-        "@panda/*": "./src/@panda/*",
-        "@assets/*": "./src/@assets/*",
-        "@data/*": "./src/@data/*"
-    }
+  "name": "site",
+  "scripts": {
+    "prepare": "panda codegen",
+    "dev": "astro dev",
+    "build": "astro build",
+    "start": "astro start",
+    "lint": "eslint . --ext .ts,.tsx --fix"
+  },
+  "type": "module",
+  "devDependencies": {
+    "@types/node": "^20.5.9",
+    "postcss": "^8.4.29"
+  },
+  "dependencies": {
+    "@aminya/solid-icons": "^2.0.12",
+    "@astrojs/solid-js": "^3.0.0",
+    "@fontsource/open-sans": "^5.0.11",
+    "@fontsource/pt-mono": "^5.0.8",
+    "@fortawesome/free-solid-svg-icons": "^6.4.2",
+    "@pandacss/astro": "^0.13.1",
+    "@pandacss/dev": "^0.13.1",
+    "@prisma/client": "5.2.0",
+    "@solid-primitives/event-listener": "^2.3.0",
+    "@solid-primitives/resize-observer": "^2.0.21",
+    "@solidjs/meta": "^0.28.6",
+    "@solidjs/router": "^0.8.3",
+    "@typescript-eslint/eslint-plugin": "^7.0.0-alpha.0",
+    "@typescript-eslint/parser": "^7.0.0-alpha.0",
+    "@vanilla-extract/integration": "^6.2.2",
+    "astro": "^3.0.7",
+    "babel-preset-solid": "^1.7.7",
+    "batch-request-js": "^2.0.2",
+    "bungie-api-ts": "^5.0.0",
+    "eslint": "^8.48.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-airbnb-typescript": "^17.1.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.0",
+    "eslint-plugin-solid": "^0.13.0",
+    "npm-check-updates": "^16.13.2",
+    "prettier": "^3.0.3",
+    "prisma": "^5.2.0",
+    "solid-js": "^1.7.11",
+    "typescript": "^5.2.2"
+  },
+  "engines": {
+    "node": ">=16.8"
+  },
+  "imports": {
+    "@panda/*": "./src/@panda/*",
+    "@assets/*": "./src/@assets/*",
+    "@data/*": "./src/@data/*"
+  }
 }
