@@ -6,7 +6,7 @@ import {
 } from 'bungie-api-ts/destiny2';
 import batchRequest from 'batch-request-js';
 
-const API_KEY = "KEY";
+const API_KEY = '???';
 
 console.log('green dot check debug');
 
@@ -113,13 +113,18 @@ await new Promise(r => setTimeout(r, 3000));
 
 const activityIds2 = activities.map((activity) => activity.activityDetails.instanceId)
 
-const activityIds = activityIds2
+const activityIds = activityIds2.splice(0, 5)
 
 const { error, data } = await batchRequest(activityIds,  (id) => {
    return getPostGameCarnageReport(client, {
     activityId: id
   }).then((res) => res.Response)
 }, { batchSize: 25, delay: 1000 })
+
+console.log(data)
+console.log(data[0].teams)
+console.log(data[0].teams[0].standing)
+console.log(data[0].teams[0].score)
 
 const matchesAgainst = data.filter((data) => {
   if (!data) {

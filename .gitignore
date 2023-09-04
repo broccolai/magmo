@@ -6,6 +6,7 @@ dist
 .netlify
 netlify
 src/@panda
+.env
 
 # dependencies
 /node_modules
