@@ -1,7 +1,10 @@
 import {
   awaInitializeRequest,
   BungieMembershipType,
-  getActivityHistory, getDestinyAggregateActivityStats, getPostGameCarnageReport, getProfile,
+  getActivityHistory,
+  getDestinyAggregateActivityStats,
+  getPostGameCarnageReport,
+  getProfile,
   searchDestinyPlayerByBungieName,
 } from 'bungie-api-ts/destiny2';
 import batchRequest from 'batch-request-js';
@@ -10,10 +13,7 @@ const API_KEY = '???';
 
 console.log('green dot check debug');
 
-function createHttpClient(
-  apiKey,
-  withCredentials,
-) {
+function createHttpClient(apiKey, withCredentials) {
   return async (config) => {
     let { url } = config;
 
@@ -52,93 +52,94 @@ const searchResponse = await searchDestinyPlayerByBungieName(
   },
 );
 
-const search = searchResponse.Response[0]
+const search = searchResponse.Response[0];
 
 console.log('search', {
   type: search.membershipType,
-  id: search.membershipId
+  id: search.membershipId,
 });
 
 const profileRequest = await getProfile(client, {
   destinyMembershipId: search.membershipId,
   membershipType: search.membershipType,
-  components: [ 100, 200 ]
-})
+  components: [100, 200],
+});
 
-const profile = profileRequest.Response
+const profile = profileRequest.Response;
 
-let titan
+let titan;
 
 for (let charactersKey in profile.characters.data) {
-  const character = profile.characters.data[charactersKey]
+  const character = profile.characters.data[charactersKey];
 
   if (character.classType == 0) {
-    titan = character
+    titan = character;
   }
 }
 
-let activities = []
-let page = 0
+let activities = [];
+let page = 0;
 
 while (true) {
-  const history = await getActivityHistory(
-    client,
-    {
-      characterId: titan.characterId,
-      membershipType: search.membershipType,
-      destinyMembershipId: search.membershipId,
-      count: 250,
-      mode: 84,
-      page: page
-    }
-  )
+  const history = await getActivityHistory(client, {
+    characterId: titan.characterId,
+    membershipType: search.membershipType,
+    destinyMembershipId: search.membershipId,
+    count: 250,
+    mode: 84,
+    page: page,
+  });
 
   if (history.ErrorStatus !== 'Success' || !history.Response.activities) {
-    break
+    break;
   }
-
 
   console.log('recorded activity history page', {
     page: page,
-    count: history.Response.activities.length
-  })
+    count: history.Response.activities.length,
+  });
 
-  activities.push(...history.Response.activities)
-  page++
+  activities.push(...history.Response.activities);
+  page++;
 
-  await new Promise(r => setTimeout(r, history.ThrottleSeconds * 1000));
+  await new Promise((r) => setTimeout(r, history.ThrottleSeconds * 1000));
 }
 
-await new Promise(r => setTimeout(r, 3000));
+await new Promise((r) => setTimeout(r, 3000));
 
-const activityIds2 = activities.map((activity) => activity.activityDetails.instanceId)
+const activityIds2 = activities.map((activity) => activity.activityDetails.instanceId);
 
-const activityIds = activityIds2.splice(0, 5)
+const activityIds = activityIds2.splice(0, 5);
 
-const { error, data } = await batchRequest(activityIds,  (id) => {
-   return getPostGameCarnageReport(client, {
-    activityId: id
-  }).then((res) => res.Response)
-}, { batchSize: 25, delay: 1000 })
+const { error, data } = await batchRequest(
+  activityIds,
+  (id) => {
+    return getPostGameCarnageReport(client, {
+      activityId: id,
+    }).then((res) => res.Response);
+  },
+  { batchSize: 25, delay: 1000 },
+);
 
-console.log(data)
-console.log(data[0].teams)
-console.log(data[0].teams[0].standing)
-console.log(data[0].teams[0].score)
+console.log(data);
+console.log(data[0].teams);
+console.log(data[0].teams[0].standing);
+console.log(data[0].teams[0].score);
 
 const matchesAgainst = data.filter((data) => {
   if (!data) {
-    return false
+    return false;
   }
   return data.entries.some((entry) => {
-    return entry.player?.destinyUserInfo?.bungieGlobalDisplayName == 'LaFeuille'
-  })
-})
+    return entry.player?.destinyUserInfo?.bungieGlobalDisplayName == 'LaFeuille';
+  });
+});
 
-matchesAgainst.map((m) => m.teams).forEach((e) => {
-  console.log(e)
-})
+matchesAgainst
+  .map((m) => m.teams)
+  .forEach((e) => {
+    console.log(e);
+  });
 
-console.log('target', 'LaFeuille')
-console.log('matches found', matchesAgainst.length)
-
+console.log('target', 'LaFeuille');
+console.log('matches found', matchesAgainst.length);

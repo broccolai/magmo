@@ -26,8 +26,7 @@ const createHttpClient = () => {
       credentials: 'omit',
     });
 
-    return fetch(fetchOptions)
-      .then((res) => res.json());
+    return fetch(fetchOptions).then((res) => res.json());
   };
 };
 
@@ -41,25 +40,20 @@ const loadActivityForProfile = async (profile: UserInfoCard, profileResponse: De
   }
 
   const characterIdentifiers = Object.keys(data);
-
-
 };
 
 const loadActivityForCharacter = async (profile: UserInfoCard, character: string) => {
   let page = 0;
 
   while (true) {
-    const history = await getActivityHistory(
-      client,
-      {
-        characterId: character,
-        membershipType: profile.membershipType,
-        destinyMembershipId: profile.membershipId,
-        count: 250,
-        mode: 84,
-        page: page,
-      },
-    );
+    const history = await getActivityHistory(client, {
+      characterId: character,
+      membershipType: profile.membershipType,
+      destinyMembershipId: profile.membershipId,
+      count: 250,
+      mode: 84,
+      page: page,
+    });
 
     if (history.ErrorStatus !== 'Success' || !history.Response.activities) {
       break;
@@ -68,7 +62,7 @@ const loadActivityForCharacter = async (profile: UserInfoCard, character: string
     activities.push(...history.Response.activities);
     page++;
 
-    await delay(history.ThrottleSeconds)
+    await delay(history.ThrottleSeconds);
   }
 };
 

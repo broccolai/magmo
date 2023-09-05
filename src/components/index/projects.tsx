@@ -15,14 +15,6 @@ const Container = styled(FlexSection, {
   },
 });
 
-const Intro = () => (
-<<<<<<< Updated upstream
-  <Container />
-=======
-  <Container>
-    <For each={projects}>{(project) => <ProjectCard project={project} />}</For>
-  </Container>
->>>>>>> Stashed changes
-);
+const Intro = () => <Container />;
 
 export default Intro;

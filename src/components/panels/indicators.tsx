@@ -26,7 +26,11 @@ const Indicator = styled('div', {
   },
 });
 
-const Indicators = (props: { count: number; activeIndex: number; setIndicator: (section: number) => void }) => {
+const Indicators = (props: {
+  count: number;
+  activeIndex: number;
+  setIndicator: (section: number) => void;
+}) => {
   const indicatorHtml = Array.from({ length: props.count }, (_, i) => {
     // const indicatorStyles = [indicator, i === props.activeIndex - 1 && active];
     return (

@@ -7,14 +7,13 @@ import { Bold, H3, H4, Text } from '../global/typography.tsx';
 
 const StyledCardHeader = styled(CardHeader, {
   base: {
-    backgroundImage:
-      'linear-gradient(to bottom,rgba(245,245,245,0) 85%,rgba(245,245,245,1) 100%),var(--project-card-bg)',
+    backgroundImage: 'linear-gradient(to bottom,rgba(245,245,245,0) 85%,rgba(245,245,245,1) 100%),var(--project-card-bg)',
   },
 });
 
 const Name = styled(H3, {
   base: {
-    color: `black !important`,
+    color: 'black !important',
     fontSize: '1.4rem !important',
     fontWeight: 'normal !important',
     letterSpacing: '2px !important',
@@ -56,10 +55,10 @@ const ProjectCard = (props: Props) => {
       </StyledCardHeader>
       <CardBody>
         <Bold>ABOUT</Bold>
-        <Text color="gray">{description}</Text>
+        <Text color='gray'>{description}</Text>
       </CardBody>
       <CardBottomBody>
-        <For each={icons}>{(icon) => <Icon href={icon.link} Glyph={icon.glyph} basis="1.4rem" aria="meh" />}</For>
+        <For each={icons}>{(icon) => <Icon href={icon.link} Glyph={icon.glyph} basis='1.4rem' aria='meh' />}</For>
       </CardBottomBody>
     </Card>
   );
