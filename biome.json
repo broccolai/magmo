@@ -3,6 +3,9 @@
   "organizeImports": {
     "enabled": true
   },
+  "files": {
+    "ignore": ["./src/@panda"]
+  },
   "linter": {
     "enabled": true,
     "rules": {
@@ -12,7 +15,8 @@
   "formatter": {
     "enabled": true,
     "indentStyle": "space",
-    "lineWidth": 140
+    "lineWidth": 140,
+    "formatWithErrors": true
   },
   "javascript": {
     "formatter": {

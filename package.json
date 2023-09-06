@@ -39,8 +39,6 @@
     "node": ">=16.8"
   },
   "imports": {
-    "@panda/*": "./src/@panda/*",
-    "@assets/*": "./src/@assets/*",
-    "@data/*": "./src/@data/*"
+    "@panda/*": "./src/@panda/*"
   }
 }

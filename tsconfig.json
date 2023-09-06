@@ -5,9 +5,7 @@
     "jsxImportSource": "solid-js",
     "baseUrl": ".",
     "paths": {
-      "@panda/*": ["src/@panda/*"],
-      "@assets/*": ["src/@assets/*"],
-      "@data/*": ["src/@data/*"]
+      "@panda/*": ["src/@panda/*"]
     }
   },
 }

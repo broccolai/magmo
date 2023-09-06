@@ -1,34 +1,10 @@
-import { DestinyProfileResponse, getActivityHistory } from 'bungie-api-ts/destiny2';
+import { DestinyProfileResponse, getActivityHistory, getLeaderboardsForCharacter } from 'bungie-api-ts/destiny2';
 import type { HttpClient, HttpClientConfig } from 'bungie-api-ts/http';
 import * as process from 'process';
 import type { UserInfoCard } from 'bungie-api-ts/user';
 import { rotate } from 'astro/dist/assets/services/vendor/squoosh/impl';
 
 const API_KEY = '??';
-
-const createHttpClient = () => {
-  return async (config: HttpClientConfig) => {
-    let { url } = config;
-
-    if (config.params) {
-      const params = new URLSearchParams(config.params);
-
-      url = [url, params].join('?');
-    }
-
-    const fetchOptions = new Request(url, {
-      method: config.method,
-      body: config.body ? JSON.stringify(config.body) : null,
-      headers: {
-        'X-API-Key': API_KEY,
-        ...(config.body ? { 'Content-Type': 'application/json' } : undefined),
-      },
-      credentials: 'omit',
-    });
-
-    return fetch(fetchOptions).then((res) => res.json());
-  };
-};
 
 const client = createHttpClient();
 
@@ -39,10 +15,12 @@ const loadActivityForProfile = async (profile: UserInfoCard, profileResponse: De
     return;
   }
 
-  const characterIdentifiers = Object.keys(data);
+  return Object.keys(data)
+    .flatMap((key) => loadActivityForCharacter(profile, key)) 
 };
 
 const loadActivityForCharacter = async (profile: UserInfoCard, character: string) => {
+  const activities = []
   let page = 0;
 
   while (true) {
@@ -64,6 +42,8 @@ const loadActivityForCharacter = async (profile: UserInfoCard, character: string
 
     await delay(history.ThrottleSeconds);
   }
+
+  return activities
 };
 
 const delay = async (seconds: number) => {
