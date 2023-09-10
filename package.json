@@ -19,7 +19,7 @@
     "@fontsource/pt-mono": "^5.0.8",
     "@fortawesome/free-solid-svg-icons": "^6.4.2",
     "@pandacss/astro": "^0.13.1",
-    "@pandacss/dev": "^0.13.1",
+    "@pandacss/dev": "^0.14.0",
     "@prisma/client": "5.2.0",
     "@solid-primitives/event-listener": "^2.3.0",
     "@solid-primitives/resize-observer": "^2.0.21",
