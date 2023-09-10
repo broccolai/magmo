@@ -1,14 +1,9 @@
 ---
 import '../styles/index.css';
-import BaseLayout from '../layout/base-layout.astro';
 
-import Splash from '../components/index/splash';
-import Projects from '../components/index/projects';
-import About from '../components/index/about';
+import {GreenDot} from '../components/destiny/green-dot';
 ---
 
-<BaseLayout title="green dot">
-  <Splash />
-  <Projects />
-  <About />
-</BaseLayout>
+<div>
+  <GreenDot client:load />
+</div>

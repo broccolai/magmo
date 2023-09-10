@@ -1,7 +1,7 @@
 import { PlatformErrorCodes, type HttpClient, type HttpClientConfig, type ServerResponse } from 'bungie-api-ts/destiny2';
 import { BungieError, HttpStatusError } from './utilities';
 
-const API_KEY = '??';
+const API_KEY = import.meta.env.BUNGIE_API_KEY;
 
 const BUNGIE_PLATFORM_THROTTLE_CODES = [
   PlatformErrorCodes.ThrottleLimitExceededMinutes,
@@ -16,44 +16,50 @@ const BUNGIE_PLATFORM_THROTTLE_CODES = [
 
 const MAX_THROTTLE = 5 * 60;
 
-export const createHttpClient = (): HttpClient => {
-  return async <T>(config: HttpClientConfig) => {
-    let { url } = config;
+export const httpClient = async <T>(config: HttpClientConfig) => {
+  let { url } = config;
 
-    if (config.params) {
-      const params = new URLSearchParams(config.params);
+  if (config.params) {
+    const params = new URLSearchParams(config.params);
 
-      url = [url, params].join('?');
-    }
+    url = [url, params].join('?');
+  }
 
-    const fetchOptions = new Request(url, {
-      method: config.method,
-      body: config.body ? JSON.stringify(config.body) : null,
-      headers: {
-        'X-API-Key': API_KEY,
-        ...(config.body ? { 'Content-Type': 'application/json' } : undefined),
-      },
-      credentials: 'omit',
-    });
+  const fetchOptions = new Request(url, {
+    method: config.method,
+    body: config.body ? JSON.stringify(config.body) : null,
+    headers: {
+      'X-API-Key': API_KEY,
+      ...(config.body ? { 'Content-Type': 'application/json' } : undefined),
+    },
+    credentials: 'omit',
+  });
 
-    const response = await fetch(fetchOptions);
-    let data: T | undefined;
-    let parseError: Error | undefined;
-    try {
-      data = (await response.json()) as T;
-    } catch (e) {
-      parseError = convertToError(e);
-    }
+  //todo(josh): improve error handling
+  const response = await fetch(fetchOptions);
+  let data: T;
+  let parseError: Error | undefined;
 
-    throwBungieError(data, fetchOptions);
+  try {
+    data = (await response.json()) as T;
+  } catch (e) {
+    parseError = convertToError(e);
+  }
 
-    await throwHttpError(response);
-    if (parseError) {
-      throw parseError;
-    }
-    
-    return data;
-  };
+  throwBungieError(data, fetchOptions);
+
+  await throwHttpError(response);
+
+  if (parseError) {
+    throw parseError;
+  }
+
+  // this should never happen
+  if (!data) {
+    throw Error('data is undefined');
+  }
+
+  return data;
 };
 
 let timesThrottled = 0;
@@ -82,7 +88,7 @@ const throwHttpError = async (response: Response) => {
   if (response.status < 200 || response.status >= 400) {
     throw await toHttpStatusError(response);
   }
-}
+};
 
 const toHttpStatusError = async (response: Response) => {
   try {
@@ -91,7 +97,7 @@ const toHttpStatusError = async (response: Response) => {
   } catch (_) {
     return new HttpStatusError(response);
   }
-}
+};
 
 function throwBungieError<T>(serverResponse: T | undefined, request: Request) {
   if (!serverResponse || typeof serverResponse !== 'object') {

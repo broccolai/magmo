@@ -1,12 +1,45 @@
-import { DestinyProfileResponse, getActivityHistory, getLeaderboardsForCharacter } from 'bungie-api-ts/destiny2';
-import type { HttpClient, HttpClientConfig } from 'bungie-api-ts/http';
-import * as process from 'process';
+import {
+  BungieMembershipType,
+  DestinyHistoricalStatsActivity,
+  DestinyProfileResponse,
+  getActivityHistory,
+  getProfile,
+  searchDestinyPlayerByBungieName,
+} from 'bungie-api-ts/destiny2';
 import type { UserInfoCard } from 'bungie-api-ts/user';
-import { rotate } from 'astro/dist/assets/services/vendor/squoosh/impl';
+import { httpClient, throttledHttpClient } from './bungie-http-client';
+import { DestinyAccount } from './types';
 
-const API_KEY = '??';
+const CLIENT = throttledHttpClient(httpClient);
 
-const client = createHttpClient();
+export const loadActivity = async (account: DestinyAccount) => {
+  const searchResponse = await searchDestinyPlayerByBungieName(
+    CLIENT,
+    {
+      membershipType: BungieMembershipType.All,
+    },
+    {
+      displayName: account.name,
+      displayNameCode: account.identifer,
+    },
+  );
+
+  const profile = searchResponse.Response[0];
+
+  if (!profile) {
+    throw Error('could not find player');
+  }
+
+  const profileRequest = await getProfile(CLIENT, {
+    destinyMembershipId: profile.membershipId,
+    membershipType: profile.membershipType,
+    components: [100, 200],
+  });
+
+  const profileResponse = profileRequest.Response;
+
+  return await loadActivityForProfile(profile, profileResponse);
+};
 
 const loadActivityForProfile = async (profile: UserInfoCard, profileResponse: DestinyProfileResponse) => {
   const { data } = profileResponse.characters;
@@ -15,16 +48,18 @@ const loadActivityForProfile = async (profile: UserInfoCard, profileResponse: De
     return;
   }
 
-  return Object.keys(data)
-    .flatMap((key) => loadActivityForCharacter(profile, key)) 
+  const characterPromises = Object.keys(data).flatMap((key) => loadActivityForCharacter(profile, key));
+  const resolvedCharacters = await Promise.all(characterPromises);
+
+  return resolvedCharacters.flat();
 };
 
 const loadActivityForCharacter = async (profile: UserInfoCard, character: string) => {
-  const activities = []
+  const activities: DestinyHistoricalStatsActivity[] = [];
   let page = 0;
 
   while (true) {
-    const history = await getActivityHistory(client, {
+    const history = await getActivityHistory(CLIENT, {
       characterId: character,
       membershipType: profile.membershipType,
       destinyMembershipId: profile.membershipId,
@@ -37,21 +72,11 @@ const loadActivityForCharacter = async (profile: UserInfoCard, character: string
       break;
     }
 
-    activities.push(...history.Response.activities);
+    const mappedActivities = history.Response.activities.map((activity) => activity.activityDetails);
+
+    activities.push(...mappedActivities);
     page++;
-
-    await delay(history.ThrottleSeconds);
   }
 
-  return activities
-};
-
-const delay = async (seconds: number) => {
-  if (seconds === 0) {
-    return;
-  }
-
-  await new Promise((r) => {
-    setTimeout(r, seconds * 1000);
-  });
+  return activities;
 };

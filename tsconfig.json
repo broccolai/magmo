@@ -6,6 +6,8 @@
     "baseUrl": ".",
     "paths": {
       "@panda/*": ["src/@panda/*"]
-    }
+    },
+    "verbatimModuleSyntax": false,
+    "isolatedModules": false
   },
 }
