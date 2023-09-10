@@ -1,4 +1,5 @@
 {
   "extends": ["config:base"],
   "ignorePresets": [":prHourlyLimit2"]
+  "baseBranches": ["rewrite/solidjs-with-astro"] 
 }
