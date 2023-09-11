@@ -3,14 +3,50 @@ import {
   DestinyHistoricalStatsActivity,
   DestinyProfileResponse,
   getActivityHistory,
+  getPostGameCarnageReport,
   getProfile,
   searchDestinyPlayerByBungieName,
 } from 'bungie-api-ts/destiny2';
 import type { UserInfoCard } from 'bungie-api-ts/user';
 import { httpClient, throttledHttpClient } from './bungie-http-client';
 import { DestinyAccount } from './types';
+import { batchRequest } from '../utilities';
+
 
 const CLIENT = throttledHttpClient(httpClient);
+
+export const matchesAgainstAccount = async (account: DestinyAccount, target: DestinyAccount) => {
+  const activity = await loadActivity(account)
+
+  if (!activity) {
+    return
+  }
+
+  activity.filter((match) => {
+    match.directorActivityHash.
+  })
+}
+
+export const loadPostGameReports = async (account: DestinyAccount) => {
+  const activity = await loadActivity(account) 
+
+  if (!activity) {
+    return
+  }
+
+  const activityIds = activity.map((match) => match.instanceId)
+
+
+  const { success, failures } = await batchRequest(
+    activityIds,
+    (id) => {
+      return getPostGameCarnageReport(CLIENT, {
+        activityId: id,
+      }).then((res) => res.Response);
+    },
+    { batchSize: 25, delay: 1000 },
+  );
+}
 
 export const loadActivity = async (account: DestinyAccount) => {
   const searchResponse = await searchDestinyPlayerByBungieName(
