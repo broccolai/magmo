@@ -1,9 +1,9 @@
-import { styled } from '@panda/jsx';
 import { WiDaySunny } from '@aminya/solid-icons/wi';
+import { styled } from '@panda/jsx';
 import { createEffect, createSignal } from 'solid-js';
-import { PageBanner, PageBannerContent } from './containers.tsx';
-import { createVariable } from '../utilities/functions.ts';
 import { panelState } from '../panels/container.tsx';
+import { createVariable } from '../utilities/functions.ts';
+import { PageBanner, PageBannerContent } from './containers.tsx';
 
 const showIcon = createVariable('header-show-icon');
 

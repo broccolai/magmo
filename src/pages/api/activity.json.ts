@@ -1,4 +1,4 @@
-import { APIRoute, APIContext } from 'astro';
+import { APIContext, APIRoute } from 'astro';
 import { loadActivity } from 'src/service/destiny/bungie-api';
 import { DestinyAccount } from 'src/service/destiny/types';
 

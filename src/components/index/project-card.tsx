@@ -1,9 +1,9 @@
 import { styled } from '@panda/jsx';
-import type { Project } from '../../data/projects';
 import { For } from 'solid-js';
+import type { Project } from '../../data/projects';
+import { Bold, H3, H4, Text } from '../global/typography.tsx';
 import { Card, CardBody, CardBottomBody, CardHeader } from '../individuals/card';
 import Icon from '../individuals/icon';
-import { Bold, H3, H4, Text } from '../global/typography.tsx';
 
 const StyledCardHeader = styled(CardHeader, {
   base: {

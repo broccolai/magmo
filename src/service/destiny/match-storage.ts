@@ -1,5 +1,5 @@
 import { PrismaClient } from '@prisma/client';
 
-const prisma = new PrismaClient();
+const _prisma = new PrismaClient();
 
-const loadPlayer = (id: number) => {};
+const _loadPlayer = (_id: number) => {};

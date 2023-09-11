@@ -1,13 +1,13 @@
+import batchRequest from 'batch-request-js';
 import {
-  awaInitializeRequest,
   BungieMembershipType,
+  awaInitializeRequest,
   getActivityHistory,
   getDestinyAggregateActivityStats,
   getPostGameCarnageReport,
   getProfile,
   searchDestinyPlayerByBungieName,
 } from 'bungie-api-ts/destiny2';
-import batchRequest from 'batch-request-js';
 
 const API_KEY = '???';
 
@@ -69,15 +69,15 @@ const profile = profileRequest.Response;
 
 let titan;
 
-for (let charactersKey in profile.characters.data) {
+for (const charactersKey in profile.characters.data) {
   const character = profile.characters.data[charactersKey];
 
-  if (character.classType == 0) {
+  if (character.classType === 0) {
     titan = character;
   }
 }
 
-let activities = [];
+const activities = [];
 let page = 0;
 
 while (true) {
@@ -131,7 +131,7 @@ const matchesAgainst = data.filter((data) => {
     return false;
   }
   return data.entries.some((entry) => {
-    return entry.player?.destinyUserInfo?.bungieGlobalDisplayName == 'LaFeuille';
+    return entry.player?.destinyUserInfo?.bungieGlobalDisplayName === 'LaFeuille';
   });
 });
 

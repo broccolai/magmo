@@ -1,11 +1,11 @@
-import TicketsBackground from 'assets/projects/tickets/background.png';
-import TicketsLogo from 'assets/projects/tickets/logo.svg';
-import SiteBackground from 'assets/projects/site/background.png';
-import SiteLogo from 'assets/projects/site/logo.svg';
-import CornBackground from 'assets/projects/corn/background.png';
-import CornLogo from 'assets/projects/corn/logo.png';
 import type { IconTypes } from '@aminya/solid-icons';
 import { FaBrandsDiscord, FaBrandsGithub, FaSolidBook, FaSolidFaucet, FaSolidLink } from '@aminya/solid-icons/fa';
+import CornBackground from 'assets/projects/corn/background.png';
+import CornLogo from 'assets/projects/corn/logo.png';
+import SiteBackground from 'assets/projects/site/background.png';
+import SiteLogo from 'assets/projects/site/logo.svg';
+import TicketsBackground from 'assets/projects/tickets/background.png';
+import TicketsLogo from 'assets/projects/tickets/logo.svg';
 
 export interface Project {
   title: string;

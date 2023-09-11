@@ -1,9 +1,9 @@
+import { styled } from '@panda/jsx';
+import { WindowEventListener } from '@solid-primitives/event-listener';
+import { createWindowSize } from '@solid-primitives/resize-observer';
 // this is adapter from Github/FaisalST32's project 'fullpage-react-fs'
 // source: https://github.com/FaisalST32/fullpage-react-fs/blob/master/src/index.js
-import { createSignal, JSXElement } from 'solid-js';
-import { createWindowSize } from '@solid-primitives/resize-observer';
-import { WindowEventListener } from '@solid-primitives/event-listener';
-import { styled } from '@panda/jsx';
+import { JSXElement, createSignal } from 'solid-js';
 import Indicators from './indicators';
 
 export const [panelState, setPanelState] = createSignal({
@@ -102,7 +102,9 @@ const PanelContainer = (props: { count: number; children: JSXElement }) => {
       }
       return screenY;
     });
-    if (initialSet) return;
+    if (initialSet) {
+      return;
+    }
 
     setPanelState((prev) => {
       if (prev.transitioning) {

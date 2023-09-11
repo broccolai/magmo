@@ -1,6 +1,6 @@
 import { DestinyHistoricalStatsActivity } from 'bungie-api-ts/destiny2';
-import { DestinyAccount } from './destiny/types';
 import { ACTIVITY_ROUTE } from 'src/pages/api/activity.json';
+import { DestinyAccount } from './destiny/types';
 
 export const apiLoadActivity = async (account: DestinyAccount) => {
   const requestData = {
