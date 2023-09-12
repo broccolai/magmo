@@ -1,5 +1,6 @@
 import { type HttpClient, type HttpClientConfig, PlatformErrorCodes, type ServerResponse } from 'bungie-api-ts/destiny2';
 import { BungieError, HttpStatusError } from './utilities';
+import { Unit, delay } from '../utilities';
 
 const API_KEY = import.meta.env.BUNGIE_API_KEY;
 
@@ -138,5 +139,5 @@ const throttle = async () => {
 
   const throttleDuration = Math.min(timesThrottled, MAX_THROTTLE);
 
-  await delay(throttleDuration);
+  await delay(throttleDuration, Unit.SECONDS);
 };

@@ -41,5 +41,8 @@
   },
   "imports": {
     "@panda/*": "./src/@panda/*"
-  }
+  },
+  "trustedDependencies": [
+    "sharp"
+  ]
 }

@@ -1,4 +1,6 @@
-import { apiLoadActivity } from 'src/service/api-layer';
+import { createSignal } from 'solid-js';
+import { apiLoadActivity, apiMatchesAgainstAccount } from 'src/service/api-layer';
+import { matchesAgainstAccount } from 'src/service/destiny/bungie-api';
 import { DestinyAccount } from 'src/service/destiny/types';
 
 const BROCCOLI_ACCOUNT: DestinyAccount = {
@@ -6,18 +8,32 @@ const BROCCOLI_ACCOUNT: DestinyAccount = {
   identifer: 679,
 };
 
+const LAFEUILLE_ACCOUNT: DestinyAccount = {
+  name: 'LaFeuille',
+  identifer: 3066
+}
+
 export const GreenDot = () => {
+  const [matchesPlayed, setMatchesPlayed] = createSignal(0);
+
   const printActivity = async () => {
     const startTime = performance.now();
 
-    const activity = await apiLoadActivity(BROCCOLI_ACCOUNT);
+    const activity = await apiMatchesAgainstAccount(BROCCOLI_ACCOUNT, LAFEUILLE_ACCOUNT);
 
     const endTime = performance.now();
     const duration = (endTime - startTime) / 1000;
 
-    console.log('size', activity?.length);
+    setMatchesPlayed(activity.matches)
+
+    console.log('size', activity);
     console.log(`printActivity took ${duration} seconds`);
   };
 
-  return <button onClick={() => printActivity()}>load broccoli data</button>;
+  return (
+    <div>
+      <button onClick={() => printActivity()}>load broccoli data</button>
+      <p>matches played: {matchesPlayed()}</p>
+    </div>
+  );
 };

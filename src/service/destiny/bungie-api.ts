@@ -11,48 +11,61 @@ import type { UserInfoCard } from 'bungie-api-ts/user';
 import { httpClient, throttledHttpClient } from './bungie-http-client';
 import { DestinyAccount } from './types';
 import { batchRequest } from '../utilities';
-
+import { post } from 'bungie-api-ts/http';
 
 const CLIENT = throttledHttpClient(httpClient);
 
 export const matchesAgainstAccount = async (account: DestinyAccount, target: DestinyAccount) => {
-  const activity = await loadActivity(account)
+  const { profile: targetProfile } = await loadProfile(target);
 
-  if (!activity) {
-    return
+  const postGameReports = await loadPostGameReports(account);
+
+  postGameReports
+    .filter((game) => {
+      return game.entries.some((opponent) => opponent.player.destinyUserInfo.membershipId === targetProfile.membershipId);
+    })
+    .forEach((game) => {
+      
+    });
+
+  for (const game of commonGames) {
   }
 
-  activity.filter((match) => {
-    match.directorActivityHash.
-  })
-}
+  return commonGames.length;
+};
 
 export const loadPostGameReports = async (account: DestinyAccount) => {
-  const activity = await loadActivity(account) 
+  const { profile, profileResponse } = await loadProfile(account);
+  const activity = await loadActivityForProfile(profile, profileResponse);
 
   if (!activity) {
-    return
+    throw new Error('could not load activity');
   }
 
-  const activityIds = activity.map((match) => match.instanceId)
-
+  const activityIds = activity.map((match) => match.instanceId);
 
   const { success, failures } = await batchRequest(
     activityIds,
-    (id) => {
-      return getPostGameCarnageReport(CLIENT, {
+    async (id) => {
+      const res = await getPostGameCarnageReport(CLIENT, {
         activityId: id,
-      }).then((res) => res.Response);
-    },
-    { batchSize: 25, delay: 1000 },
-  );
-}
+      });
 
-export const loadActivity = async (account: DestinyAccount) => {
+      return res.Response;
+    },
+    { batchSize: 100, delay: 1000 },
+  );
+
+  console.error('failures', failures);
+
+  return success;
+};
+
+export const loadProfile = async (account: DestinyAccount) => {
   const searchResponse = await searchDestinyPlayerByBungieName(
     CLIENT,
     {
-      membershipType: BungieMembershipType.All,
+      membershipType: BungieMembershipType.TigerSteam,
     },
     {
       displayName: account.name,
@@ -74,10 +87,10 @@ export const loadActivity = async (account: DestinyAccount) => {
 
   const profileResponse = profileRequest.Response;
 
-  return await loadActivityForProfile(profile, profileResponse);
+  return { profile, profileResponse };
 };
 
-const loadActivityForProfile = async (profile: UserInfoCard, profileResponse: DestinyProfileResponse) => {
+export const loadActivityForProfile = async (profile: UserInfoCard, profileResponse: DestinyProfileResponse) => {
   const { data } = profileResponse.characters;
 
   if (!data) {

@@ -1,57 +1,70 @@
-import { Result, Ok, Err, match } from "oxide.ts";
+import { Result, Ok, Err } from 'oxide.ts';
 
 interface BatchOptions {
-    batchSize: number,
-    delay: number
+  batchSize: number;
+  delay: number;
 }
 
 interface BatchResult<O> {
-    success: O[],
-    failures: Error[]
+  success: O[];
+  failures: Error[];
 }
 
-export const batchRequest = async <I, O>(records: I[], request: (record: I) => Promise<O>, options: BatchOptions): Promise<BatchResult<O>> => {
-    let responses: Result<O, Error>[] = []
+export const batchRequest = async <I, O>(
+  records: I[],
+  request: (record: I) => Promise<O>,
+  options: BatchOptions,
+): Promise<BatchResult<O>> => {
+  let responses: Result<O, Error>[] = [];
 
-    // let result: BatchResult<I, O>[] = []
+  // let result: BatchResult<I, O>[] = []
 
-    for (let i = 0; i < records.length; i += options.batchSize) {
-        const batch = records.slice(i, i + options.batchSize)
-        const result = await Promise.all(
-            batch.map(record => {
-                return request(record)
-                .then(res => Ok(res))
-                .catch(e => Err(new Error(e)))
-            })
-        )
+  for (let i = 0; i < records.length; i += options.batchSize) {
+    const batch = records.slice(i, i + options.batchSize);
+    const result = await Promise.all(
+      batch.map((record) => {
+        return request(record)
+          .then((res) => Ok(res))
+          .catch((e) => Err(new Error(e)));
+      }),
+    );
 
-        responses = responses.concat(result)
-        await delay(options.delay, Unit.MILISECONDS)
+    responses = responses.concat(result);
+    await delay(options.delay, Unit.MILISECONDS);
+  }
+
+  const success: O[] = [];
+  const errors: Error[] = [];
+
+  for (const res of responses) {
+    if (res.isOk()) {
+      success.push(res.unwrap());
+    } else {
+      errors.push(res.unwrapErr());
     }
+  }
 
-    let success: O[] = []
-    let errors: Error[] = []
+  return {
+    success,
+    failures: errors,
+  };
+};
 
-
-    responses.forEach(res => {
-        if (res.isOk()) {
-            success.push(res.unwrap())
-        } else {
-            errors.push(res.unwrapErr())
-        }
-    })
-
-    return {
-        success,
-        failures: errors
-    }
+export enum Unit {
+  MILISECONDS = 1,
+  SECONDS = 1000,
 }
 
-enum Unit {
-    MILISECONDS = 1,
-    SECONDS = 1000
-}
+export const jsonRequest = <T>(data: T): RequestInit => {
+  return {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  };
+};
 
-const delay = (duration: number, unit: Unit) => {
-    return new Promise((resolve) => setTimeout(resolve, duration * unit));
+export const delay = (duration: number, unit: Unit) => {
+  return new Promise((resolve) => setTimeout(resolve, duration * unit));
 };
