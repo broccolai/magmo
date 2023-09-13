@@ -1,6 +1,6 @@
 import { type HttpClient, type HttpClientConfig, PlatformErrorCodes, type ServerResponse } from 'bungie-api-ts/destiny2';
-import { BungieError, HttpStatusError } from './utilities';
 import { Unit, delay } from '../utilities';
+import { BungieError, HttpStatusError } from './utilities';
 
 const API_KEY = import.meta.env.BUNGIE_API_KEY;
 

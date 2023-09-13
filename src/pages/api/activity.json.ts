@@ -8,7 +8,7 @@ export const POST: APIRoute = async ({ request }: APIContext) => {
   const body = await request.json();
   const account = body.account as DestinyAccount;
 
-  const { profile, profileResponse } = await loadProfile(account)
+  const { profile, profileResponse } = await loadProfile(account);
   const activity = await loadActivityForProfile(profile, profileResponse);
 
   return new Response(JSON.stringify({ activity }), {

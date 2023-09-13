@@ -7,31 +7,31 @@ import {
   getProfile,
   searchDestinyPlayerByBungieName,
 } from 'bungie-api-ts/destiny2';
+import { post } from 'bungie-api-ts/http';
 import type { UserInfoCard } from 'bungie-api-ts/user';
+import { batchRequest } from '../utilities';
 import { httpClient, throttledHttpClient } from './bungie-http-client';
 import { DestinyAccount } from './types';
-import { batchRequest } from '../utilities';
-import { post } from 'bungie-api-ts/http';
 
 const CLIENT = throttledHttpClient(httpClient);
 
 export const matchesAgainstAccount = async (account: DestinyAccount, target: DestinyAccount) => {
   const { profile: targetProfile } = await loadProfile(target);
 
-  const postGameReports = await loadPostGameReports(account);
+  const _postGameReports = await loadPostGameReports(account);
 
-  postGameReports
-    .filter((game) => {
-      return game.entries.some((opponent) => opponent.player.destinyUserInfo.membershipId === targetProfile.membershipId);
-    })
-    .forEach((game) => {
-      
-    });
+  // postGameReports
+  //   .filter((game) => {
+  //     return game.entries.some((opponent) => opponent.player.destinyUserInfo.membershipId === targetProfile.membershipId);
+  //   })
+  //   .forEach((game) => {
 
-  for (const game of commonGames) {
-  }
+  //   });
 
-  return commonGames.length;
+  // for (const game of commonGames) {
+  // }
+
+  return 0;
 };
 
 export const loadPostGameReports = async (account: DestinyAccount) => {
@@ -50,6 +50,8 @@ export const loadPostGameReports = async (account: DestinyAccount) => {
       const res = await getPostGameCarnageReport(CLIENT, {
         activityId: id,
       });
+
+      console.log(res.Response.entries[0]?.values.team);
 
       return res.Response;
     },

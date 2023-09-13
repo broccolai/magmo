@@ -10,8 +10,8 @@ const BROCCOLI_ACCOUNT: DestinyAccount = {
 
 const LAFEUILLE_ACCOUNT: DestinyAccount = {
   name: 'LaFeuille',
-  identifer: 3066
-}
+  identifer: 3066,
+};
 
 export const GreenDot = () => {
   const [matchesPlayed, setMatchesPlayed] = createSignal(0);
@@ -24,7 +24,7 @@ export const GreenDot = () => {
     const endTime = performance.now();
     const duration = (endTime - startTime) / 1000;
 
-    setMatchesPlayed(activity.matches)
+    setMatchesPlayed(activity.matches);
 
     console.log('size', activity);
     console.log(`printActivity took ${duration} seconds`);

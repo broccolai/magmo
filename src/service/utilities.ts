@@ -1,4 +1,4 @@
-import { Result, Ok, Err } from 'oxide.ts';
+import { Err, Ok, Result } from 'oxide.ts';
 
 interface BatchOptions {
   batchSize: number;

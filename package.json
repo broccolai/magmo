@@ -43,6 +43,9 @@
     "@panda/*": "./src/@panda/*"
   },
   "trustedDependencies": [
-    "sharp"
+    "@prisma/client",
+    "@biomejs/biome",
+    "esbuild",
+    "astro"
   ]
 }

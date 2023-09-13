@@ -7,14 +7,14 @@ export const MATCHES_AGAINST_ACCOUNT_ROUTE = '/api/matches-against-account.json'
 export const POST: APIRoute = async ({ request }: APIContext) => {
   const body = await request.json();
 
-  console.log('starting')
+  console.log('starting');
 
   const account = body.account as DestinyAccount;
   const target = body.target as DestinyAccount;
 
   const matches = await matchesAgainstAccount(account, target);
 
-  console.log('loaded')
+  console.log('loaded');
 
   return new Response(JSON.stringify({ matches }), {
     status: 200,
