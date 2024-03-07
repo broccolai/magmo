@@ -20,7 +20,7 @@ export const PageBannerContent = styled('section', {
     gridTemplateColumns: 'repeat(2, 1fr)',
     padding: '4px',
     height: '5vh',
-    width: '100%',
+    width: '95vw',
     maxWidth: '800px',
   },
 });
