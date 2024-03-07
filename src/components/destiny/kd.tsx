@@ -133,6 +133,7 @@ const Content = styled('div', {
     justifyContent: 'normal',
     flexDirection: 'column',
     width: '20vw',
+    minWidth: '400px',
     height: '100%',
   },
 });
