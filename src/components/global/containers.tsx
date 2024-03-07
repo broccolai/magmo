@@ -43,3 +43,11 @@ export const ChildFlexSection = styled(FlexSection, {
     position: 'relative',
   },
 });
+
+export const FullPageContent = styled(FlexSection, {
+  base: {
+    width: '100vw',
+    height: '100vh',
+    overflow: 'hidden',
+  },
+});

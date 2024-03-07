@@ -23,11 +23,20 @@ const Right = styled('p', {
 
 const FIRST_PANEL = 1;
 
-const Header = () => {
+interface HeaderProps {
+  alwaysShow: boolean;
+  title: string | undefined;
+}
+
+const Header = (props: HeaderProps) => {
   let previousState = panelState();
   const [show, setShow] = createSignal(false);
 
   createEffect(() => {
+    if (props.alwaysShow) {
+      setShow(true);
+    }
+
     const currentState = panelState();
     const storedPanel = previousState.currentPanel;
 
@@ -46,7 +55,7 @@ const Header = () => {
   return (
     <PageBanner top={0}>
       <PageBannerContent>
-        <Icon style={{ [showIcon.identifier]: show() ? '1' : '0' }}>josh</Icon>
+        <Icon style={{ [showIcon.identifier]: show() ? '1' : '0' }}>{props.title ?? 'josh'}</Icon>
         <Right>
           <WiDaySunny />
         </Right>

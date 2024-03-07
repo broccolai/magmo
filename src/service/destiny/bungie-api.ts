@@ -51,8 +51,6 @@ export const loadPostGameReports = async (account: DestinyAccount) => {
         activityId: id,
       });
 
-      console.log(res.Response.entries[0]?.values.team);
-
       return res.Response;
     },
     { batchSize: 100, delay: 1000 },
@@ -67,7 +65,7 @@ export const loadProfile = async (account: DestinyAccount) => {
   const searchResponse = await searchDestinyPlayerByBungieName(
     CLIENT,
     {
-      membershipType: BungieMembershipType.TigerSteam,
+      membershipType: BungieMembershipType.All,
     },
     {
       displayName: account.name,

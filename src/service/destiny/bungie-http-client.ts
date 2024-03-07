@@ -2,7 +2,7 @@ import { type HttpClient, type HttpClientConfig, PlatformErrorCodes, type Server
 import { Unit, delay } from '../utilities';
 import { BungieError, HttpStatusError } from './utilities';
 
-const API_KEY = import.meta.env.BUNGIE_API_KEY;
+const API_KEY = import.meta.env.SECRET_BUNGIE_API_KEY;
 
 const BUNGIE_PLATFORM_THROTTLE_CODES = [
   PlatformErrorCodes.ThrottleLimitExceededMinutes,

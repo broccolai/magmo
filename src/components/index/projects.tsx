@@ -15,6 +15,8 @@ const Container = styled(FlexSection, {
   },
 });
 
-const Intro = () => <Container />;
+const Intro = () => {
+  return <Container>{/*<For each={projects}>{(project, i) => <ProjectCard project={project} />}</For>*/}</Container>;
+};
 
 export default Intro;

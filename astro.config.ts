@@ -8,5 +8,5 @@ export default defineConfig({
   build: {
     inlineStylesheets: 'always',
   },
-  output: 'hybrid',
+  output: 'server',
 });

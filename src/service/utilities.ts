@@ -65,6 +65,16 @@ export const jsonRequest = <T>(data: T): RequestInit => {
   };
 };
 
+export const jsonRequestNew = <T>(method: 'POST' | 'GET', data: T): RequestInit => {
+  return {
+    method: method,
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  };
+};
+
 export const delay = (duration: number, unit: Unit) => {
   return new Promise((resolve) => setTimeout(resolve, duration * unit));
 };

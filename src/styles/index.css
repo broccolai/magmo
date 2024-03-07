@@ -1,5 +1,9 @@
 @layer reset, base, tokens, recipes, panda_utilities;
 
+* {
+    box-sizing: border-box;
+}
+
 html, body {
     margin: 0;
     padding: 0;

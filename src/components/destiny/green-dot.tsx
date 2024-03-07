@@ -25,9 +25,6 @@ export const GreenDot = () => {
     const duration = (endTime - startTime) / 1000;
 
     setMatchesPlayed(activity.matches);
-
-    console.log('size', activity);
-    console.log(`printActivity took ${duration} seconds`);
   };
 
   return (
