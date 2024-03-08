@@ -5,7 +5,7 @@ export default defineConfig({
   preflight: false,
   //  minify: true,
   hash: true,
-  include: ['./src/**/*.{js,jsx,ts,tsx}'],
+  include: ['./src/**/*.{js,jsx,ts,tsx,astro}'],
   exclude: [],
   jsxFramework: 'solid',
   outdir: './src/@panda',
