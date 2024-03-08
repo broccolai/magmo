@@ -2,7 +2,7 @@
   "name": "site",
   "scripts": {
     "prepare": "panda codegen",
-    "dev": "astro dev",
+    "dev": "astro dev --host",
     "build": "astro build",
     "start": "astro start"
   },
