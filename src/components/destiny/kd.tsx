@@ -217,7 +217,7 @@ export const KillDeath = () => {
         <SectionName>LOOKUP</SectionName>
         <form onSubmit={loadPlayer} autocomplete='off'>
           <StyledInput
-            pattern='^[a-zA-Z]{1,20}#[0-9]{1,4}$'
+            pattern='^[^#]{1,20}#[0-9]{1,4}$'
             title='must be a valid bungie id format'
             placeholder={'broccoli#679'}
             onChange={(event) => setUser(event.target.value)}
