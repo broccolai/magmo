@@ -27,7 +27,7 @@
     "@solid-primitives/event-listener": "^2.3.3",
     "@solid-primitives/resize-observer": "^2.0.25",
     "@solidjs/meta": "^0.29.3",
-    "@solidjs/router": "^0.12.5",
+    "@solidjs/router": "^0.13.0",
     "@vanilla-extract/integration": "^7.1.1",
     "astro": "^4.4.13",
     "babel-preset-solid": "^1.8.15",
