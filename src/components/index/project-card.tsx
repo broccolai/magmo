@@ -44,7 +44,7 @@ interface Props {
 
 const ProjectCard = (props: Props) => {
   const { title, slogan, description, images, icons } = props.project;
-  const { background, logo } = images;
+  const { logo } = images;
 
   return (
     <Card>

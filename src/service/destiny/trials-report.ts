@@ -4,9 +4,9 @@ export interface PlayerStats {
   deaths: number;
 }
 
-export const kdForStats = (stats: PlayerStats, precision: number): number => {
-  return (stats.kills / stats.deaths).toFixed(precision)
-} 
+export const kdForStats = (stats: PlayerStats, precision: number): string => {
+  return (stats.kills / stats.deaths).toFixed(precision);
+};
 
 export interface StatsResponse {
   count: number;

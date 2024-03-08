@@ -1,6 +1,6 @@
 import { css } from '@panda/css';
 import { styled } from '@panda/jsx';
-import circle from "src/assets/circle.svg"
+import circle from 'src/assets/circle.svg';
 
 const navigationStyle = css({
   position: 'fixed',
@@ -9,7 +9,7 @@ const navigationStyle = css({
   transform: 'translateY(-50%)',
   display: 'flex',
   flexDirection: 'column',
-  alignItems: 'center'
+  alignItems: 'center',
 });
 
 const Indicator = styled('img', {
@@ -41,9 +41,7 @@ const Indicators = (props: {
 }) => {
   const indicatorHtml = Array.from({ length: props.count }, (_, i) => {
     // const indicatorStyles = [indicator, i === props.activeIndex - 1 && active];
-    return (
-      <Indicator src={circle.src} state={i + 1 === props.activeIndex} onClick={() => props.setIndicator(i + 1)} />
-    );
+    return <Indicator src={circle.src} state={i + 1 === props.activeIndex} onClick={() => props.setIndicator(i + 1)} />;
   });
 
   return <div class={navigationStyle}>{indicatorHtml}</div>;

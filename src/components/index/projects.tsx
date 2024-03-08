@@ -1,8 +1,5 @@
 import { styled } from '@panda/jsx';
-import { For } from 'solid-js';
-import projects from 'src/data/projects.ts';
 import { FlexSection } from '../global/containers.tsx';
-import ProjectCard from './project-card';
 
 const Container = styled(FlexSection, {
   base: {

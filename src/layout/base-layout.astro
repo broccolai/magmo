@@ -20,8 +20,8 @@ const { title } = Astro.props
   </head>
   <body>
     <FlexSection>
-      <PanelContainer client:load count={3} showIndicators={true}>
-        <Header client:visible />
+      <PanelContainer client:load count={3}>
+        <Header client:visible alwaysShow={false} title="josh" />
         <slot />
         <Footer client:visible />
       </PanelContainer>

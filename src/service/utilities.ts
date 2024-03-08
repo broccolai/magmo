@@ -22,7 +22,7 @@ export const batchRequest = async <I, O>(
   for (let i = 0; i < records.length; i += options.batchSize) {
     const batch = records.slice(i, i + options.batchSize);
     const result = await Promise.all(
-      batch.map((record) => {
+      batch.map(async (record) => {
         return request(record)
           .then((res) => Ok(res))
           .catch((e) => Err(new Error(e)));

@@ -1,6 +1,5 @@
 import { createSignal } from 'solid-js';
-import { apiLoadActivity, apiMatchesAgainstAccount } from 'src/service/api-layer';
-import { matchesAgainstAccount } from 'src/service/destiny/bungie-api';
+import { apiMatchesAgainstAccount } from 'src/service/api-layer';
 import { DestinyAccount } from 'src/service/destiny/types';
 
 const BROCCOLI_ACCOUNT: DestinyAccount = {
@@ -17,12 +16,7 @@ export const GreenDot = () => {
   const [matchesPlayed, setMatchesPlayed] = createSignal(0);
 
   const printActivity = async () => {
-    const startTime = performance.now();
-
     const activity = await apiMatchesAgainstAccount(BROCCOLI_ACCOUNT, LAFEUILLE_ACCOUNT);
-
-    const endTime = performance.now();
-    const duration = (endTime - startTime) / 1000;
 
     setMatchesPlayed(activity.matches);
   };

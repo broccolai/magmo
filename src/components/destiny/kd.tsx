@@ -1,11 +1,11 @@
 import { styled } from '@panda/jsx';
-import { createSignal, Show } from 'solid-js';
+import { Show, createSignal } from 'solid-js';
 import { trialsStats } from 'src/service/api-layer';
 import { DestinyAccount } from 'src/service/destiny/types';
-import { PlayerStats, kdForStats } from '../../../service/destiny/trials-report.ts';
-import { FullPageContent } from '../../global/containers.tsx';
-import { H3, REGULAR_FONTS } from '../../global/typography.tsx';
-import { StyledInput } from '../../individuals/input.tsx';
+import { PlayerStats, kdForStats } from '../../service/destiny/trials-report.ts';
+import { FullPageContent } from '../global/containers.tsx';
+import { H3, REGULAR_FONTS } from '../global/typography.tsx';
+import { StyledInput } from '../individuals/input.tsx';
 
 const SectionContainer = styled('div', {
   base: {
@@ -115,16 +115,19 @@ const CalculatorSection = (props: SectionProps) => {
   const updateResult = (event: Event) => {
     event.preventDefault();
 
-    const requiredTotalKillsForGoalKd = target() * props.stats.deaths;
+    const parsedTarget = parseFloat(target());
+    const parsedAverage = parseFloat(average());
+
+    const requiredTotalKillsForGoalKd = parsedTarget * props.stats.deaths;
     const killDeficitToReachGoalKd = requiredTotalKillsForGoalKd - props.stats.kills;
-    const efficiencyImprovementNeeded = average() - target();
+    const efficiencyImprovementNeeded = parsedAverage - parsedTarget;
     const adjustedKillsNeeded = killDeficitToReachGoalKd / efficiencyImprovementNeeded;
-    const result = adjustedKillsNeeded * average();
+    const result = adjustedKillsNeeded * parsedAverage;
 
     setResult(result.toString());
   };
 
-  const currentKd = kdForStats(props.stats, 2);
+  const currentKd = parseFloat(kdForStats(props.stats, 2));
 
   return (
     <>
@@ -149,8 +152,8 @@ const CalculatorSection = (props: SectionProps) => {
                 type='number'
                 placeholder='3.5'
                 required={true}
-                onInput={(e) => setAverage(parseFloat(e.currentTarget.value))}
-                min={Math.max(currentKd, target()) + 0.01}
+                onInput={(e) => setAverage(e.currentTarget.value)}
+                min={Math.max(currentKd, parseFloat(target())) + 0.01}
                 step={0.01}
               />
               <StatName style={'text-align: center;'}>average kd</StatName>
@@ -194,6 +197,10 @@ export const KillDeath = () => {
     event.preventDefault();
 
     const [name, identifier] = user().split('#');
+
+    if (!(name && identifier)) {
+      return;
+    }
 
     const account: DestinyAccount = {
       name: name,

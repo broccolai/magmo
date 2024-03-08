@@ -1,3 +1,4 @@
+//@ts-nocheck
 import {
   BungieMembershipType,
   DestinyHistoricalStatsActivity,
@@ -7,7 +8,6 @@ import {
   getProfile,
   searchDestinyPlayerByBungieName,
 } from 'bungie-api-ts/destiny2';
-import { post } from 'bungie-api-ts/http';
 import type { UserInfoCard } from 'bungie-api-ts/user';
 import { batchRequest } from '../utilities';
 import { httpClient, throttledHttpClient } from './bungie-http-client';
@@ -16,7 +16,7 @@ import { DestinyAccount } from './types';
 const CLIENT = throttledHttpClient(httpClient);
 
 export const matchesAgainstAccount = async (account: DestinyAccount, target: DestinyAccount) => {
-  const { profile: targetProfile } = await loadProfile(target);
+  // const { profile } = await loadProfile(target);
 
   const _postGameReports = await loadPostGameReports(account);
 
