@@ -1,11 +1,11 @@
+import { styled } from '@panda/jsx';
 import { createSignal } from 'solid-js';
 import { trialsStats } from 'src/service/api-layer';
 import { DestinyAccount } from 'src/service/destiny/types';
 import { PlayerStats } from '../../service/destiny/trials-report.ts';
-import { Input } from '../individuals/input.tsx';
 import { FullPageContent } from '../global/containers.tsx';
-import { styled } from '@panda/jsx';
 import { H3, REGULAR_FONTS } from '../global/typography.tsx';
+import { Input } from '../individuals/input.tsx';
 
 interface RequirementCalculatorProps {
   stats: PlayerStats;
@@ -64,10 +64,10 @@ const RequirementCalculator = (props: RequirementCalculatorProps) => {
   const updateResult = (event: SubmitEvent) => {
     event.preventDefault();
 
-    const requiredTotalKillsForGoalKD = target() * props.stats.deaths;
-    const killDeficitToReachGoalKD = requiredTotalKillsForGoalKD - props.stats.kills;
+    const requiredTotalKillsForGoalKd = target() * props.stats.deaths;
+    const killDeficitToReachGoalKd = requiredTotalKillsForGoalKd - props.stats.kills;
     const efficiencyImprovementNeeded = average() - target();
-    const adjustedKillsNeeded = killDeficitToReachGoalKD / efficiencyImprovementNeeded;
+    const adjustedKillsNeeded = killDeficitToReachGoalKd / efficiencyImprovementNeeded;
     const result = adjustedKillsNeeded * average();
 
     setResult(result.toString());
@@ -83,7 +83,7 @@ const RequirementCalculator = (props: RequirementCalculatorProps) => {
               <SpecialInput
                 type='number'
                 placeholder='target'
-                required
+                required={true}
                 value={target()}
                 onInput={(e) => setTarget(parseFloat(e.currentTarget.value))}
                 min={0.01}
@@ -95,7 +95,7 @@ const RequirementCalculator = (props: RequirementCalculatorProps) => {
               <SpecialInput
                 type='number'
                 placeholder='average'
-                required
+                required={true}
                 value={average()}
                 onInput={(e) => setAverage(parseFloat(e.currentTarget.value))}
                 min={0.01}
@@ -169,9 +169,9 @@ export const KillDeath = () => {
           <Input id={'username'} label={'bungie id'} placeholder={'broccoli#0679'} signal={[user, setUser]} />
         </form>
 
-        {stats() && <StatsDisplay stats={stats()!!} />}
+        {stats() && <StatsDisplay stats={stats()!} />}
 
-        {stats() && <RequirementCalculator stats={stats()!!} />}
+        {stats() && <RequirementCalculator stats={stats()!} />}
       </Content>
     </StyledPage>
   );

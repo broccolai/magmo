@@ -1,5 +1,5 @@
-import { createSignal, Setter, Signal } from 'solid-js';
 import { styled } from '@panda/jsx';
+import { Signal } from 'solid-js';
 
 const StyledInput = styled('input', {
   base: {
@@ -14,12 +14,6 @@ const StyledInput = styled('input', {
   },
 });
 
-const StyledLabel = styled('label', {
-  base: {
-    display: 'block',
-  },
-});
-
 interface InputProps {
   id: string;
   label: string;
@@ -30,14 +24,15 @@ interface InputProps {
 export const Input = (props: InputProps) => {
   const [value, setValue] = props.signal;
 
-  const handleChange = (event) => {
-    setValue(event.target.value);
-  };
-
   return (
-    <div>
-      {/*<StyledLabel for={props.id}>{props.label}</StyledLabel>*/}
-      <StyledInput id={props.id} type='text' value={value()} onChange={handleChange} placeholder={props.placeholder} />
-    </div>
+    <StyledInput
+      id={props.id}
+      type='text'
+      value={value()}
+      placeholder={props.placeholder}
+      onChange={(event) => {
+        setValue(event.target.value);
+      }}
+    />
   );
 };

@@ -1,6 +1,6 @@
 import { APIContext, APIRoute } from 'astro';
-import { DestinyAccount } from '../../service/destiny/types.ts';
 import { loadProfile } from '../../service/destiny/bungie-api.ts';
+import { DestinyAccount } from '../../service/destiny/types.ts';
 
 export const TRIALS_STATS_ROUTE = '/api/trials-stats.json';
 
@@ -10,7 +10,7 @@ export const POST: APIRoute = async ({ request }: APIContext) => {
     const body = await request.json();
     const account = body.account as DestinyAccount;
 
-    const { profile, profileResponse } = await loadProfile(account);
+    const { profile } = await loadProfile(account);
 
     const trialsStats = await fetch(`https://api.trialsofthenine.com/player/${profile.membershipId}`, {
       method: 'GET',
@@ -20,6 +20,8 @@ export const POST: APIRoute = async ({ request }: APIContext) => {
       status: 200,
     });
   } catch (error) {
+    console.warn('error occured in /trials-stats endpoint', error);
+
     return new Response(JSON.stringify({ error: 'Internal Server Error' }), {
       status: 500,
     });

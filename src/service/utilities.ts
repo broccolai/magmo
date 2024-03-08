@@ -30,7 +30,7 @@ export const batchRequest = async <I, O>(
     );
 
     responses = responses.concat(result);
-    await delay(options.delay, Unit.MILISECONDS);
+    await delay(options.delay, Unit.Miliseconds);
   }
 
   const success: O[] = [];
@@ -51,8 +51,8 @@ export const batchRequest = async <I, O>(
 };
 
 export enum Unit {
-  MILISECONDS = 1,
-  SECONDS = 1000,
+  Miliseconds = 1,
+  Seconds = 1000,
 }
 
 export const jsonRequest = <T>(data: T): RequestInit => {

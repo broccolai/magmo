@@ -139,5 +139,5 @@ const throttle = async () => {
 
   const throttleDuration = Math.min(timesThrottled, MAX_THROTTLE);
 
-  await delay(throttleDuration, Unit.SECONDS);
+  await delay(throttleDuration, Unit.Seconds);
 };

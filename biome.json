@@ -9,7 +9,11 @@
   "linter": {
     "enabled": true,
     "rules": {
-      "all": true
+      "all": true,
+      "nursery": {
+        "all": false,
+        "recommended": true
+      }
     }
   },
   "formatter": {
