@@ -1,9 +1,27 @@
-.idea
-.next
+
+dist
+.solid
+.output
+.vercel
+.netlify
+netlify
+src/@panda
+.env
+
+# dependencies
+/node_modules
+.package-lock.json
+
+# IDEs and editors
+/.idea
+.project
+.classpath
+*.launch
+.settings/
+
+# Temp
+gitignore
+
+# System Files
 .DS_Store
-.vscode/
-node_modules/
-out/
-yarn.lock
-config.json
-.yarn
+Thumbs.db
