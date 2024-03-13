@@ -1,5 +1,3 @@
-import type { IconTypes } from '@aminya/solid-icons';
-import { FaBrandsDiscord, FaBrandsGithub, FaSolidBook, FaSolidFaucet, FaSolidLink } from '@aminya/solid-icons/fa';
 import CornBackground from 'src/assets/projects/corn/background.png';
 import CornLogo from 'src/assets/projects/corn/logo.png';
 import SiteBackground from 'src/assets/projects/site/background.png';
@@ -21,7 +19,6 @@ export interface ProjectImages {
 }
 
 export interface ProjectGlyph {
-  glyph: IconTypes;
   link: string;
   aria: string;
 }
@@ -39,22 +36,18 @@ const projects: Project[] = [
     icons: [
       {
         link: 'https://www.spigotmc.org/resources/pure-tickets-easy-to-use-ticket-system.71677/',
-        glyph: FaSolidFaucet,
         aria: 'Spigot',
       },
       {
         link: 'https://github.com/broccolai/tickets/wiki',
-        glyph: FaSolidBook,
         aria: 'Github Wiki',
       },
       {
         link: 'https://github.com/broccolai/tickets/',
-        glyph: FaBrandsGithub,
         aria: 'Github',
       },
       {
         link: 'https://discord.gg/huYp67G',
-        glyph: FaBrandsDiscord,
         aria: 'Discord',
       },
     ],
@@ -71,12 +64,10 @@ const projects: Project[] = [
     icons: [
       {
         link: 'https://github.com/broccolai/site',
-        glyph: FaBrandsGithub,
         aria: 'Github',
       },
       {
         link: 'https://broccol.ai',
-        glyph: FaSolidLink,
         aria: 'Website',
       },
     ],
@@ -93,7 +84,6 @@ const projects: Project[] = [
     icons: [
       {
         link: 'https://github.com/broccolai/corn',
-        glyph: FaBrandsGithub,
         aria: 'Github',
       },
     ],

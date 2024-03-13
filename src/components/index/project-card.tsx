@@ -58,7 +58,7 @@ const ProjectCard = (props: Props) => {
         <Text color='gray'>{description}</Text>
       </CardBody>
       <CardBottomBody>
-        <For each={icons}>{(icon) => <Icon href={icon.link} Glyph={icon.glyph} basis='1.4rem' aria='meh' />}</For>
+        <For each={icons}>{(icon) => <Icon href={icon.link} basis='1.4rem' aria='meh' />}</For>
       </CardBottomBody>
     </Card>
   );

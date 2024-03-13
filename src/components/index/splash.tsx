@@ -1,5 +1,4 @@
-import { FaSolidAnglesDown, FaSolidChevronDown } from '@aminya/solid-icons/fa';
-import { FiChevronsDown } from '@aminya/solid-icons/fi';
+import { FiChevronsDown } from '@aminya/solid-icons/fi/FiChevronsDown';
 import { styled } from '@panda/jsx';
 import { FlexSection } from '../global/containers.tsx';
 import { TITLE_FONTS } from '../global/typography.tsx';

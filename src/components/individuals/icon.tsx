@@ -1,14 +1,7 @@
-import type { IconTypes } from '@aminya/solid-icons';
-import { css } from '@panda/css';
 import { styled } from '@panda/jsx';
 import { createVariable } from '../utilities/functions.ts';
 
 const iconSize = createVariable('icon-size');
-
-const iconStyle = css({
-  height: iconSize.wrapped,
-  width: iconSize.wrapped,
-});
 
 const Link = styled('a', {
   base: {
@@ -30,7 +23,6 @@ const Link = styled('a', {
 
 interface IconProps {
   href: string;
-  Glyph: IconTypes;
   basis: string;
   backing?: string;
   aria: string;
@@ -44,9 +36,7 @@ const Icon = (props: IconProps) => {
       style={{
         [iconSize.identifier]: props.basis,
       }}
-    >
-      <props.Glyph class={iconStyle} />
-    </Link>
+    ></Link>
   );
 };
 

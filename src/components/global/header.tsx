@@ -1,4 +1,4 @@
-import { WiDaySunny } from '@aminya/solid-icons/wi';
+import { WiDaySunny } from '@aminya/solid-icons/wi/WiDaySunny';
 import { styled } from '@panda/jsx';
 import { createEffect, createSignal } from 'solid-js';
 import { panelState } from '../panels/container.tsx';
