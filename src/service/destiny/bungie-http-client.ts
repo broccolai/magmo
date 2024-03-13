@@ -111,8 +111,11 @@ function throwBungieError<T>(serverResponse: T | undefined, request: Request) {
   if (errorMessage) {
     throw new BungieError(
       {
+        // biome-ignore lint: external api
         Message: errorMessage,
+        // biome-ignore lint: external api
         ErrorCode: PlatformErrorCodes.DestinyUnexpectedError,
+        // biome-ignore lint: external api
         ErrorStatus: errorMessage,
       },
       request,

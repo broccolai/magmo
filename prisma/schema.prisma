@@ -8,27 +8,28 @@ datasource db {
 }
 
 model Match {
-  id     Int @id
-  winner Int
+  matchId Int     @id
+  ownerId Int
+  owner   Player  @relation(fields: [ownerId], references: [playerId])
+  win     Boolean
 
-  team_one    Team @relation("one", fields: [team_one_id], references: [id])
-  team_one_id Int
-  team_two    Team @relation("two", fields: [team_two_id], references: [id])
-  team_two_id Int
+  teams Team[]
 }
 
 model Team {
-  id      Int      @id @default(autoincrement())
+  teamId  Int      @id
   players Player[]
 
-  matches_as_one Match[] @relation("one")
-  matches_as_two Match[] @relation("two")
+  Match   Match @relation(fields: [matchId], references: [matchId])
+  matchId Int
 }
 
 model Player {
-  id         Int    @id
+  playerId   Int    @id
   name       String
-  identifier String
+  identifier Int
 
-  teams Team[]
+  matches    Match[]
+  Team       Team?   @relation(fields: [teamTeamId], references: [teamId])
+  teamTeamId Int?
 }

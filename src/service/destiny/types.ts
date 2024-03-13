@@ -1,7 +1,9 @@
 export interface DestinyAccount {
   name: string;
-  identifer: number;
+  identifier: number;
 }
+
+export type DestinyAccountId = string
 
 export interface MatchesPlayed {
   target: DestinyAccount;

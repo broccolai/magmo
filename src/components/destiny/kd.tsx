@@ -204,7 +204,7 @@ export const KillDeath = () => {
 
     const account: DestinyAccount = {
       name: name,
-      identifer: parseInt(identifier),
+      identifier: parseInt(identifier),
     };
 
     const stats = await trialsStats(account);

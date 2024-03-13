@@ -4,12 +4,12 @@ import { DestinyAccount } from 'src/service/destiny/types';
 
 const BROCCOLI_ACCOUNT: DestinyAccount = {
   name: 'broccoli',
-  identifer: 679,
+  identifier: 679,
 };
 
 const LAFEUILLE_ACCOUNT: DestinyAccount = {
   name: 'LaFeuille',
-  identifer: 3066,
+  identifier: 3066,
 };
 
 export const GreenDot = () => {

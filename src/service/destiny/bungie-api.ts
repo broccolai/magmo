@@ -1,7 +1,7 @@
 //@ts-nocheck
 import {
   BungieMembershipType,
-  DestinyHistoricalStatsActivity,
+  DestinyHistoricalStatsActivity, DestinyPostGameCarnageReportData,
   DestinyProfileResponse,
   getActivityHistory,
   getPostGameCarnageReport,
@@ -12,6 +12,10 @@ import type { UserInfoCard } from 'bungie-api-ts/user';
 import { batchRequest } from '../utilities';
 import { httpClient, throttledHttpClient } from './bungie-http-client';
 import { DestinyAccount } from './types';
+import {interactive} from "@pandacss/dev/dist/interactive";
+import * as console from "node:console";
+import * as console from "node:console";
+import * as console from "node:console";
 
 const CLIENT = throttledHttpClient(httpClient);
 
@@ -34,9 +38,9 @@ export const matchesAgainstAccount = async (account: DestinyAccount, target: Des
   return 0;
 };
 
-export const loadPostGameReports = async (account: DestinyAccount) => {
-  const { profile, profileResponse } = await loadProfile(account);
-  const activity = await loadActivityForProfile(profile, profileResponse);
+export const loadPostGameReports = async (loadedProfile: LoadedProfile): Promise<DestinyPostGameCarnageReportData[]> => {
+  const { profile, profileData } = loadedProfile;
+  const activity = await loadActivityForProfile(profile, profileData);
 
   if (!activity) {
     throw new Error('could not load activity');
@@ -61,7 +65,12 @@ export const loadPostGameReports = async (account: DestinyAccount) => {
   return success;
 };
 
-export const loadProfile = async (account: DestinyAccount) => {
+interface LoadedProfile {
+  profile: UserInfoCard,
+  profileData: DestinyProfileResponse
+}
+
+export const loadProfile = async (account: DestinyAccount): Promise<LoadedProfile> => {
   const searchResponse = await searchDestinyPlayerByBungieName(
     CLIENT,
     {
@@ -69,7 +78,7 @@ export const loadProfile = async (account: DestinyAccount) => {
     },
     {
       displayName: account.name,
-      displayNameCode: account.identifer,
+      displayNameCode: account.identifier,
     },
   );
 
@@ -85,9 +94,9 @@ export const loadProfile = async (account: DestinyAccount) => {
     components: [100, 200],
   });
 
-  const profileResponse = profileRequest.Response;
+  const profileData = profileRequest.Response;
 
-  return { profile, profileResponse };
+  return { profile, profileData };
 };
 
 export const loadActivityForProfile = async (profile: UserInfoCard, profileResponse: DestinyProfileResponse) => {
@@ -124,6 +133,7 @@ const loadActivityForCharacter = async (profile: UserInfoCard, character: string
     const mappedActivities = history.Response.activities.map((activity) => activity.activityDetails);
 
     activities.push(...mappedActivities);
+    break;
     page++;
   }
 
