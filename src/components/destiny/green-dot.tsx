@@ -1,30 +1,32 @@
 import { createSignal } from 'solid-js';
-import { apiMatchesAgainstAccount } from 'src/service/api-layer';
-import { DestinyAccount } from 'src/service/destiny/types';
+import {DestinyAccount, Match} from 'src/service/destiny/types';
+import {apiMatchesAgainstAccount} from "../../service/api-layer.ts";
 
 const BROCCOLI_ACCOUNT: DestinyAccount = {
-  name: 'broccoli',
-  identifier: 679,
+  name: '3 PIGS ON MY TEAM',
+  identifier: 2813,
 };
 
 const LAFEUILLE_ACCOUNT: DestinyAccount = {
-  name: 'LaFeuille',
-  identifier: 3066,
+  name: 'jakeygrant',
+  identifier: 5349,
 };
 
 export const GreenDot = () => {
-  const [matchesPlayed, setMatchesPlayed] = createSignal(0);
+  const [matches, setMatches] = createSignal<Match[]>([]);
 
   const printActivity = async () => {
-    const activity = await apiMatchesAgainstAccount(BROCCOLI_ACCOUNT, LAFEUILLE_ACCOUNT);
+    console.log(1)
+    const response = await apiMatchesAgainstAccount(BROCCOLI_ACCOUNT, LAFEUILLE_ACCOUNT);
+    console.log(3)
 
-    setMatchesPlayed(activity.matches);
+    setMatches(response.matches);
   };
 
   return (
     <div>
       <button onClick={() => printActivity()}>load broccoli data</button>
-      <p>matches played: {matchesPlayed()}</p>
+      <p>matches played: {matches().length}</p>
     </div>
   );
 };

@@ -16,13 +16,15 @@ import {interactive} from "@pandacss/dev/dist/interactive";
 import * as console from "node:console";
 import * as console from "node:console";
 import * as console from "node:console";
+import {lastLoadedMatchIdentifier} from "./match-storage.ts";
+import {fetchTrialsMatches} from "./match-service.ts";
 
 const CLIENT = throttledHttpClient(httpClient);
 
 export const matchesAgainstAccount = async (account: DestinyAccount, target: DestinyAccount) => {
-  // const { profile } = await loadProfile(target);
+  const { profile } = await loadProfile(target);
 
-  const _postGameReports = await loadPostGameReports(account);
+  const matches = await fetchTrialsMatches(account);
 
   // postGameReports
   //   .filter((game) => {
@@ -41,6 +43,8 @@ export const matchesAgainstAccount = async (account: DestinyAccount, target: Des
 export const loadPostGameReports = async (loadedProfile: LoadedProfile): Promise<DestinyPostGameCarnageReportData[]> => {
   const { profile, profileData } = loadedProfile;
   const activity = await loadActivityForProfile(profile, profileData);
+
+  console.log("about to load: ", activity?.length)
 
   if (!activity) {
     throw new Error('could not load activity');
@@ -65,7 +69,7 @@ export const loadPostGameReports = async (loadedProfile: LoadedProfile): Promise
   return success;
 };
 
-interface LoadedProfile {
+export interface LoadedProfile {
   profile: UserInfoCard,
   profileData: DestinyProfileResponse
 }
@@ -106,17 +110,22 @@ export const loadActivityForProfile = async (profile: UserInfoCard, profileRespo
     return;
   }
 
-  const characterPromises = Object.keys(data).flatMap((key) => loadActivityForCharacter(profile, key));
+  const currentHighestLoad = await lastLoadedMatchIdentifier(profile.membershipId)
+
+  console.log('current highest load', currentHighestLoad)
+
+  const characterPromises = Object.keys(data).flatMap((key) => loadActivityForCharacter(currentHighestLoad, profile, key));
   const resolvedCharacters = await Promise.all(characterPromises);
 
   return resolvedCharacters.flat();
 };
 
-const loadActivityForCharacter = async (profile: UserInfoCard, character: string) => {
+const loadActivityForCharacter = async (currentHighestLoad: BigInt, profile: UserInfoCard, character: string) => {
   const activities: DestinyHistoricalStatsActivity[] = [];
   let page = 0;
 
   while (true) {
+    console.log("loading page {} for count {}", page, page * 250)
     const history = await getActivityHistory(CLIENT, {
       characterId: character,
       membershipType: profile.membershipType,
@@ -133,9 +142,15 @@ const loadActivityForCharacter = async (profile: UserInfoCard, character: string
     const mappedActivities = history.Response.activities.map((activity) => activity.activityDetails);
 
     activities.push(...mappedActivities);
-    break;
-    page++;
+
+    if (BigInt(history.Response.activities[0].activityDetails.instanceId) <= currentHighestLoad) {
+      break;
+    }
+
+    page++
   }
 
-  return activities;
+  return activities.filter((activity) => {
+    return BigInt(activity.instanceId) > currentHighestLoad
+  })
 };

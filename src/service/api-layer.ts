@@ -1,9 +1,6 @@
 import { DestinyHistoricalStatsActivity } from 'bungie-api-ts/destiny2';
-import { ACTIVITY_ROUTE } from 'src/pages/api/activity.json';
-import { MATCHES_AGAINST_ACCOUNT_ROUTE } from 'src/pages/api/matches-against-account.json';
-import { TRIALS_STATS_ROUTE } from '../pages/api/trials-stats.json.ts';
 import { StatsResponse } from './destiny/trials-report.ts';
-import { DestinyAccount } from './destiny/types';
+import {DestinyAccount, Match} from './destiny/types';
 import { jsonRequest, jsonRequestNew } from './utilities';
 
 export const apiLoadActivity = async (account: DestinyAccount) => {
@@ -11,7 +8,7 @@ export const apiLoadActivity = async (account: DestinyAccount) => {
     account: account,
   });
 
-  const response = await fetch(ACTIVITY_ROUTE, requestData).then((response) => response.json());
+  const response = await fetch('/api/activity.json', requestData).then((response) => response.json());
 
   return response.activity as DestinyHistoricalStatsActivity[];
 };
@@ -22,9 +19,9 @@ export const apiMatchesAgainstAccount = async (account: DestinyAccount, target: 
     target: target,
   });
 
-  const response = await fetch(MATCHES_AGAINST_ACCOUNT_ROUTE, requestData).then((response) => response.json());
+  const response = await fetch('/api/matches-against-account.json', requestData).then((response) => response.json());
 
-  return response as { matches: number };
+  return response as { matches: Match[] };
 };
 
 export const trialsStats = async (account: DestinyAccount) => {
@@ -32,7 +29,7 @@ export const trialsStats = async (account: DestinyAccount) => {
     account: account,
   });
 
-  const response: StatsResponse = await fetch(TRIALS_STATS_ROUTE, requestData).then((response) => response.json());
+  const response: StatsResponse = await fetch('/api/trials-stats.json', requestData).then((response) => response.json());
 
   return response.results[0];
 };

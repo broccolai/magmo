@@ -1,5 +1,6 @@
 
 dist
+.astro
 .solid
 .output
 .vercel
