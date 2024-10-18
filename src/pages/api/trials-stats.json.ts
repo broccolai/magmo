@@ -2,6 +2,7 @@ import { APIContext, APIRoute } from 'astro';
 import { loadProfile } from '../../service/destiny/bungie-api.ts';
 import { DestinyAccount } from '../../service/destiny/types.ts';
 
+export const prerender = false;
 export const TRIALS_STATS_ROUTE = '/api/trials-stats.json';
 
 //todo: add middleware for error handling

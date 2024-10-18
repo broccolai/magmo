@@ -1,4 +1,4 @@
-@layer reset, base, tokens, recipes, panda_utilities;
+@layer reset, base, tokens, recipes, utilities;
 
 * {
     box-sizing: border-box;

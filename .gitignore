@@ -7,6 +7,7 @@ dist
 netlify
 src/@panda
 .env
+.astro
 
 # dependencies
 /node_modules
@@ -25,3 +26,7 @@ gitignore
 # System Files
 .DS_Store
 Thumbs.db
+
+## Panda
+./src/@panda
+./src/@panda-studio

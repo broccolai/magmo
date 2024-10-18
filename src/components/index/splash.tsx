@@ -1,8 +1,7 @@
-import { FaSolidAnglesDown, FaSolidChevronDown } from '@aminya/solid-icons/fa';
-import { FiChevronsDown } from '@aminya/solid-icons/fi';
 import { styled } from '@panda/jsx';
 import { FlexSection } from '../global/containers.tsx';
 import { TITLE_FONTS } from '../global/typography.tsx';
+import LucideChevronsDown from '~icons/lucide/chevrons-down';
 
 const Container = styled(FlexSection, {
   base: {
@@ -45,7 +44,7 @@ const Seperator = styled('span', {
   },
 });
 
-const ScrollIndicator = styled(FiChevronsDown, {
+const ScrollIndicator = styled(LucideChevronsDown, {
   base: {
     position: 'absolute',
     fontSize: '1.6rem',

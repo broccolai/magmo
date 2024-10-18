@@ -8,6 +8,10 @@
       "@panda/*": ["src/@panda/*"]
     },
     "verbatimModuleSyntax": false,
-    "isolatedModules": false
+    "isolatedModules": false,
+    "types": [
+      "unplugin-icons/types/solid",
+    ]
   },
+  "exclude": ["dist"]
 }

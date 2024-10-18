@@ -1,4 +1,4 @@
-import { WiDaySunny } from '@aminya/solid-icons/wi';
+import LucideSunMedium from '~icons/lucide/sun-medium';
 import { styled } from '@panda/jsx';
 import { createEffect, createSignal } from 'solid-js';
 import { panelState } from '../panels/container.tsx';
@@ -57,7 +57,7 @@ const Header = (props: HeaderProps) => {
       <PageBannerContent>
         <Icon style={{ [showIcon.identifier]: show() ? '1' : '0' }}>{props.title ?? 'josh'}</Icon>
         <Right>
-          <WiDaySunny />
+          <LucideSunMedium />
         </Right>
       </PageBannerContent>
     </PageBanner>

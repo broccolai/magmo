@@ -1,14 +1,21 @@
 import { defineConfig } from 'astro/config';
 
 import solidJs from '@astrojs/solid-js';
-import pandacss from '@pandacss/astro';
 import vercel from '@astrojs/vercel/serverless';
+import Icons from 'unplugin-icons/vite';
 
 export default defineConfig({
-  integrations: [pandacss(), solidJs()],
+  integrations: [solidJs()],
   build: {
     inlineStylesheets: 'always',
   },
-  output: 'server',
+  output: 'static',
   adapter: vercel(),
+  vite: {
+    plugins: [
+      Icons({
+        compiler: 'solid',
+      }),
+    ],
+  },
 });

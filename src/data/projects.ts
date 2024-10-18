@@ -1,11 +1,14 @@
-import type { IconTypes } from '@aminya/solid-icons';
-import { FaBrandsDiscord, FaBrandsGithub, FaSolidBook, FaSolidFaucet, FaSolidLink } from '@aminya/solid-icons/fa';
+import LucideMessageSquareCode from '~icons/lucide/message-square-code';
+import LucideGithub from '~icons/lucide/github';
+import LucideLink from '~icons/lucide/link';
+import LucideBookCheck from '~icons/lucide/book-check';
 import CornBackground from 'src/assets/projects/corn/background.png';
 import CornLogo from 'src/assets/projects/corn/logo.png';
 import SiteBackground from 'src/assets/projects/site/background.png';
 import SiteLogo from 'src/assets/projects/site/logo.svg';
 import TicketsBackground from 'src/assets/projects/tickets/background.png';
 import TicketsLogo from 'src/assets/projects/tickets/logo.svg';
+import {ComponentProps, JSX} from "solid-js";
 
 export interface Project {
   title: string;
@@ -21,7 +24,7 @@ export interface ProjectImages {
 }
 
 export interface ProjectGlyph {
-  glyph: IconTypes;
+  glyph: (props: ComponentProps<'svg'>) => JSX.Element;
   link: string;
   aria: string;
 }
@@ -39,22 +42,22 @@ const projects: Project[] = [
     icons: [
       {
         link: 'https://www.spigotmc.org/resources/pure-tickets-easy-to-use-ticket-system.71677/',
-        glyph: FaSolidFaucet,
+        glyph: LucideLink,
         aria: 'Spigot',
       },
       {
         link: 'https://github.com/broccolai/tickets/wiki',
-        glyph: FaSolidBook,
+        glyph: LucideBookCheck,
         aria: 'Github Wiki',
       },
       {
         link: 'https://github.com/broccolai/tickets/',
-        glyph: FaBrandsGithub,
+        glyph: LucideGithub,
         aria: 'Github',
       },
       {
         link: 'https://discord.gg/huYp67G',
-        glyph: FaBrandsDiscord,
+        glyph: LucideMessageSquareCode,
         aria: 'Discord',
       },
     ],
@@ -71,12 +74,12 @@ const projects: Project[] = [
     icons: [
       {
         link: 'https://github.com/broccolai/site',
-        glyph: FaBrandsGithub,
+        glyph: LucideGithub,
         aria: 'Github',
       },
       {
         link: 'https://broccol.ai',
-        glyph: FaSolidLink,
+        glyph: LucideLink,
         aria: 'Website',
       },
     ],
@@ -93,7 +96,7 @@ const projects: Project[] = [
     icons: [
       {
         link: 'https://github.com/broccolai/corn',
-        glyph: FaBrandsGithub,
+        glyph: LucideGithub,
         aria: 'Github',
       },
     ],

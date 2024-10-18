@@ -1,7 +1,7 @@
-import type { IconTypes } from '@aminya/solid-icons';
 import { css } from '@panda/css';
 import { styled } from '@panda/jsx';
 import { createVariable } from '../utilities/functions.ts';
+import {ComponentProps, JSX} from "solid-js";
 
 const iconSize = createVariable('icon-size');
 
@@ -30,7 +30,7 @@ const Link = styled('a', {
 
 interface IconProps {
   href: string;
-  Glyph: IconTypes;
+  Glyph: (props: ComponentProps<'svg'>) => JSX.Element;
   basis: string;
   backing?: string;
   aria: string;
